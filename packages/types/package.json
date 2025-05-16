@@ -1,0 +1,33 @@
+{
+  "name": "@repo/types",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "pnpm run clean && tsc",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "check-types": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arktype": "^2.1.20",
+    "@repo/db": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.x.x",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*"
+  }
+}

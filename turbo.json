@@ -1,17 +1,60 @@
 {
-  "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**",
+        "build/**",
+        "public/build/**"
+      ]
     },
+
+    "@repo/db#build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "node_modules/.prisma/client/**"],
+      "inputs": [
+        "src/**/*.ts",
+        "prisma/schema.prisma",
+        "tsconfig.json",
+        "package.json"
+      ]
+    },
+    "@repo/types#build": {
+      "dependsOn": ["@repo/db#build"],
+      "outputs": ["dist/**"]
+    },
+
+    "apps/backend#build": {
+      "dependsOn": ["@repo/db#build", "@repo/types#build"],
+      "outputs": ["dist/**"]
+    },
+    "apps/backend#dev": {
+      "dependsOn": ["@repo/db#build", "@repo/types#build"],
+      "cache": false,
+      "persistent": true
+    },
+    "apps/frontend#build": {
+      "dependsOn": ["^build", "@repo/types#build"],
+      "outputs": ["dist/**", "build/**"]
+    },
+    "apps/frontend#dev": {
+      "dependsOn": ["@repo/types#build"],
+      "cache": false,
+      "persistent": true
+    },
+
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
+      "outputs": []
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["^check-types"],
+      "outputs": []
     },
     "dev": {
       "cache": false,

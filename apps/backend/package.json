@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.1",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
+    "@repo/db": "workspace:*",
+    "@types/bcrypt": "^5.0.2",
+    "arktype": "^2.1.20",
+    "bcrypt": "^6.0.0",
+    "hono": "^4.7.9",
+    "@repo/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1",
+    "typescript": "^5.8.3"
+  }
+}

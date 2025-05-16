@@ -1,0 +1,14 @@
+{
+  "extends": "@repo/typescript-config/base.json", // Or your shared base tsconfig
+  "compilerOptions": {
+    "outDir": "./dist", // Output compiled JS to the 'dist' folder
+    "rootDir": "./src", // Source files are in 'src'
+    "declaration": true, // Generate .d.ts files
+    "declarationMap": true, // Generate sourcemaps for .d.ts files
+    "sourceMap": true, // Generate .js.map sourcemap files
+    "esModuleInterop": true, // For better CJS/ESM interop
+    "module": "NodeNext" // Or "ESNext" if targeting ESM. CommonJS is safer for Node.js libraries.
+  },
+  "include": ["src/**/*.ts"], // Only compile files in the src directory
+  "exclude": ["node_modules", "dist"]
+}
