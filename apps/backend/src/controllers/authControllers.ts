@@ -76,7 +76,11 @@ export const signup = async (c: Context, next: Next) => {
       201,
     );
   } catch (error) {
-    await next();
+    const errorMsg =
+      error instanceof Error
+        ? `error at signup: ${error.message}`
+        : `unknown error at signup`;
+    throw new Error(errorMsg);
   }
 };
 
