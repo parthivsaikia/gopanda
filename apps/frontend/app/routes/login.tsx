@@ -1,9 +1,19 @@
 import { Form } from "react-router";
+import { type } from "arktype";
+import { LoginInputUserDTOSchema } from "@repo/types";
 import type { Route } from "./+types/login";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-  const formData = await request.formData();
-  const loginData = Object.fromEntries(formData);
+  try {
+    const formData = await request.formData();
+    const loginData = Object.fromEntries(formData);
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error
+        ? `error at login: ${error.message}`
+        : `unknown error at login`;
+    return errorMsg;
+  }
 }
 
 export default function LoginPage() {
