@@ -13,6 +13,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
       return validatedData.summary;
     } else {
       const data = await login(validatedData);
+      console.log(data);
     }
   } catch (error) {
     const errorMsg =
@@ -26,7 +27,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 export default function LoginPage() {
   return (
     <div>
-      <Form>
+      <Form method="post">
         <div>
           <label htmlFor="username">Username</label>
           <input type="text" name="username" id="username" />
