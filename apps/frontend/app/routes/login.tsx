@@ -2,11 +2,18 @@ import { Form } from "react-router";
 import { type } from "arktype";
 import { LoginInputUserDTOSchema } from "@repo/types";
 import type { Route } from "./+types/login";
+import { login } from "services/login";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   try {
     const formData = await request.formData();
     const loginData = Object.fromEntries(formData);
+    const validatedData = LoginInputUserDTOSchema(loginData);
+    if (validatedData instanceof type.errors) {
+      return validatedData.summary;
+    } else {
+      const data = await login(validatedData);
+    }
   } catch (error) {
     const errorMsg =
       error instanceof Error
