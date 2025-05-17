@@ -23,7 +23,7 @@ export const getUser = async (username: string) => {
       omit: { password: true },
     });
     if (!user) {
-      throw new Error(`User with username ${username} not found.`);
+      return null;
     }
     return user;
   } catch (error) {
