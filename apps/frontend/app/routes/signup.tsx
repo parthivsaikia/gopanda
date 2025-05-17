@@ -2,7 +2,7 @@ import { Form } from "react-router";
 import { type } from "arktype";
 import type { Route } from "./+types/signup";
 import { UserInputUserDTOSchema } from "@repo/types";
-import { signup } from "services/service";
+import { signup } from "services/signup";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   try {
