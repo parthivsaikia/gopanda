@@ -120,7 +120,11 @@ export const login = async (c: Context, next: Next) => {
       csrfToken: session.csrfToken,
     });
   } catch (error) {
-    await next();
+    const errorMsg =
+      error instanceof Error
+        ? `error at login: ${error.message}`
+        : `unknown error at login`;
+    throw new Error(errorMsg);
   }
 };
 
