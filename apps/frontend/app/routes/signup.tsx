@@ -1,11 +1,27 @@
 import { Form } from "react-router";
+import { type } from "arktype";
 import type { Route } from "./+types/signup";
-import { LoginInputUserDTOSchema } from "@repo/types";
+import { UserInputUserDTOSchema } from "@repo/types";
+import { signup } from "services/service";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-  const formData = await request.formData();
-  const signupData = Object.fromEntries(formData);
-  console.log(signupData);
+  try {
+    const formData = await request.formData();
+    const signupData = Object.fromEntries(formData.entries());
+    console.log(signupData);
+    const validatedSignupData = UserInputUserDTOSchema(signupData);
+    if (validatedSignupData instanceof type.errors) {
+      return validatedSignupData.summary;
+    } else {
+      const user = await signup(validatedSignupData);
+    }
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error
+        ? `error in signup: ${error.message}`
+        : `unknown error in signup`;
+    return errorMsg;
+  }
 }
 
 export default function SignupPage() {
