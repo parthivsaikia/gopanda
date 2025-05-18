@@ -1,7 +1,6 @@
-import axios from "axios";
-import { apiBaseUrl } from "services/config";
 import type { Route } from "./+types/agent-dashboard";
 import { getProfile } from "services/profile";
+import { Link } from "react-router";
 
 export async function clientLoader() {
   const profileData = await getProfile();
@@ -17,6 +16,8 @@ export default function AgentDashboard({ loaderData }: Route.ComponentProps) {
       <p>{userData.username}</p>
       <p>{userData.state}</p>
       <p>{userData.country}</p>
+      <p>{userData.role}</p>
+      <Link to={`/logout`}>Log out</Link>
     </div>
   );
 }
