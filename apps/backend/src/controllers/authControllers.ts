@@ -161,3 +161,22 @@ export const logoutAll = async (c: Context, next: Next) => {
     await next();
   }
 };
+
+export const loggedInUser = async (c: Context) => {
+  try {
+    const user = c.get("user");
+    const session = c.get("session");
+    if (user && session) {
+      return c.json({
+        userId: String(user.id),
+        csrfToken: session.csrfToken,
+      });
+    }
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error
+        ? `error at fetching loggedInUser: ${error.message}`
+        : `unknown error at fetching logged in user`;
+    throw new Error(errorMsg);
+  }
+};
