@@ -114,10 +114,8 @@ export const login = async (c: Context, next: Next) => {
       expires: session.expiresAt,
     });
     return c.json({
-      success: true,
-      id: user.id.toString(),
       username: user.username,
-      csrfToken: session.csrfToken,
+      role: user.role,
     });
   } catch (error) {
     const errorMsg =
