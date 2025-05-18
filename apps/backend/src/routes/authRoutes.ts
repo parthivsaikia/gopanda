@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import {
+  loggedInUser,
   login,
   logout,
   logoutAll,
@@ -13,5 +14,6 @@ authRouter.post("/signup", signup);
 authRouter.post("/login", login);
 authRouter.post("/logout", authMiddleware, csrfMiddleware, logout);
 authRouter.post("/logout-all", authMiddleware, csrfMiddleware, logoutAll);
+authRouter.get("/current-user", authMiddleware, loggedInUser);
 
 export default authRouter;
