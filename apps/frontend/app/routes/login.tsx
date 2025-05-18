@@ -1,8 +1,9 @@
-import { Form } from "react-router";
+import { Form, redirect } from "react-router";
 import { type } from "arktype";
 import { LoginInputUserDTOSchema } from "@repo/types";
 import type { Route } from "./+types/login";
 import { login } from "services/login";
+import { redirectToDashboard } from "services/redirect";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   try {
@@ -13,7 +14,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
       return validatedData.summary;
     } else {
       const data = await login(validatedData);
-      console.log(data);
+      return redirectToDashboard(data.role);
     }
   } catch (error) {
     const errorMsg =
