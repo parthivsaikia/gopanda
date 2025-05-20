@@ -4,6 +4,7 @@ import { cors } from "hono/cors";
 import "./utils/types/honoContextType";
 import authRouter from "./routes/authRoutes.js";
 import profileRouter from "./routes/profileRoutes.js";
+import tourRouter from "./routes/tourRoutes.js";
 const app = new Hono();
 
 app.use(
@@ -34,6 +35,7 @@ app.get("/", (c) => {
 
 app.route("/auth", authRouter);
 app.route("/profile", profileRouter);
+app.route("/tour", tourRouter);
 
 serve({
   fetch: app.fetch,
