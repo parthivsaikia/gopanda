@@ -17,6 +17,7 @@ export default function AgentDashboard({ loaderData }: Route.ComponentProps) {
       <p>{userData.state}</p>
       <p>{userData.country}</p>
       <p>{userData.role}</p>
+      <Link to={`/new-tour`}>Create new Tour</Link>
       <Link to={`/logout`}>Log out</Link>
     </div>
   );
