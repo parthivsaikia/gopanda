@@ -5,6 +5,7 @@ import { COOKIE_NAME, DOMAIN, ORIGIN } from "../config/cookie-config.js";
 import { validateSession } from "../auth/session-api.js";
 import { Env, env } from "../config/env-config.js";
 import type { Session } from "@repo/db";
+import type { Next, Context } from "hono";
 
 export const authMiddleware = createMiddleware(async (c, next) => {
   const token = getCookie(c, COOKIE_NAME);
@@ -77,3 +78,22 @@ export const csrfMiddleware = createMiddleware(async (c, next) => {
     throw new Error(errorMessage);
   }
 });
+
+//middleware to allow only agents to post
+export const isAgentMiddleware = createMiddleware(
+  async (c: Context, next: Next) => {
+    try {
+      const role = c.get("user").role;
+      if (role !== "TravelAgent") {
+        return c.json({ error: "Customers cannot create tours." }, 403);
+      }
+      await next();
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? `error in csrf middleware: ${error.message}`
+          : `unknown error in csrf middleware.`;
+      throw new Error(errorMessage);
+    }
+  },
+);
