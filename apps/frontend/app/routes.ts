@@ -8,4 +8,7 @@ export default [
   route("/agent-dashboard", "routes/agent-dashboard.tsx"),
   route("/logout", "routes/logout.tsx"),
   route("/new-tour", "routes/create-tour.tsx"),
+  route("/components", "routes/component-testing.tsx"),
+  route("/tour-details/:id", "routes/tour-details-route.tsx"),
+  route("/booking/:tourId", "routes/booking.tsx"),
 ] satisfies RouteConfig;

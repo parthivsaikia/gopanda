@@ -3,23 +3,49 @@ import { type } from "arktype";
 import createTour from "services/create-tour";
 import { redirect } from "react-router";
 import TourCreateForm from "~/components/tour-create-form";
-import { frontendCreateTourDTOSchema } from "@repo/types";
+import { validatedTourPayloadSchema, type DayPlan } from "@repo/types";
+import axios from "axios";
+import { apiBaseUrl } from "services/config";
+import { loggedInUser } from "services/loggedInUser";
+import { getProfile } from "services/profile";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
-  const formData = await request.formData();
-  const tourData = {
-    minimumPeople: Number(formData.get("minimumPeople")),
-    price: Number(formData.get("price")),
-    startDate: new Date(formData.get("startDate") as string),
-    endDate: new Date(formData.get("endDate") as string),
-  };
-  const validatedData = frontendCreateTourDTOSchema(tourData);
-  if (validatedData instanceof type.errors) {
-    console.log(validatedData.summary);
-    return validatedData.summary;
-  } else {
-    await createTour(validatedData);
-    return redirect("/agent-dashboard");
+  try {
+    const data = await request.json();
+    console.log(data);
+    const startDate = new Date(data.startDate);
+    data.dayPlan.forEach((day: DayPlan) => {
+      const currentDayDate = new Date(startDate);
+      currentDayDate.setDate(startDate.getDate() + (day.day - 1));
+      day.itineraries.forEach((itinerary) => {
+        const [startHour, startMinute] = itinerary.startTime.split(":");
+        const isoStartTime = new Date(currentDayDate);
+        isoStartTime.setHours(Number(startHour), Number(startMinute), 0, 0);
+
+        const [endHour, endMinute] = itinerary.endTime.split(":");
+        const isoEndTime = new Date(currentDayDate);
+        isoEndTime.setHours(Number(endHour), Number(endMinute), 0, 0);
+
+        // Replace the time-only string with the full ISO string
+        itinerary.startTime = isoStartTime.toISOString();
+        itinerary.endTime = isoEndTime.toISOString();
+      });
+    });
+    const response = await createTour(data);
+    console.log(response);
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error
+        ? `error in new tour: ${error.message}`
+        : `unknown error in new tour`;
+    throw new Error(errorMsg);
+  }
+}
+
+export async function clientLoader() {
+  const user = await getProfile();
+  if (user.role !== "TravelAgent") {
+    return redirect("/");
   }
 }
 

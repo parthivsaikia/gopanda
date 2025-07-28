@@ -59,10 +59,15 @@ export type Person = $Result.DefaultSelection<Prisma.$PersonPayload>
  */
 export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
 /**
- * Model Itinerary
+ * Model ItineraryBlock
  * 
  */
-export type Itinerary = $Result.DefaultSelection<Prisma.$ItineraryPayload>
+export type ItineraryBlock = $Result.DefaultSelection<Prisma.$ItineraryBlockPayload>
+/**
+ * Model DayPlan
+ * 
+ */
+export type DayPlan = $Result.DefaultSelection<Prisma.$DayPlanPayload>
 /**
  * Model Activity
  * 
@@ -358,14 +363,24 @@ export class PrismaClient<
   get payment(): Prisma.PaymentDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.itinerary`: Exposes CRUD operations for the **Itinerary** model.
+   * `prisma.itineraryBlock`: Exposes CRUD operations for the **ItineraryBlock** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Itineraries
-    * const itineraries = await prisma.itinerary.findMany()
+    * // Fetch zero or more ItineraryBlocks
+    * const itineraryBlocks = await prisma.itineraryBlock.findMany()
     * ```
     */
-  get itinerary(): Prisma.ItineraryDelegate<ExtArgs, ClientOptions>;
+  get itineraryBlock(): Prisma.ItineraryBlockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dayPlan`: Exposes CRUD operations for the **DayPlan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DayPlans
+    * const dayPlans = await prisma.dayPlan.findMany()
+    * ```
+    */
+  get dayPlan(): Prisma.DayPlanDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.activity`: Exposes CRUD operations for the **Activity** model.
@@ -464,8 +479,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.8.1
-   * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+   * Prisma Client JS version: 6.10.1
+   * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
    */
   export type PrismaVersion = {
     client: string
@@ -855,7 +870,8 @@ export namespace Prisma {
     Booking: 'Booking',
     Person: 'Person',
     Payment: 'Payment',
-    Itinerary: 'Itinerary',
+    ItineraryBlock: 'ItineraryBlock',
+    DayPlan: 'DayPlan',
     Activity: 'Activity',
     Notification: 'Notification',
     WishList: 'WishList',
@@ -878,7 +894,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "message" | "offeredTour" | "place" | "review" | "searchHistory" | "booking" | "person" | "payment" | "itinerary" | "activity" | "notification" | "wishList" | "session"
+      modelProps: "user" | "message" | "offeredTour" | "place" | "review" | "searchHistory" | "booking" | "person" | "payment" | "itineraryBlock" | "dayPlan" | "activity" | "notification" | "wishList" | "session"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1548,77 +1564,151 @@ export namespace Prisma {
           }
         }
       }
-      Itinerary: {
-        payload: Prisma.$ItineraryPayload<ExtArgs>
-        fields: Prisma.ItineraryFieldRefs
+      ItineraryBlock: {
+        payload: Prisma.$ItineraryBlockPayload<ExtArgs>
+        fields: Prisma.ItineraryBlockFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ItineraryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload> | null
+            args: Prisma.ItineraryBlockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ItineraryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>
+            args: Prisma.ItineraryBlockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>
           }
           findFirst: {
-            args: Prisma.ItineraryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload> | null
+            args: Prisma.ItineraryBlockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ItineraryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>
+            args: Prisma.ItineraryBlockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>
           }
           findMany: {
-            args: Prisma.ItineraryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>[]
+            args: Prisma.ItineraryBlockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>[]
           }
           create: {
-            args: Prisma.ItineraryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>
+            args: Prisma.ItineraryBlockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>
           }
           createMany: {
-            args: Prisma.ItineraryCreateManyArgs<ExtArgs>
+            args: Prisma.ItineraryBlockCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.ItineraryCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>[]
+            args: Prisma.ItineraryBlockCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>[]
           }
           delete: {
-            args: Prisma.ItineraryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>
+            args: Prisma.ItineraryBlockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>
           }
           update: {
-            args: Prisma.ItineraryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>
+            args: Prisma.ItineraryBlockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>
           }
           deleteMany: {
-            args: Prisma.ItineraryDeleteManyArgs<ExtArgs>
+            args: Prisma.ItineraryBlockDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.ItineraryUpdateManyArgs<ExtArgs>
+            args: Prisma.ItineraryBlockUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.ItineraryUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>[]
+            args: Prisma.ItineraryBlockUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>[]
           }
           upsert: {
-            args: Prisma.ItineraryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ItineraryPayload>
+            args: Prisma.ItineraryBlockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ItineraryBlockPayload>
           }
           aggregate: {
-            args: Prisma.ItineraryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateItinerary>
+            args: Prisma.ItineraryBlockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateItineraryBlock>
           }
           groupBy: {
-            args: Prisma.ItineraryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ItineraryGroupByOutputType>[]
+            args: Prisma.ItineraryBlockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ItineraryBlockGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ItineraryCountArgs<ExtArgs>
-            result: $Utils.Optional<ItineraryCountAggregateOutputType> | number
+            args: Prisma.ItineraryBlockCountArgs<ExtArgs>
+            result: $Utils.Optional<ItineraryBlockCountAggregateOutputType> | number
+          }
+        }
+      }
+      DayPlan: {
+        payload: Prisma.$DayPlanPayload<ExtArgs>
+        fields: Prisma.DayPlanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DayPlanFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DayPlanFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>
+          }
+          findFirst: {
+            args: Prisma.DayPlanFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DayPlanFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>
+          }
+          findMany: {
+            args: Prisma.DayPlanFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>[]
+          }
+          create: {
+            args: Prisma.DayPlanCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>
+          }
+          createMany: {
+            args: Prisma.DayPlanCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DayPlanCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>[]
+          }
+          delete: {
+            args: Prisma.DayPlanDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>
+          }
+          update: {
+            args: Prisma.DayPlanUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>
+          }
+          deleteMany: {
+            args: Prisma.DayPlanDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DayPlanUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DayPlanUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>[]
+          }
+          upsert: {
+            args: Prisma.DayPlanUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DayPlanPayload>
+          }
+          aggregate: {
+            args: Prisma.DayPlanAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDayPlan>
+          }
+          groupBy: {
+            args: Prisma.DayPlanGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DayPlanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DayPlanCountArgs<ExtArgs>
+            result: $Utils.Optional<DayPlanCountAggregateOutputType> | number
           }
         }
       }
@@ -2011,7 +2101,8 @@ export namespace Prisma {
     booking?: BookingOmit
     person?: PersonOmit
     payment?: PaymentOmit
-    itinerary?: ItineraryOmit
+    itineraryBlock?: ItineraryBlockOmit
+    dayPlan?: DayPlanOmit
     activity?: ActivityOmit
     notification?: NotificationOmit
     wishList?: WishListOmit
@@ -2113,18 +2204,22 @@ export namespace Prisma {
     sentMessages: number
     receivedMessages: number
     offeredTours: number
-    reviews: number
     bookingsFromCustomer: number
+    notification: number
     sessions: number
+    receivedReviews: number
+    writtenReviews: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sentMessages?: boolean | UserCountOutputTypeCountSentMessagesArgs
     receivedMessages?: boolean | UserCountOutputTypeCountReceivedMessagesArgs
     offeredTours?: boolean | UserCountOutputTypeCountOfferedToursArgs
-    reviews?: boolean | UserCountOutputTypeCountReviewsArgs
     bookingsFromCustomer?: boolean | UserCountOutputTypeCountBookingsFromCustomerArgs
+    notification?: boolean | UserCountOutputTypeCountNotificationArgs
     sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+    receivedReviews?: boolean | UserCountOutputTypeCountReceivedReviewsArgs
+    writtenReviews?: boolean | UserCountOutputTypeCountWrittenReviewsArgs
   }
 
   // Custom InputTypes
@@ -2162,15 +2257,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReviewWhereInput
+  export type UserCountOutputTypeCountBookingsFromCustomerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BookingWhereInput
   }
 
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountBookingsFromCustomerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BookingWhereInput
+  export type UserCountOutputTypeCountNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
   }
 
   /**
@@ -2180,20 +2275,34 @@ export namespace Prisma {
     where?: SessionWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReceivedReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountWrittenReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
+  }
+
 
   /**
    * Count Type OfferedTourCountOutputType
    */
 
   export type OfferedTourCountOutputType = {
-    itineraries: number
+    dayPlan: number
     bookings: number
     WishList: number
     reviews: number
   }
 
   export type OfferedTourCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    itineraries?: boolean | OfferedTourCountOutputTypeCountItinerariesArgs
+    dayPlan?: boolean | OfferedTourCountOutputTypeCountDayPlanArgs
     bookings?: boolean | OfferedTourCountOutputTypeCountBookingsArgs
     WishList?: boolean | OfferedTourCountOutputTypeCountWishListArgs
     reviews?: boolean | OfferedTourCountOutputTypeCountReviewsArgs
@@ -2213,8 +2322,8 @@ export namespace Prisma {
   /**
    * OfferedTourCountOutputType without action
    */
-  export type OfferedTourCountOutputTypeCountItinerariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ItineraryWhereInput
+  export type OfferedTourCountOutputTypeCountDayPlanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DayPlanWhereInput
   }
 
   /**
@@ -2245,12 +2354,12 @@ export namespace Prisma {
 
   export type PlaceCountOutputType = {
     reviews: number
-    itinerary: number
+    itineraryBlocks: number
   }
 
   export type PlaceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | PlaceCountOutputTypeCountReviewsArgs
-    itinerary?: boolean | PlaceCountOutputTypeCountItineraryArgs
+    itineraryBlocks?: boolean | PlaceCountOutputTypeCountItineraryBlocksArgs
   }
 
   // Custom InputTypes
@@ -2274,8 +2383,8 @@ export namespace Prisma {
   /**
    * PlaceCountOutputType without action
    */
-  export type PlaceCountOutputTypeCountItineraryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ItineraryWhereInput
+  export type PlaceCountOutputTypeCountItineraryBlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItineraryBlockWhereInput
   }
 
 
@@ -2311,33 +2420,64 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ItineraryCountOutputType
+   * Count Type ItineraryBlockCountOutputType
    */
 
-  export type ItineraryCountOutputType = {
+  export type ItineraryBlockCountOutputType = {
     activities: number
   }
 
-  export type ItineraryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activities?: boolean | ItineraryCountOutputTypeCountActivitiesArgs
+  export type ItineraryBlockCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    activities?: boolean | ItineraryBlockCountOutputTypeCountActivitiesArgs
   }
 
   // Custom InputTypes
   /**
-   * ItineraryCountOutputType without action
+   * ItineraryBlockCountOutputType without action
    */
-  export type ItineraryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the ItineraryCountOutputType
+     * Select specific fields to fetch from the ItineraryBlockCountOutputType
      */
-    select?: ItineraryCountOutputTypeSelect<ExtArgs> | null
+    select?: ItineraryBlockCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * ItineraryCountOutputType without action
+   * ItineraryBlockCountOutputType without action
    */
-  export type ItineraryCountOutputTypeCountActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockCountOutputTypeCountActivitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ActivityWhereInput
+  }
+
+
+  /**
+   * Count Type DayPlanCountOutputType
+   */
+
+  export type DayPlanCountOutputType = {
+    itineraries: number
+  }
+
+  export type DayPlanCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    itineraries?: boolean | DayPlanCountOutputTypeCountItinerariesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DayPlanCountOutputType without action
+   */
+  export type DayPlanCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlanCountOutputType
+     */
+    select?: DayPlanCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DayPlanCountOutputType without action
+   */
+  export type DayPlanCountOutputTypeCountItinerariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItineraryBlockWhereInput
   }
 
 
@@ -2633,12 +2773,13 @@ export namespace Prisma {
     sentMessages?: boolean | User$sentMessagesArgs<ExtArgs>
     receivedMessages?: boolean | User$receivedMessagesArgs<ExtArgs>
     offeredTours?: boolean | User$offeredToursArgs<ExtArgs>
-    reviews?: boolean | User$reviewsArgs<ExtArgs>
     searchHistory?: boolean | User$searchHistoryArgs<ExtArgs>
     bookingsFromCustomer?: boolean | User$bookingsFromCustomerArgs<ExtArgs>
     wishList?: boolean | User$wishListArgs<ExtArgs>
     notification?: boolean | User$notificationArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    receivedReviews?: boolean | User$receivedReviewsArgs<ExtArgs>
+    writtenReviews?: boolean | User$writtenReviewsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2692,12 +2833,13 @@ export namespace Prisma {
     sentMessages?: boolean | User$sentMessagesArgs<ExtArgs>
     receivedMessages?: boolean | User$receivedMessagesArgs<ExtArgs>
     offeredTours?: boolean | User$offeredToursArgs<ExtArgs>
-    reviews?: boolean | User$reviewsArgs<ExtArgs>
     searchHistory?: boolean | User$searchHistoryArgs<ExtArgs>
     bookingsFromCustomer?: boolean | User$bookingsFromCustomerArgs<ExtArgs>
     wishList?: boolean | User$wishListArgs<ExtArgs>
     notification?: boolean | User$notificationArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
+    receivedReviews?: boolean | User$receivedReviewsArgs<ExtArgs>
+    writtenReviews?: boolean | User$writtenReviewsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2709,12 +2851,13 @@ export namespace Prisma {
       sentMessages: Prisma.$MessagePayload<ExtArgs>[]
       receivedMessages: Prisma.$MessagePayload<ExtArgs>[]
       offeredTours: Prisma.$OfferedTourPayload<ExtArgs>[]
-      reviews: Prisma.$ReviewPayload<ExtArgs>[]
       searchHistory: Prisma.$SearchHistoryPayload<ExtArgs> | null
       bookingsFromCustomer: Prisma.$BookingPayload<ExtArgs>[]
       wishList: Prisma.$WishListPayload<ExtArgs> | null
-      notification: Prisma.$NotificationPayload<ExtArgs> | null
+      notification: Prisma.$NotificationPayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
+      receivedReviews: Prisma.$ReviewPayload<ExtArgs>[]
+      writtenReviews: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -3126,12 +3269,13 @@ export namespace Prisma {
     sentMessages<T extends User$sentMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$sentMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedMessages<T extends User$receivedMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     offeredTours<T extends User$offeredToursArgs<ExtArgs> = {}>(args?: Subset<T, User$offeredToursArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OfferedTourPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     searchHistory<T extends User$searchHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$searchHistoryArgs<ExtArgs>>): Prisma__SearchHistoryClient<$Result.GetResult<Prisma.$SearchHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     bookingsFromCustomer<T extends User$bookingsFromCustomerArgs<ExtArgs> = {}>(args?: Subset<T, User$bookingsFromCustomerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     wishList<T extends User$wishListArgs<ExtArgs> = {}>(args?: Subset<T, User$wishListArgs<ExtArgs>>): Prisma__WishListClient<$Result.GetResult<Prisma.$WishListPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    notification<T extends User$notificationArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    notification<T extends User$notificationArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends User$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    receivedReviews<T extends User$receivedReviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    writtenReviews<T extends User$writtenReviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$writtenReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3633,30 +3777,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.reviews
-   */
-  export type User$reviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Review
-     */
-    select?: ReviewSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Review
-     */
-    omit?: ReviewOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ReviewInclude<ExtArgs> | null
-    where?: ReviewWhereInput
-    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
-    cursor?: ReviewWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
-  }
-
-  /**
    * User.searchHistory
    */
   export type User$searchHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3735,6 +3855,11 @@ export namespace Prisma {
      */
     include?: NotificationInclude<ExtArgs> | null
     where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    cursor?: NotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
   }
 
   /**
@@ -3759,6 +3884,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
+  }
+
+  /**
+   * User.receivedReviews
+   */
+  export type User$receivedReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Review
+     */
+    select?: ReviewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Review
+     */
+    omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    where?: ReviewWhereInput
+    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
+    cursor?: ReviewWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
+  }
+
+  /**
+   * User.writtenReviews
+   */
+  export type User$writtenReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Review
+     */
+    select?: ReviewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Review
+     */
+    omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    where?: ReviewWhereInput
+    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
+    cursor?: ReviewWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
   }
 
   /**
@@ -4916,6 +5089,7 @@ export namespace Prisma {
   export type OfferedTourAvgAggregateOutputType = {
     id: number | null
     minimumPeople: number | null
+    maximumPeople: number | null
     price: Decimal | null
     agentId: number | null
   }
@@ -4923,6 +5097,7 @@ export namespace Prisma {
   export type OfferedTourSumAggregateOutputType = {
     id: bigint | null
     minimumPeople: number | null
+    maximumPeople: number | null
     price: Decimal | null
     agentId: bigint | null
   }
@@ -4930,6 +5105,7 @@ export namespace Prisma {
   export type OfferedTourMinAggregateOutputType = {
     id: bigint | null
     minimumPeople: number | null
+    maximumPeople: number | null
     price: Decimal | null
     agentId: bigint | null
     startDate: Date | null
@@ -4939,6 +5115,7 @@ export namespace Prisma {
   export type OfferedTourMaxAggregateOutputType = {
     id: bigint | null
     minimumPeople: number | null
+    maximumPeople: number | null
     price: Decimal | null
     agentId: bigint | null
     startDate: Date | null
@@ -4948,6 +5125,7 @@ export namespace Prisma {
   export type OfferedTourCountAggregateOutputType = {
     id: number
     minimumPeople: number
+    maximumPeople: number
     price: number
     facilities: number
     agentId: number
@@ -4960,6 +5138,7 @@ export namespace Prisma {
   export type OfferedTourAvgAggregateInputType = {
     id?: true
     minimumPeople?: true
+    maximumPeople?: true
     price?: true
     agentId?: true
   }
@@ -4967,6 +5146,7 @@ export namespace Prisma {
   export type OfferedTourSumAggregateInputType = {
     id?: true
     minimumPeople?: true
+    maximumPeople?: true
     price?: true
     agentId?: true
   }
@@ -4974,6 +5154,7 @@ export namespace Prisma {
   export type OfferedTourMinAggregateInputType = {
     id?: true
     minimumPeople?: true
+    maximumPeople?: true
     price?: true
     agentId?: true
     startDate?: true
@@ -4983,6 +5164,7 @@ export namespace Prisma {
   export type OfferedTourMaxAggregateInputType = {
     id?: true
     minimumPeople?: true
+    maximumPeople?: true
     price?: true
     agentId?: true
     startDate?: true
@@ -4992,6 +5174,7 @@ export namespace Prisma {
   export type OfferedTourCountAggregateInputType = {
     id?: true
     minimumPeople?: true
+    maximumPeople?: true
     price?: true
     facilities?: true
     agentId?: true
@@ -5089,6 +5272,7 @@ export namespace Prisma {
   export type OfferedTourGroupByOutputType = {
     id: bigint
     minimumPeople: number
+    maximumPeople: number
     price: Decimal
     facilities: string[]
     agentId: bigint
@@ -5118,12 +5302,13 @@ export namespace Prisma {
   export type OfferedTourSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     minimumPeople?: boolean
+    maximumPeople?: boolean
     price?: boolean
     facilities?: boolean
     agentId?: boolean
     startDate?: boolean
     endDate?: boolean
-    itineraries?: boolean | OfferedTour$itinerariesArgs<ExtArgs>
+    dayPlan?: boolean | OfferedTour$dayPlanArgs<ExtArgs>
     agent?: boolean | UserDefaultArgs<ExtArgs>
     bookings?: boolean | OfferedTour$bookingsArgs<ExtArgs>
     WishList?: boolean | OfferedTour$WishListArgs<ExtArgs>
@@ -5134,6 +5319,7 @@ export namespace Prisma {
   export type OfferedTourSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     minimumPeople?: boolean
+    maximumPeople?: boolean
     price?: boolean
     facilities?: boolean
     agentId?: boolean
@@ -5145,6 +5331,7 @@ export namespace Prisma {
   export type OfferedTourSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     minimumPeople?: boolean
+    maximumPeople?: boolean
     price?: boolean
     facilities?: boolean
     agentId?: boolean
@@ -5156,6 +5343,7 @@ export namespace Prisma {
   export type OfferedTourSelectScalar = {
     id?: boolean
     minimumPeople?: boolean
+    maximumPeople?: boolean
     price?: boolean
     facilities?: boolean
     agentId?: boolean
@@ -5163,9 +5351,9 @@ export namespace Prisma {
     endDate?: boolean
   }
 
-  export type OfferedTourOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "minimumPeople" | "price" | "facilities" | "agentId" | "startDate" | "endDate", ExtArgs["result"]["offeredTour"]>
+  export type OfferedTourOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "minimumPeople" | "maximumPeople" | "price" | "facilities" | "agentId" | "startDate" | "endDate", ExtArgs["result"]["offeredTour"]>
   export type OfferedTourInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    itineraries?: boolean | OfferedTour$itinerariesArgs<ExtArgs>
+    dayPlan?: boolean | OfferedTour$dayPlanArgs<ExtArgs>
     agent?: boolean | UserDefaultArgs<ExtArgs>
     bookings?: boolean | OfferedTour$bookingsArgs<ExtArgs>
     WishList?: boolean | OfferedTour$WishListArgs<ExtArgs>
@@ -5182,7 +5370,7 @@ export namespace Prisma {
   export type $OfferedTourPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OfferedTour"
     objects: {
-      itineraries: Prisma.$ItineraryPayload<ExtArgs>[]
+      dayPlan: Prisma.$DayPlanPayload<ExtArgs>[]
       agent: Prisma.$UserPayload<ExtArgs>
       bookings: Prisma.$BookingPayload<ExtArgs>[]
       WishList: Prisma.$WishListPayload<ExtArgs>[]
@@ -5191,6 +5379,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       minimumPeople: number
+      maximumPeople: number
       price: Prisma.Decimal
       facilities: string[]
       agentId: bigint
@@ -5590,7 +5779,7 @@ export namespace Prisma {
    */
   export interface Prisma__OfferedTourClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    itineraries<T extends OfferedTour$itinerariesArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTour$itinerariesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    dayPlan<T extends OfferedTour$dayPlanArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTour$dayPlanArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     agent<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     bookings<T extends OfferedTour$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTour$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     WishList<T extends OfferedTour$WishListArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTour$WishListArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WishListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -5626,6 +5815,7 @@ export namespace Prisma {
   interface OfferedTourFieldRefs {
     readonly id: FieldRef<"OfferedTour", 'BigInt'>
     readonly minimumPeople: FieldRef<"OfferedTour", 'Int'>
+    readonly maximumPeople: FieldRef<"OfferedTour", 'Int'>
     readonly price: FieldRef<"OfferedTour", 'Decimal'>
     readonly facilities: FieldRef<"OfferedTour", 'String[]'>
     readonly agentId: FieldRef<"OfferedTour", 'BigInt'>
@@ -6027,27 +6217,27 @@ export namespace Prisma {
   }
 
   /**
-   * OfferedTour.itineraries
+   * OfferedTour.dayPlan
    */
-  export type OfferedTour$itinerariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type OfferedTour$dayPlanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the DayPlan
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: DayPlanSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the DayPlan
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: DayPlanOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
-    where?: ItineraryWhereInput
-    orderBy?: ItineraryOrderByWithRelationInput | ItineraryOrderByWithRelationInput[]
-    cursor?: ItineraryWhereUniqueInput
+    include?: DayPlanInclude<ExtArgs> | null
+    where?: DayPlanWhereInput
+    orderBy?: DayPlanOrderByWithRelationInput | DayPlanOrderByWithRelationInput[]
+    cursor?: DayPlanWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ItineraryScalarFieldEnum | ItineraryScalarFieldEnum[]
+    distinct?: DayPlanScalarFieldEnum | DayPlanScalarFieldEnum[]
   }
 
   /**
@@ -6155,68 +6345,72 @@ export namespace Prisma {
 
   export type PlaceAvgAggregateOutputType = {
     id: number | null
-    rating: Decimal | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type PlaceSumAggregateOutputType = {
     id: bigint | null
-    rating: Decimal | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type PlaceMinAggregateOutputType = {
     id: bigint | null
     name: string | null
-    location: string | null
-    rating: Decimal | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type PlaceMaxAggregateOutputType = {
     id: bigint | null
     name: string | null
-    location: string | null
-    rating: Decimal | null
+    latitude: number | null
+    longitude: number | null
   }
 
   export type PlaceCountAggregateOutputType = {
     id: number
     name: number
-    location: number
+    latitude: number
+    longitude: number
     photos: number
-    rating: number
     _all: number
   }
 
 
   export type PlaceAvgAggregateInputType = {
     id?: true
-    rating?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type PlaceSumAggregateInputType = {
     id?: true
-    rating?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type PlaceMinAggregateInputType = {
     id?: true
     name?: true
-    location?: true
-    rating?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type PlaceMaxAggregateInputType = {
     id?: true
     name?: true
-    location?: true
-    rating?: true
+    latitude?: true
+    longitude?: true
   }
 
   export type PlaceCountAggregateInputType = {
     id?: true
     name?: true
-    location?: true
+    latitude?: true
+    longitude?: true
     photos?: true
-    rating?: true
     _all?: true
   }
 
@@ -6309,9 +6503,9 @@ export namespace Prisma {
   export type PlaceGroupByOutputType = {
     id: bigint
     name: string
-    location: string
+    latitude: number
+    longitude: number
     photos: string[]
-    rating: Decimal
     _count: PlaceCountAggregateOutputType | null
     _avg: PlaceAvgAggregateOutputType | null
     _sum: PlaceSumAggregateOutputType | null
@@ -6336,42 +6530,42 @@ export namespace Prisma {
   export type PlaceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
     photos?: boolean
-    rating?: boolean
     reviews?: boolean | Place$reviewsArgs<ExtArgs>
-    itinerary?: boolean | Place$itineraryArgs<ExtArgs>
+    itineraryBlocks?: boolean | Place$itineraryBlocksArgs<ExtArgs>
     _count?: boolean | PlaceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["place"]>
 
   export type PlaceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
     photos?: boolean
-    rating?: boolean
   }, ExtArgs["result"]["place"]>
 
   export type PlaceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
     photos?: boolean
-    rating?: boolean
   }, ExtArgs["result"]["place"]>
 
   export type PlaceSelectScalar = {
     id?: boolean
     name?: boolean
-    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
     photos?: boolean
-    rating?: boolean
   }
 
-  export type PlaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "location" | "photos" | "rating", ExtArgs["result"]["place"]>
+  export type PlaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "latitude" | "longitude" | "photos", ExtArgs["result"]["place"]>
   export type PlaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reviews?: boolean | Place$reviewsArgs<ExtArgs>
-    itinerary?: boolean | Place$itineraryArgs<ExtArgs>
+    itineraryBlocks?: boolean | Place$itineraryBlocksArgs<ExtArgs>
     _count?: boolean | PlaceCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PlaceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -6381,14 +6575,14 @@ export namespace Prisma {
     name: "Place"
     objects: {
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
-      itinerary: Prisma.$ItineraryPayload<ExtArgs>[]
+      itineraryBlocks: Prisma.$ItineraryBlockPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       name: string
-      location: string
+      latitude: number
+      longitude: number
       photos: string[]
-      rating: Prisma.Decimal
     }, ExtArgs["result"]["place"]>
     composites: {}
   }
@@ -6784,7 +6978,7 @@ export namespace Prisma {
   export interface Prisma__PlaceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     reviews<T extends Place$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Place$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    itinerary<T extends Place$itineraryArgs<ExtArgs> = {}>(args?: Subset<T, Place$itineraryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    itineraryBlocks<T extends Place$itineraryBlocksArgs<ExtArgs> = {}>(args?: Subset<T, Place$itineraryBlocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6816,9 +7010,9 @@ export namespace Prisma {
   interface PlaceFieldRefs {
     readonly id: FieldRef<"Place", 'BigInt'>
     readonly name: FieldRef<"Place", 'String'>
-    readonly location: FieldRef<"Place", 'String'>
+    readonly latitude: FieldRef<"Place", 'Float'>
+    readonly longitude: FieldRef<"Place", 'Float'>
     readonly photos: FieldRef<"Place", 'String[]'>
-    readonly rating: FieldRef<"Place", 'Decimal'>
   }
     
 
@@ -7231,27 +7425,27 @@ export namespace Prisma {
   }
 
   /**
-   * Place.itinerary
+   * Place.itineraryBlocks
    */
-  export type Place$itineraryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Place$itineraryBlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
-    where?: ItineraryWhereInput
-    orderBy?: ItineraryOrderByWithRelationInput | ItineraryOrderByWithRelationInput[]
-    cursor?: ItineraryWhereUniqueInput
+    include?: ItineraryBlockInclude<ExtArgs> | null
+    where?: ItineraryBlockWhereInput
+    orderBy?: ItineraryBlockOrderByWithRelationInput | ItineraryBlockOrderByWithRelationInput[]
+    cursor?: ItineraryBlockWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: ItineraryScalarFieldEnum | ItineraryScalarFieldEnum[]
+    distinct?: ItineraryBlockScalarFieldEnum | ItineraryBlockScalarFieldEnum[]
   }
 
   /**
@@ -7288,35 +7482,39 @@ export namespace Prisma {
   export type ReviewAvgAggregateOutputType = {
     id: number | null
     star: number | null
-    placeId: number | null
-    agentId: number | null
+    reviewerId: number | null
     offeredTourId: number | null
+    placeId: number | null
+    reviewedAgentId: number | null
   }
 
   export type ReviewSumAggregateOutputType = {
     id: bigint | null
     star: number | null
-    placeId: bigint | null
-    agentId: bigint | null
+    reviewerId: bigint | null
     offeredTourId: bigint | null
+    placeId: bigint | null
+    reviewedAgentId: bigint | null
   }
 
   export type ReviewMinAggregateOutputType = {
     id: bigint | null
     star: number | null
     text: string | null
-    placeId: bigint | null
-    agentId: bigint | null
+    reviewerId: bigint | null
     offeredTourId: bigint | null
+    placeId: bigint | null
+    reviewedAgentId: bigint | null
   }
 
   export type ReviewMaxAggregateOutputType = {
     id: bigint | null
     star: number | null
     text: string | null
-    placeId: bigint | null
-    agentId: bigint | null
+    reviewerId: bigint | null
     offeredTourId: bigint | null
+    placeId: bigint | null
+    reviewedAgentId: bigint | null
   }
 
   export type ReviewCountAggregateOutputType = {
@@ -7324,9 +7522,10 @@ export namespace Prisma {
     star: number
     text: number
     photos: number
-    placeId: number
-    agentId: number
+    reviewerId: number
     offeredTourId: number
+    placeId: number
+    reviewedAgentId: number
     _all: number
   }
 
@@ -7334,35 +7533,39 @@ export namespace Prisma {
   export type ReviewAvgAggregateInputType = {
     id?: true
     star?: true
-    placeId?: true
-    agentId?: true
+    reviewerId?: true
     offeredTourId?: true
+    placeId?: true
+    reviewedAgentId?: true
   }
 
   export type ReviewSumAggregateInputType = {
     id?: true
     star?: true
-    placeId?: true
-    agentId?: true
+    reviewerId?: true
     offeredTourId?: true
+    placeId?: true
+    reviewedAgentId?: true
   }
 
   export type ReviewMinAggregateInputType = {
     id?: true
     star?: true
     text?: true
-    placeId?: true
-    agentId?: true
+    reviewerId?: true
     offeredTourId?: true
+    placeId?: true
+    reviewedAgentId?: true
   }
 
   export type ReviewMaxAggregateInputType = {
     id?: true
     star?: true
     text?: true
-    placeId?: true
-    agentId?: true
+    reviewerId?: true
     offeredTourId?: true
+    placeId?: true
+    reviewedAgentId?: true
   }
 
   export type ReviewCountAggregateInputType = {
@@ -7370,9 +7573,10 @@ export namespace Prisma {
     star?: true
     text?: true
     photos?: true
-    placeId?: true
-    agentId?: true
+    reviewerId?: true
     offeredTourId?: true
+    placeId?: true
+    reviewedAgentId?: true
     _all?: true
   }
 
@@ -7467,9 +7671,10 @@ export namespace Prisma {
     star: number
     text: string
     photos: string[]
+    reviewerId: bigint
+    offeredTourId: bigint | null
     placeId: bigint | null
-    agentId: bigint
-    offeredTourId: bigint
+    reviewedAgentId: bigint | null
     _count: ReviewCountAggregateOutputType | null
     _avg: ReviewAvgAggregateOutputType | null
     _sum: ReviewSumAggregateOutputType | null
@@ -7496,12 +7701,14 @@ export namespace Prisma {
     star?: boolean
     text?: boolean
     photos?: boolean
-    placeId?: boolean
-    agentId?: boolean
+    reviewerId?: boolean
     offeredTourId?: boolean
-    Place?: boolean | Review$PlaceArgs<ExtArgs>
-    agent?: boolean | UserDefaultArgs<ExtArgs>
-    offeredTour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    placeId?: boolean
+    reviewedAgentId?: boolean
+    reviewer?: boolean | UserDefaultArgs<ExtArgs>
+    offeredTour?: boolean | Review$offeredTourArgs<ExtArgs>
+    place?: boolean | Review$placeArgs<ExtArgs>
+    reviewedAgent?: boolean | Review$reviewedAgentArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7509,12 +7716,14 @@ export namespace Prisma {
     star?: boolean
     text?: boolean
     photos?: boolean
-    placeId?: boolean
-    agentId?: boolean
+    reviewerId?: boolean
     offeredTourId?: boolean
-    Place?: boolean | Review$PlaceArgs<ExtArgs>
-    agent?: boolean | UserDefaultArgs<ExtArgs>
-    offeredTour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    placeId?: boolean
+    reviewedAgentId?: boolean
+    reviewer?: boolean | UserDefaultArgs<ExtArgs>
+    offeredTour?: boolean | Review$offeredTourArgs<ExtArgs>
+    place?: boolean | Review$placeArgs<ExtArgs>
+    reviewedAgent?: boolean | Review$reviewedAgentArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7522,12 +7731,14 @@ export namespace Prisma {
     star?: boolean
     text?: boolean
     photos?: boolean
-    placeId?: boolean
-    agentId?: boolean
+    reviewerId?: boolean
     offeredTourId?: boolean
-    Place?: boolean | Review$PlaceArgs<ExtArgs>
-    agent?: boolean | UserDefaultArgs<ExtArgs>
-    offeredTour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    placeId?: boolean
+    reviewedAgentId?: boolean
+    reviewer?: boolean | UserDefaultArgs<ExtArgs>
+    offeredTour?: boolean | Review$offeredTourArgs<ExtArgs>
+    place?: boolean | Review$placeArgs<ExtArgs>
+    reviewedAgent?: boolean | Review$reviewedAgentArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectScalar = {
@@ -7535,43 +7746,49 @@ export namespace Prisma {
     star?: boolean
     text?: boolean
     photos?: boolean
-    placeId?: boolean
-    agentId?: boolean
+    reviewerId?: boolean
     offeredTourId?: boolean
+    placeId?: boolean
+    reviewedAgentId?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "star" | "text" | "photos" | "placeId" | "agentId" | "offeredTourId", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "star" | "text" | "photos" | "reviewerId" | "offeredTourId" | "placeId" | "reviewedAgentId", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Place?: boolean | Review$PlaceArgs<ExtArgs>
-    agent?: boolean | UserDefaultArgs<ExtArgs>
-    offeredTour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    reviewer?: boolean | UserDefaultArgs<ExtArgs>
+    offeredTour?: boolean | Review$offeredTourArgs<ExtArgs>
+    place?: boolean | Review$placeArgs<ExtArgs>
+    reviewedAgent?: boolean | Review$reviewedAgentArgs<ExtArgs>
   }
   export type ReviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Place?: boolean | Review$PlaceArgs<ExtArgs>
-    agent?: boolean | UserDefaultArgs<ExtArgs>
-    offeredTour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    reviewer?: boolean | UserDefaultArgs<ExtArgs>
+    offeredTour?: boolean | Review$offeredTourArgs<ExtArgs>
+    place?: boolean | Review$placeArgs<ExtArgs>
+    reviewedAgent?: boolean | Review$reviewedAgentArgs<ExtArgs>
   }
   export type ReviewIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Place?: boolean | Review$PlaceArgs<ExtArgs>
-    agent?: boolean | UserDefaultArgs<ExtArgs>
-    offeredTour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    reviewer?: boolean | UserDefaultArgs<ExtArgs>
+    offeredTour?: boolean | Review$offeredTourArgs<ExtArgs>
+    place?: boolean | Review$placeArgs<ExtArgs>
+    reviewedAgent?: boolean | Review$reviewedAgentArgs<ExtArgs>
   }
 
   export type $ReviewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Review"
     objects: {
-      Place: Prisma.$PlacePayload<ExtArgs> | null
-      agent: Prisma.$UserPayload<ExtArgs>
-      offeredTour: Prisma.$OfferedTourPayload<ExtArgs>
+      reviewer: Prisma.$UserPayload<ExtArgs>
+      offeredTour: Prisma.$OfferedTourPayload<ExtArgs> | null
+      place: Prisma.$PlacePayload<ExtArgs> | null
+      reviewedAgent: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       star: number
       text: string
       photos: string[]
+      reviewerId: bigint
+      offeredTourId: bigint | null
       placeId: bigint | null
-      agentId: bigint
-      offeredTourId: bigint
+      reviewedAgentId: bigint | null
     }, ExtArgs["result"]["review"]>
     composites: {}
   }
@@ -7966,9 +8183,10 @@ export namespace Prisma {
    */
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Place<T extends Review$PlaceArgs<ExtArgs> = {}>(args?: Subset<T, Review$PlaceArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    agent<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    offeredTour<T extends OfferedTourDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTourDefaultArgs<ExtArgs>>): Prisma__OfferedTourClient<$Result.GetResult<Prisma.$OfferedTourPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    reviewer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    offeredTour<T extends Review$offeredTourArgs<ExtArgs> = {}>(args?: Subset<T, Review$offeredTourArgs<ExtArgs>>): Prisma__OfferedTourClient<$Result.GetResult<Prisma.$OfferedTourPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    place<T extends Review$placeArgs<ExtArgs> = {}>(args?: Subset<T, Review$placeArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    reviewedAgent<T extends Review$reviewedAgentArgs<ExtArgs> = {}>(args?: Subset<T, Review$reviewedAgentArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8002,9 +8220,10 @@ export namespace Prisma {
     readonly star: FieldRef<"Review", 'Int'>
     readonly text: FieldRef<"Review", 'String'>
     readonly photos: FieldRef<"Review", 'String[]'>
-    readonly placeId: FieldRef<"Review", 'BigInt'>
-    readonly agentId: FieldRef<"Review", 'BigInt'>
+    readonly reviewerId: FieldRef<"Review", 'BigInt'>
     readonly offeredTourId: FieldRef<"Review", 'BigInt'>
+    readonly placeId: FieldRef<"Review", 'BigInt'>
+    readonly reviewedAgentId: FieldRef<"Review", 'BigInt'>
   }
     
 
@@ -8401,9 +8620,28 @@ export namespace Prisma {
   }
 
   /**
-   * Review.Place
+   * Review.offeredTour
    */
-  export type Review$PlaceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Review$offeredTourArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OfferedTour
+     */
+    select?: OfferedTourSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OfferedTour
+     */
+    omit?: OfferedTourOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OfferedTourInclude<ExtArgs> | null
+    where?: OfferedTourWhereInput
+  }
+
+  /**
+   * Review.place
+   */
+  export type Review$placeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Place
      */
@@ -8417,6 +8655,25 @@ export namespace Prisma {
      */
     include?: PlaceInclude<ExtArgs> | null
     where?: PlaceWhereInput
+  }
+
+  /**
+   * Review.reviewedAgent
+   */
+  export type Review$reviewedAgentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -9520,54 +9777,39 @@ export namespace Prisma {
     id: number | null
     customerId: number | null
     tourId: number | null
-    noOfPeople: number | null
-    totalPrice: Decimal | null
-    paymentId: number | null
   }
 
   export type BookingSumAggregateOutputType = {
     id: bigint | null
     customerId: bigint | null
     tourId: bigint | null
-    noOfPeople: number | null
-    totalPrice: Decimal | null
-    paymentId: bigint | null
   }
 
   export type BookingMinAggregateOutputType = {
     id: bigint | null
     customerId: bigint | null
     tourId: bigint | null
-    noOfPeople: number | null
     status: $Enums.BookingStatus | null
-    totalPrice: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
-    paymentId: bigint | null
   }
 
   export type BookingMaxAggregateOutputType = {
     id: bigint | null
     customerId: bigint | null
     tourId: bigint | null
-    noOfPeople: number | null
     status: $Enums.BookingStatus | null
-    totalPrice: Decimal | null
     createdAt: Date | null
     updatedAt: Date | null
-    paymentId: bigint | null
   }
 
   export type BookingCountAggregateOutputType = {
     id: number
     customerId: number
     tourId: number
-    noOfPeople: number
     status: number
-    totalPrice: number
     createdAt: number
     updatedAt: number
-    paymentId: number
     _all: number
   }
 
@@ -9576,54 +9818,39 @@ export namespace Prisma {
     id?: true
     customerId?: true
     tourId?: true
-    noOfPeople?: true
-    totalPrice?: true
-    paymentId?: true
   }
 
   export type BookingSumAggregateInputType = {
     id?: true
     customerId?: true
     tourId?: true
-    noOfPeople?: true
-    totalPrice?: true
-    paymentId?: true
   }
 
   export type BookingMinAggregateInputType = {
     id?: true
     customerId?: true
     tourId?: true
-    noOfPeople?: true
     status?: true
-    totalPrice?: true
     createdAt?: true
     updatedAt?: true
-    paymentId?: true
   }
 
   export type BookingMaxAggregateInputType = {
     id?: true
     customerId?: true
     tourId?: true
-    noOfPeople?: true
     status?: true
-    totalPrice?: true
     createdAt?: true
     updatedAt?: true
-    paymentId?: true
   }
 
   export type BookingCountAggregateInputType = {
     id?: true
     customerId?: true
     tourId?: true
-    noOfPeople?: true
     status?: true
-    totalPrice?: true
     createdAt?: true
     updatedAt?: true
-    paymentId?: true
     _all?: true
   }
 
@@ -9717,12 +9944,9 @@ export namespace Prisma {
     id: bigint
     customerId: bigint
     tourId: bigint
-    noOfPeople: number
     status: $Enums.BookingStatus
-    totalPrice: Decimal
     createdAt: Date
     updatedAt: Date
-    paymentId: bigint
     _count: BookingCountAggregateOutputType | null
     _avg: BookingAvgAggregateOutputType | null
     _sum: BookingSumAggregateOutputType | null
@@ -9748,12 +9972,9 @@ export namespace Prisma {
     id?: boolean
     customerId?: boolean
     tourId?: boolean
-    noOfPeople?: boolean
     status?: boolean
-    totalPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    paymentId?: boolean
     customer?: boolean | UserDefaultArgs<ExtArgs>
     tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
     persons?: boolean | Booking$personsArgs<ExtArgs>
@@ -9765,12 +9986,9 @@ export namespace Prisma {
     id?: boolean
     customerId?: boolean
     tourId?: boolean
-    noOfPeople?: boolean
     status?: boolean
-    totalPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    paymentId?: boolean
     customer?: boolean | UserDefaultArgs<ExtArgs>
     tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
@@ -9779,12 +9997,9 @@ export namespace Prisma {
     id?: boolean
     customerId?: boolean
     tourId?: boolean
-    noOfPeople?: boolean
     status?: boolean
-    totalPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    paymentId?: boolean
     customer?: boolean | UserDefaultArgs<ExtArgs>
     tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["booking"]>
@@ -9793,15 +10008,12 @@ export namespace Prisma {
     id?: boolean
     customerId?: boolean
     tourId?: boolean
-    noOfPeople?: boolean
     status?: boolean
-    totalPrice?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    paymentId?: boolean
   }
 
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "tourId" | "noOfPeople" | "status" | "totalPrice" | "createdAt" | "updatedAt" | "paymentId", ExtArgs["result"]["booking"]>
+  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "tourId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["booking"]>
   export type BookingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | UserDefaultArgs<ExtArgs>
     tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
@@ -9830,12 +10042,9 @@ export namespace Prisma {
       id: bigint
       customerId: bigint
       tourId: bigint
-      noOfPeople: number
       status: $Enums.BookingStatus
-      totalPrice: Prisma.Decimal
       createdAt: Date
       updatedAt: Date
-      paymentId: bigint
     }, ExtArgs["result"]["booking"]>
     composites: {}
   }
@@ -10266,12 +10475,9 @@ export namespace Prisma {
     readonly id: FieldRef<"Booking", 'BigInt'>
     readonly customerId: FieldRef<"Booking", 'BigInt'>
     readonly tourId: FieldRef<"Booking", 'BigInt'>
-    readonly noOfPeople: FieldRef<"Booking", 'Int'>
     readonly status: FieldRef<"Booking", 'BookingStatus'>
-    readonly totalPrice: FieldRef<"Booking", 'Decimal'>
     readonly createdAt: FieldRef<"Booking", 'DateTime'>
     readonly updatedAt: FieldRef<"Booking", 'DateTime'>
-    readonly paymentId: FieldRef<"Booking", 'BigInt'>
   }
     
 
@@ -10757,7 +10963,7 @@ export namespace Prisma {
     id: bigint | null
     name: string | null
     age: number | null
-    proof: string | null
+    proofUrl: string | null
     bookingId: bigint | null
   }
 
@@ -10765,7 +10971,7 @@ export namespace Prisma {
     id: bigint | null
     name: string | null
     age: number | null
-    proof: string | null
+    proofUrl: string | null
     bookingId: bigint | null
   }
 
@@ -10773,7 +10979,7 @@ export namespace Prisma {
     id: number
     name: number
     age: number
-    proof: number
+    proofUrl: number
     bookingId: number
     _all: number
   }
@@ -10795,7 +11001,7 @@ export namespace Prisma {
     id?: true
     name?: true
     age?: true
-    proof?: true
+    proofUrl?: true
     bookingId?: true
   }
 
@@ -10803,7 +11009,7 @@ export namespace Prisma {
     id?: true
     name?: true
     age?: true
-    proof?: true
+    proofUrl?: true
     bookingId?: true
   }
 
@@ -10811,7 +11017,7 @@ export namespace Prisma {
     id?: true
     name?: true
     age?: true
-    proof?: true
+    proofUrl?: true
     bookingId?: true
     _all?: true
   }
@@ -10906,7 +11112,7 @@ export namespace Prisma {
     id: bigint
     name: string
     age: number
-    proof: string
+    proofUrl: string | null
     bookingId: bigint
     _count: PersonCountAggregateOutputType | null
     _avg: PersonAvgAggregateOutputType | null
@@ -10933,7 +11139,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     age?: boolean
-    proof?: boolean
+    proofUrl?: boolean
     bookingId?: boolean
     bookings?: boolean | BookingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["person"]>
@@ -10942,7 +11148,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     age?: boolean
-    proof?: boolean
+    proofUrl?: boolean
     bookingId?: boolean
     bookings?: boolean | BookingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["person"]>
@@ -10951,7 +11157,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     age?: boolean
-    proof?: boolean
+    proofUrl?: boolean
     bookingId?: boolean
     bookings?: boolean | BookingDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["person"]>
@@ -10960,11 +11166,11 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     age?: boolean
-    proof?: boolean
+    proofUrl?: boolean
     bookingId?: boolean
   }
 
-  export type PersonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "age" | "proof" | "bookingId", ExtArgs["result"]["person"]>
+  export type PersonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "age" | "proofUrl" | "bookingId", ExtArgs["result"]["person"]>
   export type PersonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     bookings?: boolean | BookingDefaultArgs<ExtArgs>
   }
@@ -10984,7 +11190,7 @@ export namespace Prisma {
       id: bigint
       name: string
       age: number
-      proof: string
+      proofUrl: string | null
       bookingId: bigint
     }, ExtArgs["result"]["person"]>
     composites: {}
@@ -11413,7 +11619,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Person", 'BigInt'>
     readonly name: FieldRef<"Person", 'String'>
     readonly age: FieldRef<"Person", 'Int'>
-    readonly proof: FieldRef<"Person", 'String'>
+    readonly proofUrl: FieldRef<"Person", 'String'>
     readonly bookingId: FieldRef<"Person", 'BigInt'>
   }
     
@@ -12969,444 +13175,440 @@ export namespace Prisma {
 
 
   /**
-   * Model Itinerary
+   * Model ItineraryBlock
    */
 
-  export type AggregateItinerary = {
-    _count: ItineraryCountAggregateOutputType | null
-    _avg: ItineraryAvgAggregateOutputType | null
-    _sum: ItinerarySumAggregateOutputType | null
-    _min: ItineraryMinAggregateOutputType | null
-    _max: ItineraryMaxAggregateOutputType | null
+  export type AggregateItineraryBlock = {
+    _count: ItineraryBlockCountAggregateOutputType | null
+    _avg: ItineraryBlockAvgAggregateOutputType | null
+    _sum: ItineraryBlockSumAggregateOutputType | null
+    _min: ItineraryBlockMinAggregateOutputType | null
+    _max: ItineraryBlockMaxAggregateOutputType | null
   }
 
-  export type ItineraryAvgAggregateOutputType = {
+  export type ItineraryBlockAvgAggregateOutputType = {
     id: number | null
-    day: number | null
+    dayPlanId: number | null
     placeId: number | null
-    tourId: number | null
   }
 
-  export type ItinerarySumAggregateOutputType = {
+  export type ItineraryBlockSumAggregateOutputType = {
     id: bigint | null
-    day: number | null
+    dayPlanId: bigint | null
     placeId: bigint | null
-    tourId: bigint | null
   }
 
-  export type ItineraryMinAggregateOutputType = {
+  export type ItineraryBlockMinAggregateOutputType = {
     id: bigint | null
-    day: number | null
+    title: string | null
+    dayPlanId: bigint | null
     startTime: Date | null
     endTime: Date | null
     placeId: bigint | null
-    tourId: bigint | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type ItineraryMaxAggregateOutputType = {
+  export type ItineraryBlockMaxAggregateOutputType = {
     id: bigint | null
-    day: number | null
+    title: string | null
+    dayPlanId: bigint | null
     startTime: Date | null
     endTime: Date | null
     placeId: bigint | null
-    tourId: bigint | null
     createdAt: Date | null
     updatedAt: Date | null
   }
 
-  export type ItineraryCountAggregateOutputType = {
+  export type ItineraryBlockCountAggregateOutputType = {
     id: number
-    day: number
+    title: number
+    dayPlanId: number
     startTime: number
     endTime: number
     placeId: number
-    tourId: number
     createdAt: number
     updatedAt: number
     _all: number
   }
 
 
-  export type ItineraryAvgAggregateInputType = {
+  export type ItineraryBlockAvgAggregateInputType = {
     id?: true
-    day?: true
+    dayPlanId?: true
     placeId?: true
-    tourId?: true
   }
 
-  export type ItinerarySumAggregateInputType = {
+  export type ItineraryBlockSumAggregateInputType = {
     id?: true
-    day?: true
+    dayPlanId?: true
     placeId?: true
-    tourId?: true
   }
 
-  export type ItineraryMinAggregateInputType = {
+  export type ItineraryBlockMinAggregateInputType = {
     id?: true
-    day?: true
+    title?: true
+    dayPlanId?: true
     startTime?: true
     endTime?: true
     placeId?: true
-    tourId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type ItineraryMaxAggregateInputType = {
+  export type ItineraryBlockMaxAggregateInputType = {
     id?: true
-    day?: true
+    title?: true
+    dayPlanId?: true
     startTime?: true
     endTime?: true
     placeId?: true
-    tourId?: true
     createdAt?: true
     updatedAt?: true
   }
 
-  export type ItineraryCountAggregateInputType = {
+  export type ItineraryBlockCountAggregateInputType = {
     id?: true
-    day?: true
+    title?: true
+    dayPlanId?: true
     startTime?: true
     endTime?: true
     placeId?: true
-    tourId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
   }
 
-  export type ItineraryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Itinerary to aggregate.
+     * Filter which ItineraryBlock to aggregate.
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Itineraries to fetch.
+     * Determine the order of ItineraryBlocks to fetch.
      */
-    orderBy?: ItineraryOrderByWithRelationInput | ItineraryOrderByWithRelationInput[]
+    orderBy?: ItineraryBlockOrderByWithRelationInput | ItineraryBlockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: ItineraryWhereUniqueInput
+    cursor?: ItineraryBlockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Itineraries from the position of the cursor.
+     * Take `±n` ItineraryBlocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Itineraries.
+     * Skip the first `n` ItineraryBlocks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Itineraries
+     * Count returned ItineraryBlocks
     **/
-    _count?: true | ItineraryCountAggregateInputType
+    _count?: true | ItineraryBlockCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: ItineraryAvgAggregateInputType
+    _avg?: ItineraryBlockAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: ItinerarySumAggregateInputType
+    _sum?: ItineraryBlockSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: ItineraryMinAggregateInputType
+    _min?: ItineraryBlockMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: ItineraryMaxAggregateInputType
+    _max?: ItineraryBlockMaxAggregateInputType
   }
 
-  export type GetItineraryAggregateType<T extends ItineraryAggregateArgs> = {
-        [P in keyof T & keyof AggregateItinerary]: P extends '_count' | 'count'
+  export type GetItineraryBlockAggregateType<T extends ItineraryBlockAggregateArgs> = {
+        [P in keyof T & keyof AggregateItineraryBlock]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateItinerary[P]>
-      : GetScalarType<T[P], AggregateItinerary[P]>
+        : GetScalarType<T[P], AggregateItineraryBlock[P]>
+      : GetScalarType<T[P], AggregateItineraryBlock[P]>
   }
 
 
 
 
-  export type ItineraryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ItineraryWhereInput
-    orderBy?: ItineraryOrderByWithAggregationInput | ItineraryOrderByWithAggregationInput[]
-    by: ItineraryScalarFieldEnum[] | ItineraryScalarFieldEnum
-    having?: ItineraryScalarWhereWithAggregatesInput
+  export type ItineraryBlockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ItineraryBlockWhereInput
+    orderBy?: ItineraryBlockOrderByWithAggregationInput | ItineraryBlockOrderByWithAggregationInput[]
+    by: ItineraryBlockScalarFieldEnum[] | ItineraryBlockScalarFieldEnum
+    having?: ItineraryBlockScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: ItineraryCountAggregateInputType | true
-    _avg?: ItineraryAvgAggregateInputType
-    _sum?: ItinerarySumAggregateInputType
-    _min?: ItineraryMinAggregateInputType
-    _max?: ItineraryMaxAggregateInputType
+    _count?: ItineraryBlockCountAggregateInputType | true
+    _avg?: ItineraryBlockAvgAggregateInputType
+    _sum?: ItineraryBlockSumAggregateInputType
+    _min?: ItineraryBlockMinAggregateInputType
+    _max?: ItineraryBlockMaxAggregateInputType
   }
 
-  export type ItineraryGroupByOutputType = {
+  export type ItineraryBlockGroupByOutputType = {
     id: bigint
-    day: number
+    title: string
+    dayPlanId: bigint
     startTime: Date
     endTime: Date
     placeId: bigint | null
-    tourId: bigint
     createdAt: Date
     updatedAt: Date
-    _count: ItineraryCountAggregateOutputType | null
-    _avg: ItineraryAvgAggregateOutputType | null
-    _sum: ItinerarySumAggregateOutputType | null
-    _min: ItineraryMinAggregateOutputType | null
-    _max: ItineraryMaxAggregateOutputType | null
+    _count: ItineraryBlockCountAggregateOutputType | null
+    _avg: ItineraryBlockAvgAggregateOutputType | null
+    _sum: ItineraryBlockSumAggregateOutputType | null
+    _min: ItineraryBlockMinAggregateOutputType | null
+    _max: ItineraryBlockMaxAggregateOutputType | null
   }
 
-  type GetItineraryGroupByPayload<T extends ItineraryGroupByArgs> = Prisma.PrismaPromise<
+  type GetItineraryBlockGroupByPayload<T extends ItineraryBlockGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ItineraryGroupByOutputType, T['by']> &
+      PickEnumerable<ItineraryBlockGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof ItineraryGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ItineraryBlockGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], ItineraryGroupByOutputType[P]>
-            : GetScalarType<T[P], ItineraryGroupByOutputType[P]>
+              : GetScalarType<T[P], ItineraryBlockGroupByOutputType[P]>
+            : GetScalarType<T[P], ItineraryBlockGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type ItinerarySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ItineraryBlockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    day?: boolean
+    title?: boolean
+    dayPlanId?: boolean
     startTime?: boolean
     endTime?: boolean
     placeId?: boolean
-    tourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    activities?: boolean | Itinerary$activitiesArgs<ExtArgs>
-    place?: boolean | Itinerary$placeArgs<ExtArgs>
-    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
-    _count?: boolean | ItineraryCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["itinerary"]>
+    activities?: boolean | ItineraryBlock$activitiesArgs<ExtArgs>
+    place?: boolean | ItineraryBlock$placeArgs<ExtArgs>
+    dayPlan?: boolean | DayPlanDefaultArgs<ExtArgs>
+    _count?: boolean | ItineraryBlockCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["itineraryBlock"]>
 
-  export type ItinerarySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ItineraryBlockSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    day?: boolean
+    title?: boolean
+    dayPlanId?: boolean
     startTime?: boolean
     endTime?: boolean
     placeId?: boolean
-    tourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    place?: boolean | Itinerary$placeArgs<ExtArgs>
-    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["itinerary"]>
+    place?: boolean | ItineraryBlock$placeArgs<ExtArgs>
+    dayPlan?: boolean | DayPlanDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["itineraryBlock"]>
 
-  export type ItinerarySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ItineraryBlockSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    day?: boolean
+    title?: boolean
+    dayPlanId?: boolean
     startTime?: boolean
     endTime?: boolean
     placeId?: boolean
-    tourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    place?: boolean | Itinerary$placeArgs<ExtArgs>
-    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["itinerary"]>
+    place?: boolean | ItineraryBlock$placeArgs<ExtArgs>
+    dayPlan?: boolean | DayPlanDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["itineraryBlock"]>
 
-  export type ItinerarySelectScalar = {
+  export type ItineraryBlockSelectScalar = {
     id?: boolean
-    day?: boolean
+    title?: boolean
+    dayPlanId?: boolean
     startTime?: boolean
     endTime?: boolean
     placeId?: boolean
-    tourId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ItineraryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "day" | "startTime" | "endTime" | "placeId" | "tourId" | "createdAt" | "updatedAt", ExtArgs["result"]["itinerary"]>
-  export type ItineraryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    activities?: boolean | Itinerary$activitiesArgs<ExtArgs>
-    place?: boolean | Itinerary$placeArgs<ExtArgs>
-    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
-    _count?: boolean | ItineraryCountOutputTypeDefaultArgs<ExtArgs>
+  export type ItineraryBlockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "dayPlanId" | "startTime" | "endTime" | "placeId" | "createdAt" | "updatedAt", ExtArgs["result"]["itineraryBlock"]>
+  export type ItineraryBlockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    activities?: boolean | ItineraryBlock$activitiesArgs<ExtArgs>
+    place?: boolean | ItineraryBlock$placeArgs<ExtArgs>
+    dayPlan?: boolean | DayPlanDefaultArgs<ExtArgs>
+    _count?: boolean | ItineraryBlockCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type ItineraryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    place?: boolean | Itinerary$placeArgs<ExtArgs>
-    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+  export type ItineraryBlockIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    place?: boolean | ItineraryBlock$placeArgs<ExtArgs>
+    dayPlan?: boolean | DayPlanDefaultArgs<ExtArgs>
   }
-  export type ItineraryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    place?: boolean | Itinerary$placeArgs<ExtArgs>
-    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+  export type ItineraryBlockIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    place?: boolean | ItineraryBlock$placeArgs<ExtArgs>
+    dayPlan?: boolean | DayPlanDefaultArgs<ExtArgs>
   }
 
-  export type $ItineraryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Itinerary"
+  export type $ItineraryBlockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ItineraryBlock"
     objects: {
       activities: Prisma.$ActivityPayload<ExtArgs>[]
       place: Prisma.$PlacePayload<ExtArgs> | null
-      tour: Prisma.$OfferedTourPayload<ExtArgs>
+      dayPlan: Prisma.$DayPlanPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
-      day: number
+      title: string
+      dayPlanId: bigint
       startTime: Date
       endTime: Date
       placeId: bigint | null
-      tourId: bigint
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["itinerary"]>
+    }, ExtArgs["result"]["itineraryBlock"]>
     composites: {}
   }
 
-  type ItineraryGetPayload<S extends boolean | null | undefined | ItineraryDefaultArgs> = $Result.GetResult<Prisma.$ItineraryPayload, S>
+  type ItineraryBlockGetPayload<S extends boolean | null | undefined | ItineraryBlockDefaultArgs> = $Result.GetResult<Prisma.$ItineraryBlockPayload, S>
 
-  type ItineraryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ItineraryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ItineraryCountAggregateInputType | true
+  type ItineraryBlockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ItineraryBlockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ItineraryBlockCountAggregateInputType | true
     }
 
-  export interface ItineraryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Itinerary'], meta: { name: 'Itinerary' } }
+  export interface ItineraryBlockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ItineraryBlock'], meta: { name: 'ItineraryBlock' } }
     /**
-     * Find zero or one Itinerary that matches the filter.
-     * @param {ItineraryFindUniqueArgs} args - Arguments to find a Itinerary
+     * Find zero or one ItineraryBlock that matches the filter.
+     * @param {ItineraryBlockFindUniqueArgs} args - Arguments to find a ItineraryBlock
      * @example
-     * // Get one Itinerary
-     * const itinerary = await prisma.itinerary.findUnique({
+     * // Get one ItineraryBlock
+     * const itineraryBlock = await prisma.itineraryBlock.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends ItineraryFindUniqueArgs>(args: SelectSubset<T, ItineraryFindUniqueArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ItineraryBlockFindUniqueArgs>(args: SelectSubset<T, ItineraryBlockFindUniqueArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Itinerary that matches the filter or throw an error with `error.code='P2025'`
+     * Find one ItineraryBlock that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {ItineraryFindUniqueOrThrowArgs} args - Arguments to find a Itinerary
+     * @param {ItineraryBlockFindUniqueOrThrowArgs} args - Arguments to find a ItineraryBlock
      * @example
-     * // Get one Itinerary
-     * const itinerary = await prisma.itinerary.findUniqueOrThrow({
+     * // Get one ItineraryBlock
+     * const itineraryBlock = await prisma.itineraryBlock.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ItineraryFindUniqueOrThrowArgs>(args: SelectSubset<T, ItineraryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ItineraryBlockFindUniqueOrThrowArgs>(args: SelectSubset<T, ItineraryBlockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Itinerary that matches the filter.
+     * Find the first ItineraryBlock that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryFindFirstArgs} args - Arguments to find a Itinerary
+     * @param {ItineraryBlockFindFirstArgs} args - Arguments to find a ItineraryBlock
      * @example
-     * // Get one Itinerary
-     * const itinerary = await prisma.itinerary.findFirst({
+     * // Get one ItineraryBlock
+     * const itineraryBlock = await prisma.itineraryBlock.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends ItineraryFindFirstArgs>(args?: SelectSubset<T, ItineraryFindFirstArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ItineraryBlockFindFirstArgs>(args?: SelectSubset<T, ItineraryBlockFindFirstArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Itinerary that matches the filter or
+     * Find the first ItineraryBlock that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryFindFirstOrThrowArgs} args - Arguments to find a Itinerary
+     * @param {ItineraryBlockFindFirstOrThrowArgs} args - Arguments to find a ItineraryBlock
      * @example
-     * // Get one Itinerary
-     * const itinerary = await prisma.itinerary.findFirstOrThrow({
+     * // Get one ItineraryBlock
+     * const itineraryBlock = await prisma.itineraryBlock.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends ItineraryFindFirstOrThrowArgs>(args?: SelectSubset<T, ItineraryFindFirstOrThrowArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ItineraryBlockFindFirstOrThrowArgs>(args?: SelectSubset<T, ItineraryBlockFindFirstOrThrowArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Itineraries that matches the filter.
+     * Find zero or more ItineraryBlocks that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ItineraryBlockFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Itineraries
-     * const itineraries = await prisma.itinerary.findMany()
+     * // Get all ItineraryBlocks
+     * const itineraryBlocks = await prisma.itineraryBlock.findMany()
      * 
-     * // Get first 10 Itineraries
-     * const itineraries = await prisma.itinerary.findMany({ take: 10 })
+     * // Get first 10 ItineraryBlocks
+     * const itineraryBlocks = await prisma.itineraryBlock.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const itineraryWithIdOnly = await prisma.itinerary.findMany({ select: { id: true } })
+     * const itineraryBlockWithIdOnly = await prisma.itineraryBlock.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends ItineraryFindManyArgs>(args?: SelectSubset<T, ItineraryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ItineraryBlockFindManyArgs>(args?: SelectSubset<T, ItineraryBlockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Itinerary.
-     * @param {ItineraryCreateArgs} args - Arguments to create a Itinerary.
+     * Create a ItineraryBlock.
+     * @param {ItineraryBlockCreateArgs} args - Arguments to create a ItineraryBlock.
      * @example
-     * // Create one Itinerary
-     * const Itinerary = await prisma.itinerary.create({
+     * // Create one ItineraryBlock
+     * const ItineraryBlock = await prisma.itineraryBlock.create({
      *   data: {
-     *     // ... data to create a Itinerary
+     *     // ... data to create a ItineraryBlock
      *   }
      * })
      * 
      */
-    create<T extends ItineraryCreateArgs>(args: SelectSubset<T, ItineraryCreateArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ItineraryBlockCreateArgs>(args: SelectSubset<T, ItineraryBlockCreateArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Itineraries.
-     * @param {ItineraryCreateManyArgs} args - Arguments to create many Itineraries.
+     * Create many ItineraryBlocks.
+     * @param {ItineraryBlockCreateManyArgs} args - Arguments to create many ItineraryBlocks.
      * @example
-     * // Create many Itineraries
-     * const itinerary = await prisma.itinerary.createMany({
+     * // Create many ItineraryBlocks
+     * const itineraryBlock = await prisma.itineraryBlock.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends ItineraryCreateManyArgs>(args?: SelectSubset<T, ItineraryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ItineraryBlockCreateManyArgs>(args?: SelectSubset<T, ItineraryBlockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Itineraries and returns the data saved in the database.
-     * @param {ItineraryCreateManyAndReturnArgs} args - Arguments to create many Itineraries.
+     * Create many ItineraryBlocks and returns the data saved in the database.
+     * @param {ItineraryBlockCreateManyAndReturnArgs} args - Arguments to create many ItineraryBlocks.
      * @example
-     * // Create many Itineraries
-     * const itinerary = await prisma.itinerary.createManyAndReturn({
+     * // Create many ItineraryBlocks
+     * const itineraryBlock = await prisma.itineraryBlock.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Itineraries and only return the `id`
-     * const itineraryWithIdOnly = await prisma.itinerary.createManyAndReturn({
+     * // Create many ItineraryBlocks and only return the `id`
+     * const itineraryBlockWithIdOnly = await prisma.itineraryBlock.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -13416,28 +13618,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends ItineraryCreateManyAndReturnArgs>(args?: SelectSubset<T, ItineraryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ItineraryBlockCreateManyAndReturnArgs>(args?: SelectSubset<T, ItineraryBlockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Itinerary.
-     * @param {ItineraryDeleteArgs} args - Arguments to delete one Itinerary.
+     * Delete a ItineraryBlock.
+     * @param {ItineraryBlockDeleteArgs} args - Arguments to delete one ItineraryBlock.
      * @example
-     * // Delete one Itinerary
-     * const Itinerary = await prisma.itinerary.delete({
+     * // Delete one ItineraryBlock
+     * const ItineraryBlock = await prisma.itineraryBlock.delete({
      *   where: {
-     *     // ... filter to delete one Itinerary
+     *     // ... filter to delete one ItineraryBlock
      *   }
      * })
      * 
      */
-    delete<T extends ItineraryDeleteArgs>(args: SelectSubset<T, ItineraryDeleteArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ItineraryBlockDeleteArgs>(args: SelectSubset<T, ItineraryBlockDeleteArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Itinerary.
-     * @param {ItineraryUpdateArgs} args - Arguments to update one Itinerary.
+     * Update one ItineraryBlock.
+     * @param {ItineraryBlockUpdateArgs} args - Arguments to update one ItineraryBlock.
      * @example
-     * // Update one Itinerary
-     * const itinerary = await prisma.itinerary.update({
+     * // Update one ItineraryBlock
+     * const itineraryBlock = await prisma.itineraryBlock.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13447,30 +13649,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends ItineraryUpdateArgs>(args: SelectSubset<T, ItineraryUpdateArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ItineraryBlockUpdateArgs>(args: SelectSubset<T, ItineraryBlockUpdateArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Itineraries.
-     * @param {ItineraryDeleteManyArgs} args - Arguments to filter Itineraries to delete.
+     * Delete zero or more ItineraryBlocks.
+     * @param {ItineraryBlockDeleteManyArgs} args - Arguments to filter ItineraryBlocks to delete.
      * @example
-     * // Delete a few Itineraries
-     * const { count } = await prisma.itinerary.deleteMany({
+     * // Delete a few ItineraryBlocks
+     * const { count } = await prisma.itineraryBlock.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends ItineraryDeleteManyArgs>(args?: SelectSubset<T, ItineraryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ItineraryBlockDeleteManyArgs>(args?: SelectSubset<T, ItineraryBlockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Itineraries.
+     * Update zero or more ItineraryBlocks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ItineraryBlockUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Itineraries
-     * const itinerary = await prisma.itinerary.updateMany({
+     * // Update many ItineraryBlocks
+     * const itineraryBlock = await prisma.itineraryBlock.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13480,14 +13682,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends ItineraryUpdateManyArgs>(args: SelectSubset<T, ItineraryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ItineraryBlockUpdateManyArgs>(args: SelectSubset<T, ItineraryBlockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Itineraries and returns the data updated in the database.
-     * @param {ItineraryUpdateManyAndReturnArgs} args - Arguments to update many Itineraries.
+     * Update zero or more ItineraryBlocks and returns the data updated in the database.
+     * @param {ItineraryBlockUpdateManyAndReturnArgs} args - Arguments to update many ItineraryBlocks.
      * @example
-     * // Update many Itineraries
-     * const itinerary = await prisma.itinerary.updateManyAndReturn({
+     * // Update many ItineraryBlocks
+     * const itineraryBlock = await prisma.itineraryBlock.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -13496,8 +13698,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Itineraries and only return the `id`
-     * const itineraryWithIdOnly = await prisma.itinerary.updateManyAndReturn({
+     * // Update zero or more ItineraryBlocks and only return the `id`
+     * const itineraryBlockWithIdOnly = await prisma.itineraryBlock.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -13510,56 +13712,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends ItineraryUpdateManyAndReturnArgs>(args: SelectSubset<T, ItineraryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ItineraryBlockUpdateManyAndReturnArgs>(args: SelectSubset<T, ItineraryBlockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Itinerary.
-     * @param {ItineraryUpsertArgs} args - Arguments to update or create a Itinerary.
+     * Create or update one ItineraryBlock.
+     * @param {ItineraryBlockUpsertArgs} args - Arguments to update or create a ItineraryBlock.
      * @example
-     * // Update or create a Itinerary
-     * const itinerary = await prisma.itinerary.upsert({
+     * // Update or create a ItineraryBlock
+     * const itineraryBlock = await prisma.itineraryBlock.upsert({
      *   create: {
-     *     // ... data to create a Itinerary
+     *     // ... data to create a ItineraryBlock
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Itinerary we want to update
+     *     // ... the filter for the ItineraryBlock we want to update
      *   }
      * })
      */
-    upsert<T extends ItineraryUpsertArgs>(args: SelectSubset<T, ItineraryUpsertArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ItineraryBlockUpsertArgs>(args: SelectSubset<T, ItineraryBlockUpsertArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Itineraries.
+     * Count the number of ItineraryBlocks.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryCountArgs} args - Arguments to filter Itineraries to count.
+     * @param {ItineraryBlockCountArgs} args - Arguments to filter ItineraryBlocks to count.
      * @example
-     * // Count the number of Itineraries
-     * const count = await prisma.itinerary.count({
+     * // Count the number of ItineraryBlocks
+     * const count = await prisma.itineraryBlock.count({
      *   where: {
-     *     // ... the filter for the Itineraries we want to count
+     *     // ... the filter for the ItineraryBlocks we want to count
      *   }
      * })
     **/
-    count<T extends ItineraryCountArgs>(
-      args?: Subset<T, ItineraryCountArgs>,
+    count<T extends ItineraryBlockCountArgs>(
+      args?: Subset<T, ItineraryBlockCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], ItineraryCountAggregateOutputType>
+          : GetScalarType<T['select'], ItineraryBlockCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Itinerary.
+     * Allows you to perform aggregations operations on a ItineraryBlock.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ItineraryBlockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -13579,13 +13781,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends ItineraryAggregateArgs>(args: Subset<T, ItineraryAggregateArgs>): Prisma.PrismaPromise<GetItineraryAggregateType<T>>
+    aggregate<T extends ItineraryBlockAggregateArgs>(args: Subset<T, ItineraryBlockAggregateArgs>): Prisma.PrismaPromise<GetItineraryBlockAggregateType<T>>
 
     /**
-     * Group by Itinerary.
+     * Group by ItineraryBlock.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {ItineraryGroupByArgs} args - Group by arguments.
+     * @param {ItineraryBlockGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -13600,14 +13802,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends ItineraryGroupByArgs,
+      T extends ItineraryBlockGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ItineraryGroupByArgs['orderBy'] }
-        : { orderBy?: ItineraryGroupByArgs['orderBy'] },
+        ? { orderBy: ItineraryBlockGroupByArgs['orderBy'] }
+        : { orderBy?: ItineraryBlockGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -13656,24 +13858,24 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, ItineraryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetItineraryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ItineraryBlockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetItineraryBlockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Itinerary model
+   * Fields of the ItineraryBlock model
    */
-  readonly fields: ItineraryFieldRefs;
+  readonly fields: ItineraryBlockFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Itinerary.
+   * The delegate class that acts as a "Promise-like" for ItineraryBlock.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ItineraryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ItineraryBlockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    activities<T extends Itinerary$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, Itinerary$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    place<T extends Itinerary$placeArgs<ExtArgs> = {}>(args?: Subset<T, Itinerary$placeArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    tour<T extends OfferedTourDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTourDefaultArgs<ExtArgs>>): Prisma__OfferedTourClient<$Result.GetResult<Prisma.$OfferedTourPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    activities<T extends ItineraryBlock$activitiesArgs<ExtArgs> = {}>(args?: Subset<T, ItineraryBlock$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    place<T extends ItineraryBlock$placeArgs<ExtArgs> = {}>(args?: Subset<T, ItineraryBlock$placeArgs<ExtArgs>>): Prisma__PlaceClient<$Result.GetResult<Prisma.$PlacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    dayPlan<T extends DayPlanDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DayPlanDefaultArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13700,416 +13902,416 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Itinerary model
+   * Fields of the ItineraryBlock model
    */
-  interface ItineraryFieldRefs {
-    readonly id: FieldRef<"Itinerary", 'BigInt'>
-    readonly day: FieldRef<"Itinerary", 'Int'>
-    readonly startTime: FieldRef<"Itinerary", 'DateTime'>
-    readonly endTime: FieldRef<"Itinerary", 'DateTime'>
-    readonly placeId: FieldRef<"Itinerary", 'BigInt'>
-    readonly tourId: FieldRef<"Itinerary", 'BigInt'>
-    readonly createdAt: FieldRef<"Itinerary", 'DateTime'>
-    readonly updatedAt: FieldRef<"Itinerary", 'DateTime'>
+  interface ItineraryBlockFieldRefs {
+    readonly id: FieldRef<"ItineraryBlock", 'BigInt'>
+    readonly title: FieldRef<"ItineraryBlock", 'String'>
+    readonly dayPlanId: FieldRef<"ItineraryBlock", 'BigInt'>
+    readonly startTime: FieldRef<"ItineraryBlock", 'DateTime'>
+    readonly endTime: FieldRef<"ItineraryBlock", 'DateTime'>
+    readonly placeId: FieldRef<"ItineraryBlock", 'BigInt'>
+    readonly createdAt: FieldRef<"ItineraryBlock", 'DateTime'>
+    readonly updatedAt: FieldRef<"ItineraryBlock", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * Itinerary findUnique
+   * ItineraryBlock findUnique
    */
-  export type ItineraryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * Filter, which Itinerary to fetch.
+     * Filter, which ItineraryBlock to fetch.
      */
-    where: ItineraryWhereUniqueInput
+    where: ItineraryBlockWhereUniqueInput
   }
 
   /**
-   * Itinerary findUniqueOrThrow
+   * ItineraryBlock findUniqueOrThrow
    */
-  export type ItineraryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * Filter, which Itinerary to fetch.
+     * Filter, which ItineraryBlock to fetch.
      */
-    where: ItineraryWhereUniqueInput
+    where: ItineraryBlockWhereUniqueInput
   }
 
   /**
-   * Itinerary findFirst
+   * ItineraryBlock findFirst
    */
-  export type ItineraryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * Filter, which Itinerary to fetch.
+     * Filter, which ItineraryBlock to fetch.
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Itineraries to fetch.
+     * Determine the order of ItineraryBlocks to fetch.
      */
-    orderBy?: ItineraryOrderByWithRelationInput | ItineraryOrderByWithRelationInput[]
+    orderBy?: ItineraryBlockOrderByWithRelationInput | ItineraryBlockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Itineraries.
+     * Sets the position for searching for ItineraryBlocks.
      */
-    cursor?: ItineraryWhereUniqueInput
+    cursor?: ItineraryBlockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Itineraries from the position of the cursor.
+     * Take `±n` ItineraryBlocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Itineraries.
+     * Skip the first `n` ItineraryBlocks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Itineraries.
+     * Filter by unique combinations of ItineraryBlocks.
      */
-    distinct?: ItineraryScalarFieldEnum | ItineraryScalarFieldEnum[]
+    distinct?: ItineraryBlockScalarFieldEnum | ItineraryBlockScalarFieldEnum[]
   }
 
   /**
-   * Itinerary findFirstOrThrow
+   * ItineraryBlock findFirstOrThrow
    */
-  export type ItineraryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * Filter, which Itinerary to fetch.
+     * Filter, which ItineraryBlock to fetch.
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Itineraries to fetch.
+     * Determine the order of ItineraryBlocks to fetch.
      */
-    orderBy?: ItineraryOrderByWithRelationInput | ItineraryOrderByWithRelationInput[]
+    orderBy?: ItineraryBlockOrderByWithRelationInput | ItineraryBlockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Itineraries.
+     * Sets the position for searching for ItineraryBlocks.
      */
-    cursor?: ItineraryWhereUniqueInput
+    cursor?: ItineraryBlockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Itineraries from the position of the cursor.
+     * Take `±n` ItineraryBlocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Itineraries.
+     * Skip the first `n` ItineraryBlocks.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Itineraries.
+     * Filter by unique combinations of ItineraryBlocks.
      */
-    distinct?: ItineraryScalarFieldEnum | ItineraryScalarFieldEnum[]
+    distinct?: ItineraryBlockScalarFieldEnum | ItineraryBlockScalarFieldEnum[]
   }
 
   /**
-   * Itinerary findMany
+   * ItineraryBlock findMany
    */
-  export type ItineraryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * Filter, which Itineraries to fetch.
+     * Filter, which ItineraryBlocks to fetch.
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Itineraries to fetch.
+     * Determine the order of ItineraryBlocks to fetch.
      */
-    orderBy?: ItineraryOrderByWithRelationInput | ItineraryOrderByWithRelationInput[]
+    orderBy?: ItineraryBlockOrderByWithRelationInput | ItineraryBlockOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Itineraries.
+     * Sets the position for listing ItineraryBlocks.
      */
-    cursor?: ItineraryWhereUniqueInput
+    cursor?: ItineraryBlockWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Itineraries from the position of the cursor.
+     * Take `±n` ItineraryBlocks from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Itineraries.
+     * Skip the first `n` ItineraryBlocks.
      */
     skip?: number
-    distinct?: ItineraryScalarFieldEnum | ItineraryScalarFieldEnum[]
+    distinct?: ItineraryBlockScalarFieldEnum | ItineraryBlockScalarFieldEnum[]
   }
 
   /**
-   * Itinerary create
+   * ItineraryBlock create
    */
-  export type ItineraryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * The data needed to create a Itinerary.
+     * The data needed to create a ItineraryBlock.
      */
-    data: XOR<ItineraryCreateInput, ItineraryUncheckedCreateInput>
+    data: XOR<ItineraryBlockCreateInput, ItineraryBlockUncheckedCreateInput>
   }
 
   /**
-   * Itinerary createMany
+   * ItineraryBlock createMany
    */
-  export type ItineraryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Itineraries.
+     * The data used to create many ItineraryBlocks.
      */
-    data: ItineraryCreateManyInput | ItineraryCreateManyInput[]
+    data: ItineraryBlockCreateManyInput | ItineraryBlockCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Itinerary createManyAndReturn
+   * ItineraryBlock createManyAndReturn
    */
-  export type ItineraryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelectCreateManyAndReturn<ExtArgs> | null
+    select?: ItineraryBlockSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
-     * The data used to create many Itineraries.
+     * The data used to create many ItineraryBlocks.
      */
-    data: ItineraryCreateManyInput | ItineraryCreateManyInput[]
+    data: ItineraryBlockCreateManyInput | ItineraryBlockCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: ItineraryBlockIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Itinerary update
+   * ItineraryBlock update
    */
-  export type ItineraryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * The data needed to update a Itinerary.
+     * The data needed to update a ItineraryBlock.
      */
-    data: XOR<ItineraryUpdateInput, ItineraryUncheckedUpdateInput>
+    data: XOR<ItineraryBlockUpdateInput, ItineraryBlockUncheckedUpdateInput>
     /**
-     * Choose, which Itinerary to update.
+     * Choose, which ItineraryBlock to update.
      */
-    where: ItineraryWhereUniqueInput
+    where: ItineraryBlockWhereUniqueInput
   }
 
   /**
-   * Itinerary updateMany
+   * ItineraryBlock updateMany
    */
-  export type ItineraryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Itineraries.
+     * The data used to update ItineraryBlocks.
      */
-    data: XOR<ItineraryUpdateManyMutationInput, ItineraryUncheckedUpdateManyInput>
+    data: XOR<ItineraryBlockUpdateManyMutationInput, ItineraryBlockUncheckedUpdateManyInput>
     /**
-     * Filter which Itineraries to update
+     * Filter which ItineraryBlocks to update
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
-     * Limit how many Itineraries to update.
+     * Limit how many ItineraryBlocks to update.
      */
     limit?: number
   }
 
   /**
-   * Itinerary updateManyAndReturn
+   * ItineraryBlock updateManyAndReturn
    */
-  export type ItineraryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ItineraryBlockSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
-     * The data used to update Itineraries.
+     * The data used to update ItineraryBlocks.
      */
-    data: XOR<ItineraryUpdateManyMutationInput, ItineraryUncheckedUpdateManyInput>
+    data: XOR<ItineraryBlockUpdateManyMutationInput, ItineraryBlockUncheckedUpdateManyInput>
     /**
-     * Filter which Itineraries to update
+     * Filter which ItineraryBlocks to update
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
-     * Limit how many Itineraries to update.
+     * Limit how many ItineraryBlocks to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: ItineraryBlockIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Itinerary upsert
+   * ItineraryBlock upsert
    */
-  export type ItineraryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * The filter to search for the Itinerary to update in case it exists.
+     * The filter to search for the ItineraryBlock to update in case it exists.
      */
-    where: ItineraryWhereUniqueInput
+    where: ItineraryBlockWhereUniqueInput
     /**
-     * In case the Itinerary found by the `where` argument doesn't exist, create a new Itinerary with this data.
+     * In case the ItineraryBlock found by the `where` argument doesn't exist, create a new ItineraryBlock with this data.
      */
-    create: XOR<ItineraryCreateInput, ItineraryUncheckedCreateInput>
+    create: XOR<ItineraryBlockCreateInput, ItineraryBlockUncheckedCreateInput>
     /**
-     * In case the Itinerary was found with the provided `where` argument, update it with this data.
+     * In case the ItineraryBlock was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ItineraryUpdateInput, ItineraryUncheckedUpdateInput>
+    update: XOR<ItineraryBlockUpdateInput, ItineraryBlockUncheckedUpdateInput>
   }
 
   /**
-   * Itinerary delete
+   * ItineraryBlock delete
    */
-  export type ItineraryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
     /**
-     * Filter which Itinerary to delete.
+     * Filter which ItineraryBlock to delete.
      */
-    where: ItineraryWhereUniqueInput
+    where: ItineraryBlockWhereUniqueInput
   }
 
   /**
-   * Itinerary deleteMany
+   * ItineraryBlock deleteMany
    */
-  export type ItineraryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Itineraries to delete
+     * Filter which ItineraryBlocks to delete
      */
-    where?: ItineraryWhereInput
+    where?: ItineraryBlockWhereInput
     /**
-     * Limit how many Itineraries to delete.
+     * Limit how many ItineraryBlocks to delete.
      */
     limit?: number
   }
 
   /**
-   * Itinerary.activities
+   * ItineraryBlock.activities
    */
-  export type Itinerary$activitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlock$activitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Activity
      */
@@ -14131,9 +14333,9 @@ export namespace Prisma {
   }
 
   /**
-   * Itinerary.place
+   * ItineraryBlock.place
    */
-  export type Itinerary$placeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlock$placeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Place
      */
@@ -14150,21 +14352,1125 @@ export namespace Prisma {
   }
 
   /**
-   * Itinerary without action
+   * ItineraryBlock without action
    */
-  export type ItineraryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ItineraryBlockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Itinerary
+     * Select specific fields to fetch from the ItineraryBlock
      */
-    select?: ItinerarySelect<ExtArgs> | null
+    select?: ItineraryBlockSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Itinerary
+     * Omit specific fields from the ItineraryBlock
      */
-    omit?: ItineraryOmit<ExtArgs> | null
+    omit?: ItineraryBlockOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ItineraryInclude<ExtArgs> | null
+    include?: ItineraryBlockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DayPlan
+   */
+
+  export type AggregateDayPlan = {
+    _count: DayPlanCountAggregateOutputType | null
+    _avg: DayPlanAvgAggregateOutputType | null
+    _sum: DayPlanSumAggregateOutputType | null
+    _min: DayPlanMinAggregateOutputType | null
+    _max: DayPlanMaxAggregateOutputType | null
+  }
+
+  export type DayPlanAvgAggregateOutputType = {
+    id: number | null
+    day: number | null
+    tourId: number | null
+  }
+
+  export type DayPlanSumAggregateOutputType = {
+    id: bigint | null
+    day: number | null
+    tourId: bigint | null
+  }
+
+  export type DayPlanMinAggregateOutputType = {
+    id: bigint | null
+    day: number | null
+    tourId: bigint | null
+  }
+
+  export type DayPlanMaxAggregateOutputType = {
+    id: bigint | null
+    day: number | null
+    tourId: bigint | null
+  }
+
+  export type DayPlanCountAggregateOutputType = {
+    id: number
+    day: number
+    tourId: number
+    _all: number
+  }
+
+
+  export type DayPlanAvgAggregateInputType = {
+    id?: true
+    day?: true
+    tourId?: true
+  }
+
+  export type DayPlanSumAggregateInputType = {
+    id?: true
+    day?: true
+    tourId?: true
+  }
+
+  export type DayPlanMinAggregateInputType = {
+    id?: true
+    day?: true
+    tourId?: true
+  }
+
+  export type DayPlanMaxAggregateInputType = {
+    id?: true
+    day?: true
+    tourId?: true
+  }
+
+  export type DayPlanCountAggregateInputType = {
+    id?: true
+    day?: true
+    tourId?: true
+    _all?: true
+  }
+
+  export type DayPlanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DayPlan to aggregate.
+     */
+    where?: DayPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DayPlans to fetch.
+     */
+    orderBy?: DayPlanOrderByWithRelationInput | DayPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DayPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DayPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DayPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DayPlans
+    **/
+    _count?: true | DayPlanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DayPlanAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DayPlanSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DayPlanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DayPlanMaxAggregateInputType
+  }
+
+  export type GetDayPlanAggregateType<T extends DayPlanAggregateArgs> = {
+        [P in keyof T & keyof AggregateDayPlan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDayPlan[P]>
+      : GetScalarType<T[P], AggregateDayPlan[P]>
+  }
+
+
+
+
+  export type DayPlanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DayPlanWhereInput
+    orderBy?: DayPlanOrderByWithAggregationInput | DayPlanOrderByWithAggregationInput[]
+    by: DayPlanScalarFieldEnum[] | DayPlanScalarFieldEnum
+    having?: DayPlanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DayPlanCountAggregateInputType | true
+    _avg?: DayPlanAvgAggregateInputType
+    _sum?: DayPlanSumAggregateInputType
+    _min?: DayPlanMinAggregateInputType
+    _max?: DayPlanMaxAggregateInputType
+  }
+
+  export type DayPlanGroupByOutputType = {
+    id: bigint
+    day: number
+    tourId: bigint
+    _count: DayPlanCountAggregateOutputType | null
+    _avg: DayPlanAvgAggregateOutputType | null
+    _sum: DayPlanSumAggregateOutputType | null
+    _min: DayPlanMinAggregateOutputType | null
+    _max: DayPlanMaxAggregateOutputType | null
+  }
+
+  type GetDayPlanGroupByPayload<T extends DayPlanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DayPlanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DayPlanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DayPlanGroupByOutputType[P]>
+            : GetScalarType<T[P], DayPlanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DayPlanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    day?: boolean
+    tourId?: boolean
+    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    itineraries?: boolean | DayPlan$itinerariesArgs<ExtArgs>
+    _count?: boolean | DayPlanCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dayPlan"]>
+
+  export type DayPlanSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    day?: boolean
+    tourId?: boolean
+    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dayPlan"]>
+
+  export type DayPlanSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    day?: boolean
+    tourId?: boolean
+    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dayPlan"]>
+
+  export type DayPlanSelectScalar = {
+    id?: boolean
+    day?: boolean
+    tourId?: boolean
+  }
+
+  export type DayPlanOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "day" | "tourId", ExtArgs["result"]["dayPlan"]>
+  export type DayPlanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+    itineraries?: boolean | DayPlan$itinerariesArgs<ExtArgs>
+    _count?: boolean | DayPlanCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DayPlanIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+  }
+  export type DayPlanIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tour?: boolean | OfferedTourDefaultArgs<ExtArgs>
+  }
+
+  export type $DayPlanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DayPlan"
+    objects: {
+      tour: Prisma.$OfferedTourPayload<ExtArgs>
+      itineraries: Prisma.$ItineraryBlockPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      day: number
+      tourId: bigint
+    }, ExtArgs["result"]["dayPlan"]>
+    composites: {}
+  }
+
+  type DayPlanGetPayload<S extends boolean | null | undefined | DayPlanDefaultArgs> = $Result.GetResult<Prisma.$DayPlanPayload, S>
+
+  type DayPlanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DayPlanFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DayPlanCountAggregateInputType | true
+    }
+
+  export interface DayPlanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DayPlan'], meta: { name: 'DayPlan' } }
+    /**
+     * Find zero or one DayPlan that matches the filter.
+     * @param {DayPlanFindUniqueArgs} args - Arguments to find a DayPlan
+     * @example
+     * // Get one DayPlan
+     * const dayPlan = await prisma.dayPlan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DayPlanFindUniqueArgs>(args: SelectSubset<T, DayPlanFindUniqueArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DayPlan that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DayPlanFindUniqueOrThrowArgs} args - Arguments to find a DayPlan
+     * @example
+     * // Get one DayPlan
+     * const dayPlan = await prisma.dayPlan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DayPlanFindUniqueOrThrowArgs>(args: SelectSubset<T, DayPlanFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DayPlan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanFindFirstArgs} args - Arguments to find a DayPlan
+     * @example
+     * // Get one DayPlan
+     * const dayPlan = await prisma.dayPlan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DayPlanFindFirstArgs>(args?: SelectSubset<T, DayPlanFindFirstArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DayPlan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanFindFirstOrThrowArgs} args - Arguments to find a DayPlan
+     * @example
+     * // Get one DayPlan
+     * const dayPlan = await prisma.dayPlan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DayPlanFindFirstOrThrowArgs>(args?: SelectSubset<T, DayPlanFindFirstOrThrowArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DayPlans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DayPlans
+     * const dayPlans = await prisma.dayPlan.findMany()
+     * 
+     * // Get first 10 DayPlans
+     * const dayPlans = await prisma.dayPlan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dayPlanWithIdOnly = await prisma.dayPlan.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DayPlanFindManyArgs>(args?: SelectSubset<T, DayPlanFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DayPlan.
+     * @param {DayPlanCreateArgs} args - Arguments to create a DayPlan.
+     * @example
+     * // Create one DayPlan
+     * const DayPlan = await prisma.dayPlan.create({
+     *   data: {
+     *     // ... data to create a DayPlan
+     *   }
+     * })
+     * 
+     */
+    create<T extends DayPlanCreateArgs>(args: SelectSubset<T, DayPlanCreateArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DayPlans.
+     * @param {DayPlanCreateManyArgs} args - Arguments to create many DayPlans.
+     * @example
+     * // Create many DayPlans
+     * const dayPlan = await prisma.dayPlan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DayPlanCreateManyArgs>(args?: SelectSubset<T, DayPlanCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DayPlans and returns the data saved in the database.
+     * @param {DayPlanCreateManyAndReturnArgs} args - Arguments to create many DayPlans.
+     * @example
+     * // Create many DayPlans
+     * const dayPlan = await prisma.dayPlan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DayPlans and only return the `id`
+     * const dayPlanWithIdOnly = await prisma.dayPlan.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DayPlanCreateManyAndReturnArgs>(args?: SelectSubset<T, DayPlanCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DayPlan.
+     * @param {DayPlanDeleteArgs} args - Arguments to delete one DayPlan.
+     * @example
+     * // Delete one DayPlan
+     * const DayPlan = await prisma.dayPlan.delete({
+     *   where: {
+     *     // ... filter to delete one DayPlan
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DayPlanDeleteArgs>(args: SelectSubset<T, DayPlanDeleteArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DayPlan.
+     * @param {DayPlanUpdateArgs} args - Arguments to update one DayPlan.
+     * @example
+     * // Update one DayPlan
+     * const dayPlan = await prisma.dayPlan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DayPlanUpdateArgs>(args: SelectSubset<T, DayPlanUpdateArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DayPlans.
+     * @param {DayPlanDeleteManyArgs} args - Arguments to filter DayPlans to delete.
+     * @example
+     * // Delete a few DayPlans
+     * const { count } = await prisma.dayPlan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DayPlanDeleteManyArgs>(args?: SelectSubset<T, DayPlanDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DayPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DayPlans
+     * const dayPlan = await prisma.dayPlan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DayPlanUpdateManyArgs>(args: SelectSubset<T, DayPlanUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DayPlans and returns the data updated in the database.
+     * @param {DayPlanUpdateManyAndReturnArgs} args - Arguments to update many DayPlans.
+     * @example
+     * // Update many DayPlans
+     * const dayPlan = await prisma.dayPlan.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DayPlans and only return the `id`
+     * const dayPlanWithIdOnly = await prisma.dayPlan.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DayPlanUpdateManyAndReturnArgs>(args: SelectSubset<T, DayPlanUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DayPlan.
+     * @param {DayPlanUpsertArgs} args - Arguments to update or create a DayPlan.
+     * @example
+     * // Update or create a DayPlan
+     * const dayPlan = await prisma.dayPlan.upsert({
+     *   create: {
+     *     // ... data to create a DayPlan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DayPlan we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DayPlanUpsertArgs>(args: SelectSubset<T, DayPlanUpsertArgs<ExtArgs>>): Prisma__DayPlanClient<$Result.GetResult<Prisma.$DayPlanPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DayPlans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanCountArgs} args - Arguments to filter DayPlans to count.
+     * @example
+     * // Count the number of DayPlans
+     * const count = await prisma.dayPlan.count({
+     *   where: {
+     *     // ... the filter for the DayPlans we want to count
+     *   }
+     * })
+    **/
+    count<T extends DayPlanCountArgs>(
+      args?: Subset<T, DayPlanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DayPlanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DayPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DayPlanAggregateArgs>(args: Subset<T, DayPlanAggregateArgs>): Prisma.PrismaPromise<GetDayPlanAggregateType<T>>
+
+    /**
+     * Group by DayPlan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DayPlanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DayPlanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DayPlanGroupByArgs['orderBy'] }
+        : { orderBy?: DayPlanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DayPlanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDayPlanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DayPlan model
+   */
+  readonly fields: DayPlanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DayPlan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DayPlanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tour<T extends OfferedTourDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OfferedTourDefaultArgs<ExtArgs>>): Prisma__OfferedTourClient<$Result.GetResult<Prisma.$OfferedTourPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    itineraries<T extends DayPlan$itinerariesArgs<ExtArgs> = {}>(args?: Subset<T, DayPlan$itinerariesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DayPlan model
+   */
+  interface DayPlanFieldRefs {
+    readonly id: FieldRef<"DayPlan", 'BigInt'>
+    readonly day: FieldRef<"DayPlan", 'Int'>
+    readonly tourId: FieldRef<"DayPlan", 'BigInt'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DayPlan findUnique
+   */
+  export type DayPlanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which DayPlan to fetch.
+     */
+    where: DayPlanWhereUniqueInput
+  }
+
+  /**
+   * DayPlan findUniqueOrThrow
+   */
+  export type DayPlanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which DayPlan to fetch.
+     */
+    where: DayPlanWhereUniqueInput
+  }
+
+  /**
+   * DayPlan findFirst
+   */
+  export type DayPlanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which DayPlan to fetch.
+     */
+    where?: DayPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DayPlans to fetch.
+     */
+    orderBy?: DayPlanOrderByWithRelationInput | DayPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DayPlans.
+     */
+    cursor?: DayPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DayPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DayPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DayPlans.
+     */
+    distinct?: DayPlanScalarFieldEnum | DayPlanScalarFieldEnum[]
+  }
+
+  /**
+   * DayPlan findFirstOrThrow
+   */
+  export type DayPlanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which DayPlan to fetch.
+     */
+    where?: DayPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DayPlans to fetch.
+     */
+    orderBy?: DayPlanOrderByWithRelationInput | DayPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DayPlans.
+     */
+    cursor?: DayPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DayPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DayPlans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DayPlans.
+     */
+    distinct?: DayPlanScalarFieldEnum | DayPlanScalarFieldEnum[]
+  }
+
+  /**
+   * DayPlan findMany
+   */
+  export type DayPlanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * Filter, which DayPlans to fetch.
+     */
+    where?: DayPlanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DayPlans to fetch.
+     */
+    orderBy?: DayPlanOrderByWithRelationInput | DayPlanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DayPlans.
+     */
+    cursor?: DayPlanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DayPlans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DayPlans.
+     */
+    skip?: number
+    distinct?: DayPlanScalarFieldEnum | DayPlanScalarFieldEnum[]
+  }
+
+  /**
+   * DayPlan create
+   */
+  export type DayPlanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DayPlan.
+     */
+    data: XOR<DayPlanCreateInput, DayPlanUncheckedCreateInput>
+  }
+
+  /**
+   * DayPlan createMany
+   */
+  export type DayPlanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DayPlans.
+     */
+    data: DayPlanCreateManyInput | DayPlanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DayPlan createManyAndReturn
+   */
+  export type DayPlanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * The data used to create many DayPlans.
+     */
+    data: DayPlanCreateManyInput | DayPlanCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DayPlan update
+   */
+  export type DayPlanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DayPlan.
+     */
+    data: XOR<DayPlanUpdateInput, DayPlanUncheckedUpdateInput>
+    /**
+     * Choose, which DayPlan to update.
+     */
+    where: DayPlanWhereUniqueInput
+  }
+
+  /**
+   * DayPlan updateMany
+   */
+  export type DayPlanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DayPlans.
+     */
+    data: XOR<DayPlanUpdateManyMutationInput, DayPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which DayPlans to update
+     */
+    where?: DayPlanWhereInput
+    /**
+     * Limit how many DayPlans to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DayPlan updateManyAndReturn
+   */
+  export type DayPlanUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * The data used to update DayPlans.
+     */
+    data: XOR<DayPlanUpdateManyMutationInput, DayPlanUncheckedUpdateManyInput>
+    /**
+     * Filter which DayPlans to update
+     */
+    where?: DayPlanWhereInput
+    /**
+     * Limit how many DayPlans to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DayPlan upsert
+   */
+  export type DayPlanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DayPlan to update in case it exists.
+     */
+    where: DayPlanWhereUniqueInput
+    /**
+     * In case the DayPlan found by the `where` argument doesn't exist, create a new DayPlan with this data.
+     */
+    create: XOR<DayPlanCreateInput, DayPlanUncheckedCreateInput>
+    /**
+     * In case the DayPlan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DayPlanUpdateInput, DayPlanUncheckedUpdateInput>
+  }
+
+  /**
+   * DayPlan delete
+   */
+  export type DayPlanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
+    /**
+     * Filter which DayPlan to delete.
+     */
+    where: DayPlanWhereUniqueInput
+  }
+
+  /**
+   * DayPlan deleteMany
+   */
+  export type DayPlanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DayPlans to delete
+     */
+    where?: DayPlanWhereInput
+    /**
+     * Limit how many DayPlans to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DayPlan.itineraries
+   */
+  export type DayPlan$itinerariesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ItineraryBlock
+     */
+    select?: ItineraryBlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ItineraryBlock
+     */
+    omit?: ItineraryBlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ItineraryBlockInclude<ExtArgs> | null
+    where?: ItineraryBlockWhereInput
+    orderBy?: ItineraryBlockOrderByWithRelationInput | ItineraryBlockOrderByWithRelationInput[]
+    cursor?: ItineraryBlockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ItineraryBlockScalarFieldEnum | ItineraryBlockScalarFieldEnum[]
+  }
+
+  /**
+   * DayPlan without action
+   */
+  export type DayPlanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DayPlan
+     */
+    select?: DayPlanSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DayPlan
+     */
+    omit?: DayPlanOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DayPlanInclude<ExtArgs> | null
   }
 
 
@@ -14354,21 +15660,21 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     itineraryId?: boolean
-    itinerary?: boolean | ItineraryDefaultArgs<ExtArgs>
+    block?: boolean | ItineraryBlockDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
   export type ActivitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     itineraryId?: boolean
-    itinerary?: boolean | ItineraryDefaultArgs<ExtArgs>
+    block?: boolean | ItineraryBlockDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
   export type ActivitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
     itineraryId?: boolean
-    itinerary?: boolean | ItineraryDefaultArgs<ExtArgs>
+    block?: boolean | ItineraryBlockDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["activity"]>
 
   export type ActivitySelectScalar = {
@@ -14379,19 +15685,19 @@ export namespace Prisma {
 
   export type ActivityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "itineraryId", ExtArgs["result"]["activity"]>
   export type ActivityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    itinerary?: boolean | ItineraryDefaultArgs<ExtArgs>
+    block?: boolean | ItineraryBlockDefaultArgs<ExtArgs>
   }
   export type ActivityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    itinerary?: boolean | ItineraryDefaultArgs<ExtArgs>
+    block?: boolean | ItineraryBlockDefaultArgs<ExtArgs>
   }
   export type ActivityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    itinerary?: boolean | ItineraryDefaultArgs<ExtArgs>
+    block?: boolean | ItineraryBlockDefaultArgs<ExtArgs>
   }
 
   export type $ActivityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Activity"
     objects: {
-      itinerary: Prisma.$ItineraryPayload<ExtArgs>
+      block: Prisma.$ItineraryBlockPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
@@ -14791,7 +16097,7 @@ export namespace Prisma {
    */
   export interface Prisma__ActivityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    itinerary<T extends ItineraryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ItineraryDefaultArgs<ExtArgs>>): Prisma__ItineraryClient<$Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    block<T extends ItineraryBlockDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ItineraryBlockDefaultArgs<ExtArgs>>): Prisma__ItineraryBlockClient<$Result.GetResult<Prisma.$ItineraryBlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -18586,6 +19892,7 @@ export namespace Prisma {
   export const OfferedTourScalarFieldEnum: {
     id: 'id',
     minimumPeople: 'minimumPeople',
+    maximumPeople: 'maximumPeople',
     price: 'price',
     facilities: 'facilities',
     agentId: 'agentId',
@@ -18599,9 +19906,9 @@ export namespace Prisma {
   export const PlaceScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    location: 'location',
-    photos: 'photos',
-    rating: 'rating'
+    latitude: 'latitude',
+    longitude: 'longitude',
+    photos: 'photos'
   };
 
   export type PlaceScalarFieldEnum = (typeof PlaceScalarFieldEnum)[keyof typeof PlaceScalarFieldEnum]
@@ -18612,9 +19919,10 @@ export namespace Prisma {
     star: 'star',
     text: 'text',
     photos: 'photos',
+    reviewerId: 'reviewerId',
+    offeredTourId: 'offeredTourId',
     placeId: 'placeId',
-    agentId: 'agentId',
-    offeredTourId: 'offeredTourId'
+    reviewedAgentId: 'reviewedAgentId'
   };
 
   export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
@@ -18633,12 +19941,9 @@ export namespace Prisma {
     id: 'id',
     customerId: 'customerId',
     tourId: 'tourId',
-    noOfPeople: 'noOfPeople',
     status: 'status',
-    totalPrice: 'totalPrice',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    paymentId: 'paymentId'
+    updatedAt: 'updatedAt'
   };
 
   export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
@@ -18648,7 +19953,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     age: 'age',
-    proof: 'proof',
+    proofUrl: 'proofUrl',
     bookingId: 'bookingId'
   };
 
@@ -18669,18 +19974,27 @@ export namespace Prisma {
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
-  export const ItineraryScalarFieldEnum: {
+  export const ItineraryBlockScalarFieldEnum: {
     id: 'id',
-    day: 'day',
+    title: 'title',
+    dayPlanId: 'dayPlanId',
     startTime: 'startTime',
     endTime: 'endTime',
     placeId: 'placeId',
-    tourId: 'tourId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type ItineraryScalarFieldEnum = (typeof ItineraryScalarFieldEnum)[keyof typeof ItineraryScalarFieldEnum]
+  export type ItineraryBlockScalarFieldEnum = (typeof ItineraryBlockScalarFieldEnum)[keyof typeof ItineraryBlockScalarFieldEnum]
+
+
+  export const DayPlanScalarFieldEnum: {
+    id: 'id',
+    day: 'day',
+    tourId: 'tourId'
+  };
+
+  export type DayPlanScalarFieldEnum = (typeof DayPlanScalarFieldEnum)[keyof typeof DayPlanScalarFieldEnum]
 
 
   export const ActivityScalarFieldEnum: {
@@ -18838,6 +20152,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
    * Reference to a field of type 'BookingStatus'
    */
   export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus'>
@@ -18877,20 +20205,6 @@ export namespace Prisma {
    */
   export type ListEnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationType[]'>
     
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
   /**
    * Deep Input Types
    */
@@ -18915,12 +20229,13 @@ export namespace Prisma {
     sentMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
     offeredTours?: OfferedTourListRelationFilter
-    reviews?: ReviewListRelationFilter
     searchHistory?: XOR<SearchHistoryNullableScalarRelationFilter, SearchHistoryWhereInput> | null
     bookingsFromCustomer?: BookingListRelationFilter
     wishList?: XOR<WishListNullableScalarRelationFilter, WishListWhereInput> | null
-    notification?: XOR<NotificationNullableScalarRelationFilter, NotificationWhereInput> | null
+    notification?: NotificationListRelationFilter
     sessions?: SessionListRelationFilter
+    receivedReviews?: ReviewListRelationFilter
+    writtenReviews?: ReviewListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -18939,12 +20254,13 @@ export namespace Prisma {
     sentMessages?: MessageOrderByRelationAggregateInput
     receivedMessages?: MessageOrderByRelationAggregateInput
     offeredTours?: OfferedTourOrderByRelationAggregateInput
-    reviews?: ReviewOrderByRelationAggregateInput
     searchHistory?: SearchHistoryOrderByWithRelationInput
     bookingsFromCustomer?: BookingOrderByRelationAggregateInput
     wishList?: WishListOrderByWithRelationInput
-    notification?: NotificationOrderByWithRelationInput
+    notification?: NotificationOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
+    receivedReviews?: ReviewOrderByRelationAggregateInput
+    writtenReviews?: ReviewOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -18966,12 +20282,13 @@ export namespace Prisma {
     sentMessages?: MessageListRelationFilter
     receivedMessages?: MessageListRelationFilter
     offeredTours?: OfferedTourListRelationFilter
-    reviews?: ReviewListRelationFilter
     searchHistory?: XOR<SearchHistoryNullableScalarRelationFilter, SearchHistoryWhereInput> | null
     bookingsFromCustomer?: BookingListRelationFilter
     wishList?: XOR<WishListNullableScalarRelationFilter, WishListWhereInput> | null
-    notification?: XOR<NotificationNullableScalarRelationFilter, NotificationWhereInput> | null
+    notification?: NotificationListRelationFilter
     sessions?: SessionListRelationFilter
+    receivedReviews?: ReviewListRelationFilter
+    writtenReviews?: ReviewListRelationFilter
   }, "id" | "username" | "email" | "mobileNumber">
 
   export type UserOrderByWithAggregationInput = {
@@ -19083,12 +20400,13 @@ export namespace Prisma {
     NOT?: OfferedTourWhereInput | OfferedTourWhereInput[]
     id?: BigIntFilter<"OfferedTour"> | bigint | number
     minimumPeople?: IntFilter<"OfferedTour"> | number
+    maximumPeople?: IntFilter<"OfferedTour"> | number
     price?: DecimalFilter<"OfferedTour"> | Decimal | DecimalJsLike | number | string
     facilities?: StringNullableListFilter<"OfferedTour">
     agentId?: BigIntFilter<"OfferedTour"> | bigint | number
     startDate?: DateTimeFilter<"OfferedTour"> | Date | string
     endDate?: DateTimeFilter<"OfferedTour"> | Date | string
-    itineraries?: ItineraryListRelationFilter
+    dayPlan?: DayPlanListRelationFilter
     agent?: XOR<UserScalarRelationFilter, UserWhereInput>
     bookings?: BookingListRelationFilter
     WishList?: WishListListRelationFilter
@@ -19098,12 +20416,13 @@ export namespace Prisma {
   export type OfferedTourOrderByWithRelationInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     facilities?: SortOrder
     agentId?: SortOrder
     startDate?: SortOrder
     endDate?: SortOrder
-    itineraries?: ItineraryOrderByRelationAggregateInput
+    dayPlan?: DayPlanOrderByRelationAggregateInput
     agent?: UserOrderByWithRelationInput
     bookings?: BookingOrderByRelationAggregateInput
     WishList?: WishListOrderByRelationAggregateInput
@@ -19116,12 +20435,13 @@ export namespace Prisma {
     OR?: OfferedTourWhereInput[]
     NOT?: OfferedTourWhereInput | OfferedTourWhereInput[]
     minimumPeople?: IntFilter<"OfferedTour"> | number
+    maximumPeople?: IntFilter<"OfferedTour"> | number
     price?: DecimalFilter<"OfferedTour"> | Decimal | DecimalJsLike | number | string
     facilities?: StringNullableListFilter<"OfferedTour">
     agentId?: BigIntFilter<"OfferedTour"> | bigint | number
     startDate?: DateTimeFilter<"OfferedTour"> | Date | string
     endDate?: DateTimeFilter<"OfferedTour"> | Date | string
-    itineraries?: ItineraryListRelationFilter
+    dayPlan?: DayPlanListRelationFilter
     agent?: XOR<UserScalarRelationFilter, UserWhereInput>
     bookings?: BookingListRelationFilter
     WishList?: WishListListRelationFilter
@@ -19131,6 +20451,7 @@ export namespace Prisma {
   export type OfferedTourOrderByWithAggregationInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     facilities?: SortOrder
     agentId?: SortOrder
@@ -19149,6 +20470,7 @@ export namespace Prisma {
     NOT?: OfferedTourScalarWhereWithAggregatesInput | OfferedTourScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"OfferedTour"> | bigint | number
     minimumPeople?: IntWithAggregatesFilter<"OfferedTour"> | number
+    maximumPeople?: IntWithAggregatesFilter<"OfferedTour"> | number
     price?: DecimalWithAggregatesFilter<"OfferedTour"> | Decimal | DecimalJsLike | number | string
     facilities?: StringNullableListFilter<"OfferedTour">
     agentId?: BigIntWithAggregatesFilter<"OfferedTour"> | bigint | number
@@ -19162,21 +20484,21 @@ export namespace Prisma {
     NOT?: PlaceWhereInput | PlaceWhereInput[]
     id?: BigIntFilter<"Place"> | bigint | number
     name?: StringFilter<"Place"> | string
-    location?: StringFilter<"Place"> | string
+    latitude?: FloatFilter<"Place"> | number
+    longitude?: FloatFilter<"Place"> | number
     photos?: StringNullableListFilter<"Place">
-    rating?: DecimalFilter<"Place"> | Decimal | DecimalJsLike | number | string
     reviews?: ReviewListRelationFilter
-    itinerary?: ItineraryListRelationFilter
+    itineraryBlocks?: ItineraryBlockListRelationFilter
   }
 
   export type PlaceOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    location?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     photos?: SortOrder
-    rating?: SortOrder
     reviews?: ReviewOrderByRelationAggregateInput
-    itinerary?: ItineraryOrderByRelationAggregateInput
+    itineraryBlocks?: ItineraryBlockOrderByRelationAggregateInput
   }
 
   export type PlaceWhereUniqueInput = Prisma.AtLeast<{
@@ -19185,19 +20507,19 @@ export namespace Prisma {
     OR?: PlaceWhereInput[]
     NOT?: PlaceWhereInput | PlaceWhereInput[]
     name?: StringFilter<"Place"> | string
-    location?: StringFilter<"Place"> | string
+    latitude?: FloatFilter<"Place"> | number
+    longitude?: FloatFilter<"Place"> | number
     photos?: StringNullableListFilter<"Place">
-    rating?: DecimalFilter<"Place"> | Decimal | DecimalJsLike | number | string
     reviews?: ReviewListRelationFilter
-    itinerary?: ItineraryListRelationFilter
+    itineraryBlocks?: ItineraryBlockListRelationFilter
   }, "id">
 
   export type PlaceOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    location?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     photos?: SortOrder
-    rating?: SortOrder
     _count?: PlaceCountOrderByAggregateInput
     _avg?: PlaceAvgOrderByAggregateInput
     _max?: PlaceMaxOrderByAggregateInput
@@ -19211,9 +20533,9 @@ export namespace Prisma {
     NOT?: PlaceScalarWhereWithAggregatesInput | PlaceScalarWhereWithAggregatesInput[]
     id?: BigIntWithAggregatesFilter<"Place"> | bigint | number
     name?: StringWithAggregatesFilter<"Place"> | string
-    location?: StringWithAggregatesFilter<"Place"> | string
+    latitude?: FloatWithAggregatesFilter<"Place"> | number
+    longitude?: FloatWithAggregatesFilter<"Place"> | number
     photos?: StringNullableListFilter<"Place">
-    rating?: DecimalWithAggregatesFilter<"Place"> | Decimal | DecimalJsLike | number | string
   }
 
   export type ReviewWhereInput = {
@@ -19224,12 +20546,14 @@ export namespace Prisma {
     star?: IntFilter<"Review"> | number
     text?: StringFilter<"Review"> | string
     photos?: StringNullableListFilter<"Review">
+    reviewerId?: BigIntFilter<"Review"> | bigint | number
+    offeredTourId?: BigIntNullableFilter<"Review"> | bigint | number | null
     placeId?: BigIntNullableFilter<"Review"> | bigint | number | null
-    agentId?: BigIntFilter<"Review"> | bigint | number
-    offeredTourId?: BigIntFilter<"Review"> | bigint | number
-    Place?: XOR<PlaceNullableScalarRelationFilter, PlaceWhereInput> | null
-    agent?: XOR<UserScalarRelationFilter, UserWhereInput>
-    offeredTour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
+    reviewedAgentId?: BigIntNullableFilter<"Review"> | bigint | number | null
+    reviewer?: XOR<UserScalarRelationFilter, UserWhereInput>
+    offeredTour?: XOR<OfferedTourNullableScalarRelationFilter, OfferedTourWhereInput> | null
+    place?: XOR<PlaceNullableScalarRelationFilter, PlaceWhereInput> | null
+    reviewedAgent?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type ReviewOrderByWithRelationInput = {
@@ -19237,12 +20561,14 @@ export namespace Prisma {
     star?: SortOrder
     text?: SortOrder
     photos?: SortOrder
+    reviewerId?: SortOrder
+    offeredTourId?: SortOrderInput | SortOrder
     placeId?: SortOrderInput | SortOrder
-    agentId?: SortOrder
-    offeredTourId?: SortOrder
-    Place?: PlaceOrderByWithRelationInput
-    agent?: UserOrderByWithRelationInput
+    reviewedAgentId?: SortOrderInput | SortOrder
+    reviewer?: UserOrderByWithRelationInput
     offeredTour?: OfferedTourOrderByWithRelationInput
+    place?: PlaceOrderByWithRelationInput
+    reviewedAgent?: UserOrderByWithRelationInput
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -19253,12 +20579,14 @@ export namespace Prisma {
     star?: IntFilter<"Review"> | number
     text?: StringFilter<"Review"> | string
     photos?: StringNullableListFilter<"Review">
+    reviewerId?: BigIntFilter<"Review"> | bigint | number
+    offeredTourId?: BigIntNullableFilter<"Review"> | bigint | number | null
     placeId?: BigIntNullableFilter<"Review"> | bigint | number | null
-    agentId?: BigIntFilter<"Review"> | bigint | number
-    offeredTourId?: BigIntFilter<"Review"> | bigint | number
-    Place?: XOR<PlaceNullableScalarRelationFilter, PlaceWhereInput> | null
-    agent?: XOR<UserScalarRelationFilter, UserWhereInput>
-    offeredTour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
+    reviewedAgentId?: BigIntNullableFilter<"Review"> | bigint | number | null
+    reviewer?: XOR<UserScalarRelationFilter, UserWhereInput>
+    offeredTour?: XOR<OfferedTourNullableScalarRelationFilter, OfferedTourWhereInput> | null
+    place?: XOR<PlaceNullableScalarRelationFilter, PlaceWhereInput> | null
+    reviewedAgent?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }, "id">
 
   export type ReviewOrderByWithAggregationInput = {
@@ -19266,9 +20594,10 @@ export namespace Prisma {
     star?: SortOrder
     text?: SortOrder
     photos?: SortOrder
+    reviewerId?: SortOrder
+    offeredTourId?: SortOrderInput | SortOrder
     placeId?: SortOrderInput | SortOrder
-    agentId?: SortOrder
-    offeredTourId?: SortOrder
+    reviewedAgentId?: SortOrderInput | SortOrder
     _count?: ReviewCountOrderByAggregateInput
     _avg?: ReviewAvgOrderByAggregateInput
     _max?: ReviewMaxOrderByAggregateInput
@@ -19284,9 +20613,10 @@ export namespace Prisma {
     star?: IntWithAggregatesFilter<"Review"> | number
     text?: StringWithAggregatesFilter<"Review"> | string
     photos?: StringNullableListFilter<"Review">
+    reviewerId?: BigIntWithAggregatesFilter<"Review"> | bigint | number
+    offeredTourId?: BigIntNullableWithAggregatesFilter<"Review"> | bigint | number | null
     placeId?: BigIntNullableWithAggregatesFilter<"Review"> | bigint | number | null
-    agentId?: BigIntWithAggregatesFilter<"Review"> | bigint | number
-    offeredTourId?: BigIntWithAggregatesFilter<"Review"> | bigint | number
+    reviewedAgentId?: BigIntNullableWithAggregatesFilter<"Review"> | bigint | number | null
   }
 
   export type SearchHistoryWhereInput = {
@@ -19343,12 +20673,9 @@ export namespace Prisma {
     id?: BigIntFilter<"Booking"> | bigint | number
     customerId?: BigIntFilter<"Booking"> | bigint | number
     tourId?: BigIntFilter<"Booking"> | bigint | number
-    noOfPeople?: IntFilter<"Booking"> | number
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
-    totalPrice?: DecimalFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"Booking"> | Date | string
     updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    paymentId?: BigIntFilter<"Booking"> | bigint | number
     customer?: XOR<UserScalarRelationFilter, UserWhereInput>
     tour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
     persons?: PersonListRelationFilter
@@ -19359,12 +20686,9 @@ export namespace Prisma {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
     status?: SortOrder
-    totalPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    paymentId?: SortOrder
     customer?: UserOrderByWithRelationInput
     tour?: OfferedTourOrderByWithRelationInput
     persons?: PersonOrderByRelationAggregateInput
@@ -19378,12 +20702,9 @@ export namespace Prisma {
     NOT?: BookingWhereInput | BookingWhereInput[]
     customerId?: BigIntFilter<"Booking"> | bigint | number
     tourId?: BigIntFilter<"Booking"> | bigint | number
-    noOfPeople?: IntFilter<"Booking"> | number
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
-    totalPrice?: DecimalFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"Booking"> | Date | string
     updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    paymentId?: BigIntFilter<"Booking"> | bigint | number
     customer?: XOR<UserScalarRelationFilter, UserWhereInput>
     tour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
     persons?: PersonListRelationFilter
@@ -19394,12 +20715,9 @@ export namespace Prisma {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
     status?: SortOrder
-    totalPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    paymentId?: SortOrder
     _count?: BookingCountOrderByAggregateInput
     _avg?: BookingAvgOrderByAggregateInput
     _max?: BookingMaxOrderByAggregateInput
@@ -19414,12 +20732,9 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"Booking"> | bigint | number
     customerId?: BigIntWithAggregatesFilter<"Booking"> | bigint | number
     tourId?: BigIntWithAggregatesFilter<"Booking"> | bigint | number
-    noOfPeople?: IntWithAggregatesFilter<"Booking"> | number
     status?: EnumBookingStatusWithAggregatesFilter<"Booking"> | $Enums.BookingStatus
-    totalPrice?: DecimalWithAggregatesFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
-    paymentId?: BigIntWithAggregatesFilter<"Booking"> | bigint | number
   }
 
   export type PersonWhereInput = {
@@ -19429,7 +20744,7 @@ export namespace Prisma {
     id?: BigIntFilter<"Person"> | bigint | number
     name?: StringFilter<"Person"> | string
     age?: IntFilter<"Person"> | number
-    proof?: StringFilter<"Person"> | string
+    proofUrl?: StringNullableFilter<"Person"> | string | null
     bookingId?: BigIntFilter<"Person"> | bigint | number
     bookings?: XOR<BookingScalarRelationFilter, BookingWhereInput>
   }
@@ -19438,7 +20753,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     age?: SortOrder
-    proof?: SortOrder
+    proofUrl?: SortOrderInput | SortOrder
     bookingId?: SortOrder
     bookings?: BookingOrderByWithRelationInput
   }
@@ -19450,7 +20765,7 @@ export namespace Prisma {
     NOT?: PersonWhereInput | PersonWhereInput[]
     name?: StringFilter<"Person"> | string
     age?: IntFilter<"Person"> | number
-    proof?: StringFilter<"Person"> | string
+    proofUrl?: StringNullableFilter<"Person"> | string | null
     bookingId?: BigIntFilter<"Person"> | bigint | number
     bookings?: XOR<BookingScalarRelationFilter, BookingWhereInput>
   }, "id">
@@ -19459,7 +20774,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     age?: SortOrder
-    proof?: SortOrder
+    proofUrl?: SortOrderInput | SortOrder
     bookingId?: SortOrder
     _count?: PersonCountOrderByAggregateInput
     _avg?: PersonAvgOrderByAggregateInput
@@ -19475,7 +20790,7 @@ export namespace Prisma {
     id?: BigIntWithAggregatesFilter<"Person"> | bigint | number
     name?: StringWithAggregatesFilter<"Person"> | string
     age?: IntWithAggregatesFilter<"Person"> | number
-    proof?: StringWithAggregatesFilter<"Person"> | string
+    proofUrl?: StringNullableWithAggregatesFilter<"Person"> | string | null
     bookingId?: BigIntWithAggregatesFilter<"Person"> | bigint | number
   }
 
@@ -19551,82 +20866,132 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
   }
 
-  export type ItineraryWhereInput = {
-    AND?: ItineraryWhereInput | ItineraryWhereInput[]
-    OR?: ItineraryWhereInput[]
-    NOT?: ItineraryWhereInput | ItineraryWhereInput[]
-    id?: BigIntFilter<"Itinerary"> | bigint | number
-    day?: IntFilter<"Itinerary"> | number
-    startTime?: DateTimeFilter<"Itinerary"> | Date | string
-    endTime?: DateTimeFilter<"Itinerary"> | Date | string
-    placeId?: BigIntNullableFilter<"Itinerary"> | bigint | number | null
-    tourId?: BigIntFilter<"Itinerary"> | bigint | number
-    createdAt?: DateTimeFilter<"Itinerary"> | Date | string
-    updatedAt?: DateTimeFilter<"Itinerary"> | Date | string
+  export type ItineraryBlockWhereInput = {
+    AND?: ItineraryBlockWhereInput | ItineraryBlockWhereInput[]
+    OR?: ItineraryBlockWhereInput[]
+    NOT?: ItineraryBlockWhereInput | ItineraryBlockWhereInput[]
+    id?: BigIntFilter<"ItineraryBlock"> | bigint | number
+    title?: StringFilter<"ItineraryBlock"> | string
+    dayPlanId?: BigIntFilter<"ItineraryBlock"> | bigint | number
+    startTime?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    endTime?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    placeId?: BigIntNullableFilter<"ItineraryBlock"> | bigint | number | null
+    createdAt?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    updatedAt?: DateTimeFilter<"ItineraryBlock"> | Date | string
     activities?: ActivityListRelationFilter
     place?: XOR<PlaceNullableScalarRelationFilter, PlaceWhereInput> | null
-    tour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
+    dayPlan?: XOR<DayPlanScalarRelationFilter, DayPlanWhereInput>
   }
 
-  export type ItineraryOrderByWithRelationInput = {
+  export type ItineraryBlockOrderByWithRelationInput = {
     id?: SortOrder
-    day?: SortOrder
+    title?: SortOrder
+    dayPlanId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     placeId?: SortOrderInput | SortOrder
-    tourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     activities?: ActivityOrderByRelationAggregateInput
     place?: PlaceOrderByWithRelationInput
-    tour?: OfferedTourOrderByWithRelationInput
+    dayPlan?: DayPlanOrderByWithRelationInput
   }
 
-  export type ItineraryWhereUniqueInput = Prisma.AtLeast<{
+  export type ItineraryBlockWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    AND?: ItineraryWhereInput | ItineraryWhereInput[]
-    OR?: ItineraryWhereInput[]
-    NOT?: ItineraryWhereInput | ItineraryWhereInput[]
-    day?: IntFilter<"Itinerary"> | number
-    startTime?: DateTimeFilter<"Itinerary"> | Date | string
-    endTime?: DateTimeFilter<"Itinerary"> | Date | string
-    placeId?: BigIntNullableFilter<"Itinerary"> | bigint | number | null
-    tourId?: BigIntFilter<"Itinerary"> | bigint | number
-    createdAt?: DateTimeFilter<"Itinerary"> | Date | string
-    updatedAt?: DateTimeFilter<"Itinerary"> | Date | string
+    AND?: ItineraryBlockWhereInput | ItineraryBlockWhereInput[]
+    OR?: ItineraryBlockWhereInput[]
+    NOT?: ItineraryBlockWhereInput | ItineraryBlockWhereInput[]
+    title?: StringFilter<"ItineraryBlock"> | string
+    dayPlanId?: BigIntFilter<"ItineraryBlock"> | bigint | number
+    startTime?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    endTime?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    placeId?: BigIntNullableFilter<"ItineraryBlock"> | bigint | number | null
+    createdAt?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    updatedAt?: DateTimeFilter<"ItineraryBlock"> | Date | string
     activities?: ActivityListRelationFilter
     place?: XOR<PlaceNullableScalarRelationFilter, PlaceWhereInput> | null
-    tour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
+    dayPlan?: XOR<DayPlanScalarRelationFilter, DayPlanWhereInput>
   }, "id">
 
-  export type ItineraryOrderByWithAggregationInput = {
+  export type ItineraryBlockOrderByWithAggregationInput = {
     id?: SortOrder
-    day?: SortOrder
+    title?: SortOrder
+    dayPlanId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     placeId?: SortOrderInput | SortOrder
-    tourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: ItineraryCountOrderByAggregateInput
-    _avg?: ItineraryAvgOrderByAggregateInput
-    _max?: ItineraryMaxOrderByAggregateInput
-    _min?: ItineraryMinOrderByAggregateInput
-    _sum?: ItinerarySumOrderByAggregateInput
+    _count?: ItineraryBlockCountOrderByAggregateInput
+    _avg?: ItineraryBlockAvgOrderByAggregateInput
+    _max?: ItineraryBlockMaxOrderByAggregateInput
+    _min?: ItineraryBlockMinOrderByAggregateInput
+    _sum?: ItineraryBlockSumOrderByAggregateInput
   }
 
-  export type ItineraryScalarWhereWithAggregatesInput = {
-    AND?: ItineraryScalarWhereWithAggregatesInput | ItineraryScalarWhereWithAggregatesInput[]
-    OR?: ItineraryScalarWhereWithAggregatesInput[]
-    NOT?: ItineraryScalarWhereWithAggregatesInput | ItineraryScalarWhereWithAggregatesInput[]
-    id?: BigIntWithAggregatesFilter<"Itinerary"> | bigint | number
-    day?: IntWithAggregatesFilter<"Itinerary"> | number
-    startTime?: DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
-    endTime?: DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
-    placeId?: BigIntNullableWithAggregatesFilter<"Itinerary"> | bigint | number | null
-    tourId?: BigIntWithAggregatesFilter<"Itinerary"> | bigint | number
-    createdAt?: DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
+  export type ItineraryBlockScalarWhereWithAggregatesInput = {
+    AND?: ItineraryBlockScalarWhereWithAggregatesInput | ItineraryBlockScalarWhereWithAggregatesInput[]
+    OR?: ItineraryBlockScalarWhereWithAggregatesInput[]
+    NOT?: ItineraryBlockScalarWhereWithAggregatesInput | ItineraryBlockScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"ItineraryBlock"> | bigint | number
+    title?: StringWithAggregatesFilter<"ItineraryBlock"> | string
+    dayPlanId?: BigIntWithAggregatesFilter<"ItineraryBlock"> | bigint | number
+    startTime?: DateTimeWithAggregatesFilter<"ItineraryBlock"> | Date | string
+    endTime?: DateTimeWithAggregatesFilter<"ItineraryBlock"> | Date | string
+    placeId?: BigIntNullableWithAggregatesFilter<"ItineraryBlock"> | bigint | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"ItineraryBlock"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ItineraryBlock"> | Date | string
+  }
+
+  export type DayPlanWhereInput = {
+    AND?: DayPlanWhereInput | DayPlanWhereInput[]
+    OR?: DayPlanWhereInput[]
+    NOT?: DayPlanWhereInput | DayPlanWhereInput[]
+    id?: BigIntFilter<"DayPlan"> | bigint | number
+    day?: IntFilter<"DayPlan"> | number
+    tourId?: BigIntFilter<"DayPlan"> | bigint | number
+    tour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
+    itineraries?: ItineraryBlockListRelationFilter
+  }
+
+  export type DayPlanOrderByWithRelationInput = {
+    id?: SortOrder
+    day?: SortOrder
+    tourId?: SortOrder
+    tour?: OfferedTourOrderByWithRelationInput
+    itineraries?: ItineraryBlockOrderByRelationAggregateInput
+  }
+
+  export type DayPlanWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    AND?: DayPlanWhereInput | DayPlanWhereInput[]
+    OR?: DayPlanWhereInput[]
+    NOT?: DayPlanWhereInput | DayPlanWhereInput[]
+    day?: IntFilter<"DayPlan"> | number
+    tourId?: BigIntFilter<"DayPlan"> | bigint | number
+    tour?: XOR<OfferedTourScalarRelationFilter, OfferedTourWhereInput>
+    itineraries?: ItineraryBlockListRelationFilter
+  }, "id">
+
+  export type DayPlanOrderByWithAggregationInput = {
+    id?: SortOrder
+    day?: SortOrder
+    tourId?: SortOrder
+    _count?: DayPlanCountOrderByAggregateInput
+    _avg?: DayPlanAvgOrderByAggregateInput
+    _max?: DayPlanMaxOrderByAggregateInput
+    _min?: DayPlanMinOrderByAggregateInput
+    _sum?: DayPlanSumOrderByAggregateInput
+  }
+
+  export type DayPlanScalarWhereWithAggregatesInput = {
+    AND?: DayPlanScalarWhereWithAggregatesInput | DayPlanScalarWhereWithAggregatesInput[]
+    OR?: DayPlanScalarWhereWithAggregatesInput[]
+    NOT?: DayPlanScalarWhereWithAggregatesInput | DayPlanScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"DayPlan"> | bigint | number
+    day?: IntWithAggregatesFilter<"DayPlan"> | number
+    tourId?: BigIntWithAggregatesFilter<"DayPlan"> | bigint | number
   }
 
   export type ActivityWhereInput = {
@@ -19636,14 +21001,14 @@ export namespace Prisma {
     id?: BigIntFilter<"Activity"> | bigint | number
     title?: StringFilter<"Activity"> | string
     itineraryId?: BigIntFilter<"Activity"> | bigint | number
-    itinerary?: XOR<ItineraryScalarRelationFilter, ItineraryWhereInput>
+    block?: XOR<ItineraryBlockScalarRelationFilter, ItineraryBlockWhereInput>
   }
 
   export type ActivityOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
     itineraryId?: SortOrder
-    itinerary?: ItineraryOrderByWithRelationInput
+    block?: ItineraryBlockOrderByWithRelationInput
   }
 
   export type ActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -19653,7 +21018,7 @@ export namespace Prisma {
     NOT?: ActivityWhereInput | ActivityWhereInput[]
     title?: StringFilter<"Activity"> | string
     itineraryId?: BigIntFilter<"Activity"> | bigint | number
-    itinerary?: XOR<ItineraryScalarRelationFilter, ItineraryWhereInput>
+    block?: XOR<ItineraryBlockScalarRelationFilter, ItineraryBlockWhereInput>
   }, "id">
 
   export type ActivityOrderByWithAggregationInput = {
@@ -19701,7 +21066,6 @@ export namespace Prisma {
 
   export type NotificationWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
-    userId?: bigint | number
     AND?: NotificationWhereInput | NotificationWhereInput[]
     OR?: NotificationWhereInput[]
     NOT?: NotificationWhereInput | NotificationWhereInput[]
@@ -19709,8 +21073,9 @@ export namespace Prisma {
     type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
     createdAt?: DateTimeFilter<"Notification"> | Date | string
     updatedAt?: DateTimeFilter<"Notification"> | Date | string
+    userId?: BigIntFilter<"Notification"> | bigint | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId">
+  }, "id">
 
   export type NotificationOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19861,12 +21226,13 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -19885,12 +21251,13 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUpdateInput = {
@@ -19909,12 +21276,13 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -19933,12 +21301,13 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -20050,11 +21419,12 @@ export namespace Prisma {
   export type OfferedTourCreateInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanCreateNestedManyWithoutTourInput
     agent: UserCreateNestedOneWithoutOfferedToursInput
     bookings?: BookingCreateNestedManyWithoutTourInput
     WishList?: WishListCreateNestedManyWithoutToursInput
@@ -20064,12 +21434,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedCreateInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     agentId: bigint | number
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryUncheckedCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanUncheckedCreateNestedManyWithoutTourInput
     bookings?: BookingUncheckedCreateNestedManyWithoutTourInput
     WishList?: WishListUncheckedCreateNestedManyWithoutToursInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOfferedTourInput
@@ -20078,11 +21449,12 @@ export namespace Prisma {
   export type OfferedTourUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUpdateManyWithoutTourNestedInput
     agent?: UserUpdateOneRequiredWithoutOfferedToursNestedInput
     bookings?: BookingUpdateManyWithoutTourNestedInput
     WishList?: WishListUpdateManyWithoutToursNestedInput
@@ -20092,12 +21464,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUncheckedUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUncheckedUpdateManyWithoutTourNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutTourNestedInput
     WishList?: WishListUncheckedUpdateManyWithoutToursNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOfferedTourNestedInput
@@ -20106,6 +21479,7 @@ export namespace Prisma {
   export type OfferedTourCreateManyInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     agentId: bigint | number
@@ -20116,6 +21490,7 @@ export namespace Prisma {
   export type OfferedTourUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20125,6 +21500,7 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -20135,65 +21511,65 @@ export namespace Prisma {
   export type PlaceCreateInput = {
     id?: bigint | number
     name: string
-    location: string
+    latitude: number
+    longitude: number
     photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
     reviews?: ReviewCreateNestedManyWithoutPlaceInput
-    itinerary?: ItineraryCreateNestedManyWithoutPlaceInput
+    itineraryBlocks?: ItineraryBlockCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceUncheckedCreateInput = {
     id?: bigint | number
     name: string
-    location: string
+    latitude: number
+    longitude: number
     photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPlaceInput
-    itinerary?: ItineraryUncheckedCreateNestedManyWithoutPlaceInput
+    itineraryBlocks?: ItineraryBlockUncheckedCreateNestedManyWithoutPlaceInput
   }
 
   export type PlaceUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
     photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reviews?: ReviewUpdateManyWithoutPlaceNestedInput
-    itinerary?: ItineraryUpdateManyWithoutPlaceNestedInput
+    itineraryBlocks?: ItineraryBlockUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceUncheckedUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
     photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reviews?: ReviewUncheckedUpdateManyWithoutPlaceNestedInput
-    itinerary?: ItineraryUncheckedUpdateManyWithoutPlaceNestedInput
+    itineraryBlocks?: ItineraryBlockUncheckedUpdateManyWithoutPlaceNestedInput
   }
 
   export type PlaceCreateManyInput = {
     id?: bigint | number
     name: string
-    location: string
+    latitude: number
+    longitude: number
     photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
   }
 
   export type PlaceUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
     photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type PlaceUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
     photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ReviewCreateInput = {
@@ -20201,9 +21577,10 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
-    Place?: PlaceCreateNestedOneWithoutReviewsInput
-    agent: UserCreateNestedOneWithoutReviewsInput
-    offeredTour: OfferedTourCreateNestedOneWithoutReviewsInput
+    reviewer: UserCreateNestedOneWithoutWrittenReviewsInput
+    offeredTour?: OfferedTourCreateNestedOneWithoutReviewsInput
+    place?: PlaceCreateNestedOneWithoutReviewsInput
+    reviewedAgent?: UserCreateNestedOneWithoutReceivedReviewsInput
   }
 
   export type ReviewUncheckedCreateInput = {
@@ -20211,9 +21588,10 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
+    reviewerId: bigint | number
+    offeredTourId?: bigint | number | null
     placeId?: bigint | number | null
-    agentId: bigint | number
-    offeredTourId: bigint | number
+    reviewedAgentId?: bigint | number | null
   }
 
   export type ReviewUpdateInput = {
@@ -20221,9 +21599,10 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
-    Place?: PlaceUpdateOneWithoutReviewsNestedInput
-    agent?: UserUpdateOneRequiredWithoutReviewsNestedInput
-    offeredTour?: OfferedTourUpdateOneRequiredWithoutReviewsNestedInput
+    reviewer?: UserUpdateOneRequiredWithoutWrittenReviewsNestedInput
+    offeredTour?: OfferedTourUpdateOneWithoutReviewsNestedInput
+    place?: PlaceUpdateOneWithoutReviewsNestedInput
+    reviewedAgent?: UserUpdateOneWithoutReceivedReviewsNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
@@ -20231,9 +21610,10 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    agentId?: BigIntFieldUpdateOperationsInput | bigint | number
-    offeredTourId?: BigIntFieldUpdateOperationsInput | bigint | number
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type ReviewCreateManyInput = {
@@ -20241,9 +21621,10 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
+    reviewerId: bigint | number
+    offeredTourId?: bigint | number | null
     placeId?: bigint | number | null
-    agentId: bigint | number
-    offeredTourId: bigint | number
+    reviewedAgentId?: bigint | number | null
   }
 
   export type ReviewUpdateManyMutationInput = {
@@ -20258,9 +21639,10 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    agentId?: BigIntFieldUpdateOperationsInput | bigint | number
-    offeredTourId?: BigIntFieldUpdateOperationsInput | bigint | number
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type SearchHistoryCreateInput = {
@@ -20306,12 +21688,9 @@ export namespace Prisma {
 
   export type BookingCreateInput = {
     id?: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     customer: UserCreateNestedOneWithoutBookingsFromCustomerInput
     tour: OfferedTourCreateNestedOneWithoutBookingsInput
     persons?: PersonCreateNestedManyWithoutBookingsInput
@@ -20322,24 +21701,18 @@ export namespace Prisma {
     id?: bigint | number
     customerId: bigint | number
     tourId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     persons?: PersonUncheckedCreateNestedManyWithoutBookingsInput
     Payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
   }
 
   export type BookingUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     customer?: UserUpdateOneRequiredWithoutBookingsFromCustomerNestedInput
     tour?: OfferedTourUpdateOneRequiredWithoutBookingsNestedInput
     persons?: PersonUpdateManyWithoutBookingsNestedInput
@@ -20350,12 +21723,9 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customerId?: BigIntFieldUpdateOperationsInput | bigint | number
     tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     persons?: PersonUncheckedUpdateManyWithoutBookingsNestedInput
     Payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
   }
@@ -20364,41 +21734,32 @@ export namespace Prisma {
     id?: bigint | number
     customerId: bigint | number
     tourId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
   }
 
   export type BookingUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type BookingUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customerId?: BigIntFieldUpdateOperationsInput | bigint | number
     tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type PersonCreateInput = {
     id?: bigint | number
     name: string
     age: number
-    proof: string
+    proofUrl?: string | null
     bookings: BookingCreateNestedOneWithoutPersonsInput
   }
 
@@ -20406,7 +21767,7 @@ export namespace Prisma {
     id?: bigint | number
     name: string
     age: number
-    proof: string
+    proofUrl?: string | null
     bookingId: bigint | number
   }
 
@@ -20414,7 +21775,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
     bookings?: BookingUpdateOneRequiredWithoutPersonsNestedInput
   }
 
@@ -20422,7 +21783,7 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
     bookingId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -20430,7 +21791,7 @@ export namespace Prisma {
     id?: bigint | number
     name: string
     age: number
-    proof: string
+    proofUrl?: string | null
     bookingId: bigint | number
   }
 
@@ -20438,14 +21799,14 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PersonUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
     bookingId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
@@ -20525,89 +21886,134 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ItineraryCreateInput = {
+  export type ItineraryBlockCreateInput = {
     id?: bigint | number
-    day: number
+    title: string
     startTime: Date | string
     endTime: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    activities?: ActivityCreateNestedManyWithoutItineraryInput
-    place?: PlaceCreateNestedOneWithoutItineraryInput
-    tour: OfferedTourCreateNestedOneWithoutItinerariesInput
+    activities?: ActivityCreateNestedManyWithoutBlockInput
+    place?: PlaceCreateNestedOneWithoutItineraryBlocksInput
+    dayPlan: DayPlanCreateNestedOneWithoutItinerariesInput
   }
 
-  export type ItineraryUncheckedCreateInput = {
+  export type ItineraryBlockUncheckedCreateInput = {
     id?: bigint | number
-    day: number
-    startTime: Date | string
-    endTime: Date | string
-    placeId?: bigint | number | null
-    tourId: bigint | number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    activities?: ActivityUncheckedCreateNestedManyWithoutItineraryInput
-  }
-
-  export type ItineraryUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activities?: ActivityUpdateManyWithoutItineraryNestedInput
-    place?: PlaceUpdateOneWithoutItineraryNestedInput
-    tour?: OfferedTourUpdateOneRequiredWithoutItinerariesNestedInput
-  }
-
-  export type ItineraryUncheckedUpdateInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activities?: ActivityUncheckedUpdateManyWithoutItineraryNestedInput
-  }
-
-  export type ItineraryCreateManyInput = {
-    id?: bigint | number
-    day: number
+    title: string
+    dayPlanId: bigint | number
     startTime: Date | string
     endTime: Date | string
     placeId?: bigint | number | null
-    tourId: bigint | number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    activities?: ActivityUncheckedCreateNestedManyWithoutBlockInput
+  }
+
+  export type ItineraryBlockUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    title?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    activities?: ActivityUpdateManyWithoutBlockNestedInput
+    place?: PlaceUpdateOneWithoutItineraryBlocksNestedInput
+    dayPlan?: DayPlanUpdateOneRequiredWithoutItinerariesNestedInput
+  }
+
+  export type ItineraryBlockUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    title?: StringFieldUpdateOperationsInput | string
+    dayPlanId?: BigIntFieldUpdateOperationsInput | bigint | number
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    activities?: ActivityUncheckedUpdateManyWithoutBlockNestedInput
+  }
+
+  export type ItineraryBlockCreateManyInput = {
+    id?: bigint | number
+    title: string
+    dayPlanId: bigint | number
+    startTime: Date | string
+    endTime: Date | string
+    placeId?: bigint | number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type ItineraryUpdateManyMutationInput = {
+  export type ItineraryBlockUpdateManyMutationInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ItineraryUncheckedUpdateManyInput = {
+  export type ItineraryBlockUncheckedUpdateManyInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    dayPlanId?: BigIntFieldUpdateOperationsInput | bigint | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DayPlanCreateInput = {
+    id?: bigint | number
+    day: number
+    tour: OfferedTourCreateNestedOneWithoutDayPlanInput
+    itineraries?: ItineraryBlockCreateNestedManyWithoutDayPlanInput
+  }
+
+  export type DayPlanUncheckedCreateInput = {
+    id?: bigint | number
+    day: number
+    tourId: bigint | number
+    itineraries?: ItineraryBlockUncheckedCreateNestedManyWithoutDayPlanInput
+  }
+
+  export type DayPlanUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    day?: IntFieldUpdateOperationsInput | number
+    tour?: OfferedTourUpdateOneRequiredWithoutDayPlanNestedInput
+    itineraries?: ItineraryBlockUpdateManyWithoutDayPlanNestedInput
+  }
+
+  export type DayPlanUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    day?: IntFieldUpdateOperationsInput | number
+    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
+    itineraries?: ItineraryBlockUncheckedUpdateManyWithoutDayPlanNestedInput
+  }
+
+  export type DayPlanCreateManyInput = {
+    id?: bigint | number
+    day: number
+    tourId: bigint | number
+  }
+
+  export type DayPlanUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    day?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DayPlanUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    day?: IntFieldUpdateOperationsInput | number
+    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type ActivityCreateInput = {
     id?: bigint | number
     title: string
-    itinerary: ItineraryCreateNestedOneWithoutActivitiesInput
+    block: ItineraryBlockCreateNestedOneWithoutActivitiesInput
   }
 
   export type ActivityUncheckedCreateInput = {
@@ -20619,7 +22025,7 @@ export namespace Prisma {
   export type ActivityUpdateInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
-    itinerary?: ItineraryUpdateOneRequiredWithoutActivitiesNestedInput
+    block?: ItineraryBlockUpdateOneRequiredWithoutActivitiesNestedInput
   }
 
   export type ActivityUncheckedUpdateInput = {
@@ -20878,12 +22284,6 @@ export namespace Prisma {
     none?: OfferedTourWhereInput
   }
 
-  export type ReviewListRelationFilter = {
-    every?: ReviewWhereInput
-    some?: ReviewWhereInput
-    none?: ReviewWhereInput
-  }
-
   export type SearchHistoryNullableScalarRelationFilter = {
     is?: SearchHistoryWhereInput | null
     isNot?: SearchHistoryWhereInput | null
@@ -20900,15 +22300,22 @@ export namespace Prisma {
     isNot?: WishListWhereInput | null
   }
 
-  export type NotificationNullableScalarRelationFilter = {
-    is?: NotificationWhereInput | null
-    isNot?: NotificationWhereInput | null
+  export type NotificationListRelationFilter = {
+    every?: NotificationWhereInput
+    some?: NotificationWhereInput
+    none?: NotificationWhereInput
   }
 
   export type SessionListRelationFilter = {
     every?: SessionWhereInput
     some?: SessionWhereInput
     none?: SessionWhereInput
+  }
+
+  export type ReviewListRelationFilter = {
+    every?: ReviewWhereInput
+    some?: ReviewWhereInput
+    none?: ReviewWhereInput
   }
 
   export type SortOrderInput = {
@@ -20924,15 +22331,19 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ReviewOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type BookingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
+  export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type SessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReviewOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21139,10 +22550,10 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type ItineraryListRelationFilter = {
-    every?: ItineraryWhereInput
-    some?: ItineraryWhereInput
-    none?: ItineraryWhereInput
+  export type DayPlanListRelationFilter = {
+    every?: DayPlanWhereInput
+    some?: DayPlanWhereInput
+    none?: DayPlanWhereInput
   }
 
   export type WishListListRelationFilter = {
@@ -21151,7 +22562,7 @@ export namespace Prisma {
     none?: WishListWhereInput
   }
 
-  export type ItineraryOrderByRelationAggregateInput = {
+  export type DayPlanOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -21162,6 +22573,7 @@ export namespace Prisma {
   export type OfferedTourCountOrderByAggregateInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     facilities?: SortOrder
     agentId?: SortOrder
@@ -21172,6 +22584,7 @@ export namespace Prisma {
   export type OfferedTourAvgOrderByAggregateInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     agentId?: SortOrder
   }
@@ -21179,6 +22592,7 @@ export namespace Prisma {
   export type OfferedTourMaxOrderByAggregateInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     agentId?: SortOrder
     startDate?: SortOrder
@@ -21188,6 +22602,7 @@ export namespace Prisma {
   export type OfferedTourMinOrderByAggregateInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     agentId?: SortOrder
     startDate?: SortOrder
@@ -21197,6 +22612,7 @@ export namespace Prisma {
   export type OfferedTourSumOrderByAggregateInput = {
     id?: SortOrder
     minimumPeople?: SortOrder
+    maximumPeople?: SortOrder
     price?: SortOrder
     agentId?: SortOrder
   }
@@ -21233,36 +22649,75 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type ItineraryBlockListRelationFilter = {
+    every?: ItineraryBlockWhereInput
+    some?: ItineraryBlockWhereInput
+    none?: ItineraryBlockWhereInput
+  }
+
+  export type ItineraryBlockOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type PlaceCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    location?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
     photos?: SortOrder
-    rating?: SortOrder
   }
 
   export type PlaceAvgOrderByAggregateInput = {
     id?: SortOrder
-    rating?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type PlaceMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    location?: SortOrder
-    rating?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type PlaceMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    location?: SortOrder
-    rating?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type PlaceSumOrderByAggregateInput = {
     id?: SortOrder
-    rating?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type BigIntNullableFilter<$PrismaModel = never> = {
@@ -21276,14 +22731,19 @@ export namespace Prisma {
     not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
   }
 
+  export type OfferedTourNullableScalarRelationFilter = {
+    is?: OfferedTourWhereInput | null
+    isNot?: OfferedTourWhereInput | null
+  }
+
   export type PlaceNullableScalarRelationFilter = {
     is?: PlaceWhereInput | null
     isNot?: PlaceWhereInput | null
   }
 
-  export type OfferedTourScalarRelationFilter = {
-    is?: OfferedTourWhereInput
-    isNot?: OfferedTourWhereInput
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
   }
 
   export type ReviewCountOrderByAggregateInput = {
@@ -21291,43 +22751,48 @@ export namespace Prisma {
     star?: SortOrder
     text?: SortOrder
     photos?: SortOrder
-    placeId?: SortOrder
-    agentId?: SortOrder
+    reviewerId?: SortOrder
     offeredTourId?: SortOrder
+    placeId?: SortOrder
+    reviewedAgentId?: SortOrder
   }
 
   export type ReviewAvgOrderByAggregateInput = {
     id?: SortOrder
     star?: SortOrder
-    placeId?: SortOrder
-    agentId?: SortOrder
+    reviewerId?: SortOrder
     offeredTourId?: SortOrder
+    placeId?: SortOrder
+    reviewedAgentId?: SortOrder
   }
 
   export type ReviewMaxOrderByAggregateInput = {
     id?: SortOrder
     star?: SortOrder
     text?: SortOrder
-    placeId?: SortOrder
-    agentId?: SortOrder
+    reviewerId?: SortOrder
     offeredTourId?: SortOrder
+    placeId?: SortOrder
+    reviewedAgentId?: SortOrder
   }
 
   export type ReviewMinOrderByAggregateInput = {
     id?: SortOrder
     star?: SortOrder
     text?: SortOrder
-    placeId?: SortOrder
-    agentId?: SortOrder
+    reviewerId?: SortOrder
     offeredTourId?: SortOrder
+    placeId?: SortOrder
+    reviewedAgentId?: SortOrder
   }
 
   export type ReviewSumOrderByAggregateInput = {
     id?: SortOrder
     star?: SortOrder
-    placeId?: SortOrder
-    agentId?: SortOrder
+    reviewerId?: SortOrder
     offeredTourId?: SortOrder
+    placeId?: SortOrder
+    reviewedAgentId?: SortOrder
   }
 
   export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -21379,6 +22844,11 @@ export namespace Prisma {
     not?: NestedEnumBookingStatusFilter<$PrismaModel> | $Enums.BookingStatus
   }
 
+  export type OfferedTourScalarRelationFilter = {
+    is?: OfferedTourWhereInput
+    isNot?: OfferedTourWhereInput
+  }
+
   export type PersonListRelationFilter = {
     every?: PersonWhereInput
     some?: PersonWhereInput
@@ -21398,54 +22868,39 @@ export namespace Prisma {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
     status?: SortOrder
-    totalPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    paymentId?: SortOrder
   }
 
   export type BookingAvgOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
-    totalPrice?: SortOrder
-    paymentId?: SortOrder
   }
 
   export type BookingMaxOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
     status?: SortOrder
-    totalPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    paymentId?: SortOrder
   }
 
   export type BookingMinOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
     status?: SortOrder
-    totalPrice?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    paymentId?: SortOrder
   }
 
   export type BookingSumOrderByAggregateInput = {
     id?: SortOrder
     customerId?: SortOrder
     tourId?: SortOrder
-    noOfPeople?: SortOrder
-    totalPrice?: SortOrder
-    paymentId?: SortOrder
   }
 
   export type EnumBookingStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -21467,7 +22922,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     age?: SortOrder
-    proof?: SortOrder
+    proofUrl?: SortOrder
     bookingId?: SortOrder
   }
 
@@ -21481,7 +22936,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     age?: SortOrder
-    proof?: SortOrder
+    proofUrl?: SortOrder
     bookingId?: SortOrder
   }
 
@@ -21489,7 +22944,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     age?: SortOrder
-    proof?: SortOrder
+    proofUrl?: SortOrder
     bookingId?: SortOrder
   }
 
@@ -21567,60 +23022,93 @@ export namespace Prisma {
     none?: ActivityWhereInput
   }
 
+  export type DayPlanScalarRelationFilter = {
+    is?: DayPlanWhereInput
+    isNot?: DayPlanWhereInput
+  }
+
   export type ActivityOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type ItineraryCountOrderByAggregateInput = {
+  export type ItineraryBlockCountOrderByAggregateInput = {
     id?: SortOrder
-    day?: SortOrder
+    title?: SortOrder
+    dayPlanId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     placeId?: SortOrder
-    tourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type ItineraryAvgOrderByAggregateInput = {
+  export type ItineraryBlockAvgOrderByAggregateInput = {
     id?: SortOrder
-    day?: SortOrder
+    dayPlanId?: SortOrder
     placeId?: SortOrder
-    tourId?: SortOrder
   }
 
-  export type ItineraryMaxOrderByAggregateInput = {
+  export type ItineraryBlockMaxOrderByAggregateInput = {
     id?: SortOrder
-    day?: SortOrder
+    title?: SortOrder
+    dayPlanId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     placeId?: SortOrder
-    tourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type ItineraryMinOrderByAggregateInput = {
+  export type ItineraryBlockMinOrderByAggregateInput = {
     id?: SortOrder
-    day?: SortOrder
+    title?: SortOrder
+    dayPlanId?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     placeId?: SortOrder
-    tourId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
-  export type ItinerarySumOrderByAggregateInput = {
+  export type ItineraryBlockSumOrderByAggregateInput = {
+    id?: SortOrder
+    dayPlanId?: SortOrder
+    placeId?: SortOrder
+  }
+
+  export type DayPlanCountOrderByAggregateInput = {
     id?: SortOrder
     day?: SortOrder
-    placeId?: SortOrder
     tourId?: SortOrder
   }
 
-  export type ItineraryScalarRelationFilter = {
-    is?: ItineraryWhereInput
-    isNot?: ItineraryWhereInput
+  export type DayPlanAvgOrderByAggregateInput = {
+    id?: SortOrder
+    day?: SortOrder
+    tourId?: SortOrder
+  }
+
+  export type DayPlanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    day?: SortOrder
+    tourId?: SortOrder
+  }
+
+  export type DayPlanMinOrderByAggregateInput = {
+    id?: SortOrder
+    day?: SortOrder
+    tourId?: SortOrder
+  }
+
+  export type DayPlanSumOrderByAggregateInput = {
+    id?: SortOrder
+    day?: SortOrder
+    tourId?: SortOrder
+  }
+
+  export type ItineraryBlockScalarRelationFilter = {
+    is?: ItineraryBlockWhereInput
+    isNot?: ItineraryBlockWhereInput
   }
 
   export type ActivityCountOrderByAggregateInput = {
@@ -21786,13 +23274,6 @@ export namespace Prisma {
     connect?: OfferedTourWhereUniqueInput | OfferedTourWhereUniqueInput[]
   }
 
-  export type ReviewCreateNestedManyWithoutAgentInput = {
-    create?: XOR<ReviewCreateWithoutAgentInput, ReviewUncheckedCreateWithoutAgentInput> | ReviewCreateWithoutAgentInput[] | ReviewUncheckedCreateWithoutAgentInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutAgentInput | ReviewCreateOrConnectWithoutAgentInput[]
-    createMany?: ReviewCreateManyAgentInputEnvelope
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-  }
-
   export type SearchHistoryCreateNestedOneWithoutUserInput = {
     create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput>
     connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput
@@ -21812,10 +23293,11 @@ export namespace Prisma {
     connect?: WishListWhereUniqueInput
   }
 
-  export type NotificationCreateNestedOneWithoutUserInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput
-    connect?: NotificationWhereUniqueInput
+  export type NotificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -21823,6 +23305,20 @@ export namespace Prisma {
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     createMany?: SessionCreateManyUserInputEnvelope
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type ReviewCreateNestedManyWithoutReviewedAgentInput = {
+    create?: XOR<ReviewCreateWithoutReviewedAgentInput, ReviewUncheckedCreateWithoutReviewedAgentInput> | ReviewCreateWithoutReviewedAgentInput[] | ReviewUncheckedCreateWithoutReviewedAgentInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewedAgentInput | ReviewCreateOrConnectWithoutReviewedAgentInput[]
+    createMany?: ReviewCreateManyReviewedAgentInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type ReviewCreateNestedManyWithoutReviewerInput = {
+    create?: XOR<ReviewCreateWithoutReviewerInput, ReviewUncheckedCreateWithoutReviewerInput> | ReviewCreateWithoutReviewerInput[] | ReviewUncheckedCreateWithoutReviewerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewerInput | ReviewCreateOrConnectWithoutReviewerInput[]
+    createMany?: ReviewCreateManyReviewerInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type MessageUncheckedCreateNestedManyWithoutSenderInput = {
@@ -21846,13 +23342,6 @@ export namespace Prisma {
     connect?: OfferedTourWhereUniqueInput | OfferedTourWhereUniqueInput[]
   }
 
-  export type ReviewUncheckedCreateNestedManyWithoutAgentInput = {
-    create?: XOR<ReviewCreateWithoutAgentInput, ReviewUncheckedCreateWithoutAgentInput> | ReviewCreateWithoutAgentInput[] | ReviewUncheckedCreateWithoutAgentInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutAgentInput | ReviewCreateOrConnectWithoutAgentInput[]
-    createMany?: ReviewCreateManyAgentInputEnvelope
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-  }
-
   export type SearchHistoryUncheckedCreateNestedOneWithoutUserInput = {
     create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput>
     connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput
@@ -21872,10 +23361,11 @@ export namespace Prisma {
     connect?: WishListWhereUniqueInput
   }
 
-  export type NotificationUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput
-    connect?: NotificationWhereUniqueInput
+  export type NotificationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
   export type SessionUncheckedCreateNestedManyWithoutUserInput = {
@@ -21883,6 +23373,20 @@ export namespace Prisma {
     connectOrCreate?: SessionCreateOrConnectWithoutUserInput | SessionCreateOrConnectWithoutUserInput[]
     createMany?: SessionCreateManyUserInputEnvelope
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
+  }
+
+  export type ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput = {
+    create?: XOR<ReviewCreateWithoutReviewedAgentInput, ReviewUncheckedCreateWithoutReviewedAgentInput> | ReviewCreateWithoutReviewedAgentInput[] | ReviewUncheckedCreateWithoutReviewedAgentInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewedAgentInput | ReviewCreateOrConnectWithoutReviewedAgentInput[]
+    createMany?: ReviewCreateManyReviewedAgentInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type ReviewUncheckedCreateNestedManyWithoutReviewerInput = {
+    create?: XOR<ReviewCreateWithoutReviewerInput, ReviewUncheckedCreateWithoutReviewerInput> | ReviewCreateWithoutReviewerInput[] | ReviewUncheckedCreateWithoutReviewerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewerInput | ReviewCreateOrConnectWithoutReviewerInput[]
+    createMany?: ReviewCreateManyReviewerInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
   export type BigIntFieldUpdateOperationsInput = {
@@ -21951,20 +23455,6 @@ export namespace Prisma {
     deleteMany?: OfferedTourScalarWhereInput | OfferedTourScalarWhereInput[]
   }
 
-  export type ReviewUpdateManyWithoutAgentNestedInput = {
-    create?: XOR<ReviewCreateWithoutAgentInput, ReviewUncheckedCreateWithoutAgentInput> | ReviewCreateWithoutAgentInput[] | ReviewUncheckedCreateWithoutAgentInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutAgentInput | ReviewCreateOrConnectWithoutAgentInput[]
-    upsert?: ReviewUpsertWithWhereUniqueWithoutAgentInput | ReviewUpsertWithWhereUniqueWithoutAgentInput[]
-    createMany?: ReviewCreateManyAgentInputEnvelope
-    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    update?: ReviewUpdateWithWhereUniqueWithoutAgentInput | ReviewUpdateWithWhereUniqueWithoutAgentInput[]
-    updateMany?: ReviewUpdateManyWithWhereWithoutAgentInput | ReviewUpdateManyWithWhereWithoutAgentInput[]
-    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-  }
-
   export type SearchHistoryUpdateOneWithoutUserNestedInput = {
     create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput>
     connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput
@@ -21999,14 +23489,18 @@ export namespace Prisma {
     update?: XOR<XOR<WishListUpdateToOneWithWhereWithoutUserInput, WishListUpdateWithoutUserInput>, WishListUncheckedUpdateWithoutUserInput>
   }
 
-  export type NotificationUpdateOneWithoutUserNestedInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput
-    upsert?: NotificationUpsertWithoutUserInput
-    disconnect?: NotificationWhereInput | boolean
-    delete?: NotificationWhereInput | boolean
-    connect?: NotificationWhereUniqueInput
-    update?: XOR<XOR<NotificationUpdateToOneWithWhereWithoutUserInput, NotificationUpdateWithoutUserInput>, NotificationUncheckedUpdateWithoutUserInput>
+  export type NotificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
   export type SessionUpdateManyWithoutUserNestedInput = {
@@ -22021,6 +23515,34 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type ReviewUpdateManyWithoutReviewedAgentNestedInput = {
+    create?: XOR<ReviewCreateWithoutReviewedAgentInput, ReviewUncheckedCreateWithoutReviewedAgentInput> | ReviewCreateWithoutReviewedAgentInput[] | ReviewUncheckedCreateWithoutReviewedAgentInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewedAgentInput | ReviewCreateOrConnectWithoutReviewedAgentInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutReviewedAgentInput | ReviewUpsertWithWhereUniqueWithoutReviewedAgentInput[]
+    createMany?: ReviewCreateManyReviewedAgentInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutReviewedAgentInput | ReviewUpdateWithWhereUniqueWithoutReviewedAgentInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutReviewedAgentInput | ReviewUpdateManyWithWhereWithoutReviewedAgentInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type ReviewUpdateManyWithoutReviewerNestedInput = {
+    create?: XOR<ReviewCreateWithoutReviewerInput, ReviewUncheckedCreateWithoutReviewerInput> | ReviewCreateWithoutReviewerInput[] | ReviewUncheckedCreateWithoutReviewerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewerInput | ReviewCreateOrConnectWithoutReviewerInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutReviewerInput | ReviewUpsertWithWhereUniqueWithoutReviewerInput[]
+    createMany?: ReviewCreateManyReviewerInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutReviewerInput | ReviewUpdateWithWhereUniqueWithoutReviewerInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutReviewerInput | ReviewUpdateManyWithWhereWithoutReviewerInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
   export type MessageUncheckedUpdateManyWithoutSenderNestedInput = {
@@ -22065,20 +23587,6 @@ export namespace Prisma {
     deleteMany?: OfferedTourScalarWhereInput | OfferedTourScalarWhereInput[]
   }
 
-  export type ReviewUncheckedUpdateManyWithoutAgentNestedInput = {
-    create?: XOR<ReviewCreateWithoutAgentInput, ReviewUncheckedCreateWithoutAgentInput> | ReviewCreateWithoutAgentInput[] | ReviewUncheckedCreateWithoutAgentInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutAgentInput | ReviewCreateOrConnectWithoutAgentInput[]
-    upsert?: ReviewUpsertWithWhereUniqueWithoutAgentInput | ReviewUpsertWithWhereUniqueWithoutAgentInput[]
-    createMany?: ReviewCreateManyAgentInputEnvelope
-    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    update?: ReviewUpdateWithWhereUniqueWithoutAgentInput | ReviewUpdateWithWhereUniqueWithoutAgentInput[]
-    updateMany?: ReviewUpdateManyWithWhereWithoutAgentInput | ReviewUpdateManyWithWhereWithoutAgentInput[]
-    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-  }
-
   export type SearchHistoryUncheckedUpdateOneWithoutUserNestedInput = {
     create?: XOR<SearchHistoryCreateWithoutUserInput, SearchHistoryUncheckedCreateWithoutUserInput>
     connectOrCreate?: SearchHistoryCreateOrConnectWithoutUserInput
@@ -22113,14 +23621,18 @@ export namespace Prisma {
     update?: XOR<XOR<WishListUpdateToOneWithWhereWithoutUserInput, WishListUpdateWithoutUserInput>, WishListUncheckedUpdateWithoutUserInput>
   }
 
-  export type NotificationUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
-    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput
-    upsert?: NotificationUpsertWithoutUserInput
-    disconnect?: NotificationWhereInput | boolean
-    delete?: NotificationWhereInput | boolean
-    connect?: NotificationWhereUniqueInput
-    update?: XOR<XOR<NotificationUpdateToOneWithWhereWithoutUserInput, NotificationUpdateWithoutUserInput>, NotificationUncheckedUpdateWithoutUserInput>
+  export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
   export type SessionUncheckedUpdateManyWithoutUserNestedInput = {
@@ -22135,6 +23647,34 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutUserInput | SessionUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutUserInput | SessionUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput = {
+    create?: XOR<ReviewCreateWithoutReviewedAgentInput, ReviewUncheckedCreateWithoutReviewedAgentInput> | ReviewCreateWithoutReviewedAgentInput[] | ReviewUncheckedCreateWithoutReviewedAgentInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewedAgentInput | ReviewCreateOrConnectWithoutReviewedAgentInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutReviewedAgentInput | ReviewUpsertWithWhereUniqueWithoutReviewedAgentInput[]
+    createMany?: ReviewCreateManyReviewedAgentInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutReviewedAgentInput | ReviewUpdateWithWhereUniqueWithoutReviewedAgentInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutReviewedAgentInput | ReviewUpdateManyWithWhereWithoutReviewedAgentInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutReviewerNestedInput = {
+    create?: XOR<ReviewCreateWithoutReviewerInput, ReviewUncheckedCreateWithoutReviewerInput> | ReviewCreateWithoutReviewerInput[] | ReviewUncheckedCreateWithoutReviewerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutReviewerInput | ReviewCreateOrConnectWithoutReviewerInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutReviewerInput | ReviewUpsertWithWhereUniqueWithoutReviewerInput[]
+    createMany?: ReviewCreateManyReviewerInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutReviewerInput | ReviewUpdateWithWhereUniqueWithoutReviewerInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutReviewerInput | ReviewUpdateManyWithWhereWithoutReviewerInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutSentMessagesInput = {
@@ -22169,11 +23709,11 @@ export namespace Prisma {
     set: string[]
   }
 
-  export type ItineraryCreateNestedManyWithoutTourInput = {
-    create?: XOR<ItineraryCreateWithoutTourInput, ItineraryUncheckedCreateWithoutTourInput> | ItineraryCreateWithoutTourInput[] | ItineraryUncheckedCreateWithoutTourInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutTourInput | ItineraryCreateOrConnectWithoutTourInput[]
-    createMany?: ItineraryCreateManyTourInputEnvelope
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
+  export type DayPlanCreateNestedManyWithoutTourInput = {
+    create?: XOR<DayPlanCreateWithoutTourInput, DayPlanUncheckedCreateWithoutTourInput> | DayPlanCreateWithoutTourInput[] | DayPlanUncheckedCreateWithoutTourInput[]
+    connectOrCreate?: DayPlanCreateOrConnectWithoutTourInput | DayPlanCreateOrConnectWithoutTourInput[]
+    createMany?: DayPlanCreateManyTourInputEnvelope
+    connect?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
   }
 
   export type UserCreateNestedOneWithoutOfferedToursInput = {
@@ -22202,11 +23742,11 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type ItineraryUncheckedCreateNestedManyWithoutTourInput = {
-    create?: XOR<ItineraryCreateWithoutTourInput, ItineraryUncheckedCreateWithoutTourInput> | ItineraryCreateWithoutTourInput[] | ItineraryUncheckedCreateWithoutTourInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutTourInput | ItineraryCreateOrConnectWithoutTourInput[]
-    createMany?: ItineraryCreateManyTourInputEnvelope
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
+  export type DayPlanUncheckedCreateNestedManyWithoutTourInput = {
+    create?: XOR<DayPlanCreateWithoutTourInput, DayPlanUncheckedCreateWithoutTourInput> | DayPlanCreateWithoutTourInput[] | DayPlanUncheckedCreateWithoutTourInput[]
+    connectOrCreate?: DayPlanCreateOrConnectWithoutTourInput | DayPlanCreateOrConnectWithoutTourInput[]
+    createMany?: DayPlanCreateManyTourInputEnvelope
+    connect?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
   }
 
   export type BookingUncheckedCreateNestedManyWithoutTourInput = {
@@ -22250,18 +23790,18 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type ItineraryUpdateManyWithoutTourNestedInput = {
-    create?: XOR<ItineraryCreateWithoutTourInput, ItineraryUncheckedCreateWithoutTourInput> | ItineraryCreateWithoutTourInput[] | ItineraryUncheckedCreateWithoutTourInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutTourInput | ItineraryCreateOrConnectWithoutTourInput[]
-    upsert?: ItineraryUpsertWithWhereUniqueWithoutTourInput | ItineraryUpsertWithWhereUniqueWithoutTourInput[]
-    createMany?: ItineraryCreateManyTourInputEnvelope
-    set?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    disconnect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    delete?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    update?: ItineraryUpdateWithWhereUniqueWithoutTourInput | ItineraryUpdateWithWhereUniqueWithoutTourInput[]
-    updateMany?: ItineraryUpdateManyWithWhereWithoutTourInput | ItineraryUpdateManyWithWhereWithoutTourInput[]
-    deleteMany?: ItineraryScalarWhereInput | ItineraryScalarWhereInput[]
+  export type DayPlanUpdateManyWithoutTourNestedInput = {
+    create?: XOR<DayPlanCreateWithoutTourInput, DayPlanUncheckedCreateWithoutTourInput> | DayPlanCreateWithoutTourInput[] | DayPlanUncheckedCreateWithoutTourInput[]
+    connectOrCreate?: DayPlanCreateOrConnectWithoutTourInput | DayPlanCreateOrConnectWithoutTourInput[]
+    upsert?: DayPlanUpsertWithWhereUniqueWithoutTourInput | DayPlanUpsertWithWhereUniqueWithoutTourInput[]
+    createMany?: DayPlanCreateManyTourInputEnvelope
+    set?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    disconnect?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    delete?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    connect?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    update?: DayPlanUpdateWithWhereUniqueWithoutTourInput | DayPlanUpdateWithWhereUniqueWithoutTourInput[]
+    updateMany?: DayPlanUpdateManyWithWhereWithoutTourInput | DayPlanUpdateManyWithWhereWithoutTourInput[]
+    deleteMany?: DayPlanScalarWhereInput | DayPlanScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutOfferedToursNestedInput = {
@@ -22313,18 +23853,18 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type ItineraryUncheckedUpdateManyWithoutTourNestedInput = {
-    create?: XOR<ItineraryCreateWithoutTourInput, ItineraryUncheckedCreateWithoutTourInput> | ItineraryCreateWithoutTourInput[] | ItineraryUncheckedCreateWithoutTourInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutTourInput | ItineraryCreateOrConnectWithoutTourInput[]
-    upsert?: ItineraryUpsertWithWhereUniqueWithoutTourInput | ItineraryUpsertWithWhereUniqueWithoutTourInput[]
-    createMany?: ItineraryCreateManyTourInputEnvelope
-    set?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    disconnect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    delete?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    update?: ItineraryUpdateWithWhereUniqueWithoutTourInput | ItineraryUpdateWithWhereUniqueWithoutTourInput[]
-    updateMany?: ItineraryUpdateManyWithWhereWithoutTourInput | ItineraryUpdateManyWithWhereWithoutTourInput[]
-    deleteMany?: ItineraryScalarWhereInput | ItineraryScalarWhereInput[]
+  export type DayPlanUncheckedUpdateManyWithoutTourNestedInput = {
+    create?: XOR<DayPlanCreateWithoutTourInput, DayPlanUncheckedCreateWithoutTourInput> | DayPlanCreateWithoutTourInput[] | DayPlanUncheckedCreateWithoutTourInput[]
+    connectOrCreate?: DayPlanCreateOrConnectWithoutTourInput | DayPlanCreateOrConnectWithoutTourInput[]
+    upsert?: DayPlanUpsertWithWhereUniqueWithoutTourInput | DayPlanUpsertWithWhereUniqueWithoutTourInput[]
+    createMany?: DayPlanCreateManyTourInputEnvelope
+    set?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    disconnect?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    delete?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    connect?: DayPlanWhereUniqueInput | DayPlanWhereUniqueInput[]
+    update?: DayPlanUpdateWithWhereUniqueWithoutTourInput | DayPlanUpdateWithWhereUniqueWithoutTourInput[]
+    updateMany?: DayPlanUpdateManyWithWhereWithoutTourInput | DayPlanUpdateManyWithWhereWithoutTourInput[]
+    deleteMany?: DayPlanScalarWhereInput | DayPlanScalarWhereInput[]
   }
 
   export type BookingUncheckedUpdateManyWithoutTourNestedInput = {
@@ -22379,11 +23919,11 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type ItineraryCreateNestedManyWithoutPlaceInput = {
-    create?: XOR<ItineraryCreateWithoutPlaceInput, ItineraryUncheckedCreateWithoutPlaceInput> | ItineraryCreateWithoutPlaceInput[] | ItineraryUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutPlaceInput | ItineraryCreateOrConnectWithoutPlaceInput[]
-    createMany?: ItineraryCreateManyPlaceInputEnvelope
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
+  export type ItineraryBlockCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<ItineraryBlockCreateWithoutPlaceInput, ItineraryBlockUncheckedCreateWithoutPlaceInput> | ItineraryBlockCreateWithoutPlaceInput[] | ItineraryBlockUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutPlaceInput | ItineraryBlockCreateOrConnectWithoutPlaceInput[]
+    createMany?: ItineraryBlockCreateManyPlaceInputEnvelope
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
   }
 
   export type ReviewUncheckedCreateNestedManyWithoutPlaceInput = {
@@ -22393,11 +23933,19 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type ItineraryUncheckedCreateNestedManyWithoutPlaceInput = {
-    create?: XOR<ItineraryCreateWithoutPlaceInput, ItineraryUncheckedCreateWithoutPlaceInput> | ItineraryCreateWithoutPlaceInput[] | ItineraryUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutPlaceInput | ItineraryCreateOrConnectWithoutPlaceInput[]
-    createMany?: ItineraryCreateManyPlaceInputEnvelope
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
+  export type ItineraryBlockUncheckedCreateNestedManyWithoutPlaceInput = {
+    create?: XOR<ItineraryBlockCreateWithoutPlaceInput, ItineraryBlockUncheckedCreateWithoutPlaceInput> | ItineraryBlockCreateWithoutPlaceInput[] | ItineraryBlockUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutPlaceInput | ItineraryBlockCreateOrConnectWithoutPlaceInput[]
+    createMany?: ItineraryBlockCreateManyPlaceInputEnvelope
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type PlaceUpdatephotosInput = {
@@ -22419,18 +23967,18 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type ItineraryUpdateManyWithoutPlaceNestedInput = {
-    create?: XOR<ItineraryCreateWithoutPlaceInput, ItineraryUncheckedCreateWithoutPlaceInput> | ItineraryCreateWithoutPlaceInput[] | ItineraryUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutPlaceInput | ItineraryCreateOrConnectWithoutPlaceInput[]
-    upsert?: ItineraryUpsertWithWhereUniqueWithoutPlaceInput | ItineraryUpsertWithWhereUniqueWithoutPlaceInput[]
-    createMany?: ItineraryCreateManyPlaceInputEnvelope
-    set?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    disconnect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    delete?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    update?: ItineraryUpdateWithWhereUniqueWithoutPlaceInput | ItineraryUpdateWithWhereUniqueWithoutPlaceInput[]
-    updateMany?: ItineraryUpdateManyWithWhereWithoutPlaceInput | ItineraryUpdateManyWithWhereWithoutPlaceInput[]
-    deleteMany?: ItineraryScalarWhereInput | ItineraryScalarWhereInput[]
+  export type ItineraryBlockUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<ItineraryBlockCreateWithoutPlaceInput, ItineraryBlockUncheckedCreateWithoutPlaceInput> | ItineraryBlockCreateWithoutPlaceInput[] | ItineraryBlockUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutPlaceInput | ItineraryBlockCreateOrConnectWithoutPlaceInput[]
+    upsert?: ItineraryBlockUpsertWithWhereUniqueWithoutPlaceInput | ItineraryBlockUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: ItineraryBlockCreateManyPlaceInputEnvelope
+    set?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    disconnect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    delete?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    update?: ItineraryBlockUpdateWithWhereUniqueWithoutPlaceInput | ItineraryBlockUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: ItineraryBlockUpdateManyWithWhereWithoutPlaceInput | ItineraryBlockUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: ItineraryBlockScalarWhereInput | ItineraryBlockScalarWhereInput[]
   }
 
   export type ReviewUncheckedUpdateManyWithoutPlaceNestedInput = {
@@ -22447,33 +23995,27 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type ItineraryUncheckedUpdateManyWithoutPlaceNestedInput = {
-    create?: XOR<ItineraryCreateWithoutPlaceInput, ItineraryUncheckedCreateWithoutPlaceInput> | ItineraryCreateWithoutPlaceInput[] | ItineraryUncheckedCreateWithoutPlaceInput[]
-    connectOrCreate?: ItineraryCreateOrConnectWithoutPlaceInput | ItineraryCreateOrConnectWithoutPlaceInput[]
-    upsert?: ItineraryUpsertWithWhereUniqueWithoutPlaceInput | ItineraryUpsertWithWhereUniqueWithoutPlaceInput[]
-    createMany?: ItineraryCreateManyPlaceInputEnvelope
-    set?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    disconnect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    delete?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    connect?: ItineraryWhereUniqueInput | ItineraryWhereUniqueInput[]
-    update?: ItineraryUpdateWithWhereUniqueWithoutPlaceInput | ItineraryUpdateWithWhereUniqueWithoutPlaceInput[]
-    updateMany?: ItineraryUpdateManyWithWhereWithoutPlaceInput | ItineraryUpdateManyWithWhereWithoutPlaceInput[]
-    deleteMany?: ItineraryScalarWhereInput | ItineraryScalarWhereInput[]
+  export type ItineraryBlockUncheckedUpdateManyWithoutPlaceNestedInput = {
+    create?: XOR<ItineraryBlockCreateWithoutPlaceInput, ItineraryBlockUncheckedCreateWithoutPlaceInput> | ItineraryBlockCreateWithoutPlaceInput[] | ItineraryBlockUncheckedCreateWithoutPlaceInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutPlaceInput | ItineraryBlockCreateOrConnectWithoutPlaceInput[]
+    upsert?: ItineraryBlockUpsertWithWhereUniqueWithoutPlaceInput | ItineraryBlockUpsertWithWhereUniqueWithoutPlaceInput[]
+    createMany?: ItineraryBlockCreateManyPlaceInputEnvelope
+    set?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    disconnect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    delete?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    update?: ItineraryBlockUpdateWithWhereUniqueWithoutPlaceInput | ItineraryBlockUpdateWithWhereUniqueWithoutPlaceInput[]
+    updateMany?: ItineraryBlockUpdateManyWithWhereWithoutPlaceInput | ItineraryBlockUpdateManyWithWhereWithoutPlaceInput[]
+    deleteMany?: ItineraryBlockScalarWhereInput | ItineraryBlockScalarWhereInput[]
   }
 
   export type ReviewCreatephotosInput = {
     set: string[]
   }
 
-  export type PlaceCreateNestedOneWithoutReviewsInput = {
-    create?: XOR<PlaceCreateWithoutReviewsInput, PlaceUncheckedCreateWithoutReviewsInput>
-    connectOrCreate?: PlaceCreateOrConnectWithoutReviewsInput
-    connect?: PlaceWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutReviewsInput = {
-    create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
+  export type UserCreateNestedOneWithoutWrittenReviewsInput = {
+    create?: XOR<UserCreateWithoutWrittenReviewsInput, UserUncheckedCreateWithoutWrittenReviewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWrittenReviewsInput
     connect?: UserWhereUniqueInput
   }
 
@@ -22483,9 +24025,39 @@ export namespace Prisma {
     connect?: OfferedTourWhereUniqueInput
   }
 
+  export type PlaceCreateNestedOneWithoutReviewsInput = {
+    create?: XOR<PlaceCreateWithoutReviewsInput, PlaceUncheckedCreateWithoutReviewsInput>
+    connectOrCreate?: PlaceCreateOrConnectWithoutReviewsInput
+    connect?: PlaceWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutReceivedReviewsInput = {
+    create?: XOR<UserCreateWithoutReceivedReviewsInput, UserUncheckedCreateWithoutReceivedReviewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReceivedReviewsInput
+    connect?: UserWhereUniqueInput
+  }
+
   export type ReviewUpdatephotosInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type UserUpdateOneRequiredWithoutWrittenReviewsNestedInput = {
+    create?: XOR<UserCreateWithoutWrittenReviewsInput, UserUncheckedCreateWithoutWrittenReviewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWrittenReviewsInput
+    upsert?: UserUpsertWithoutWrittenReviewsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWrittenReviewsInput, UserUpdateWithoutWrittenReviewsInput>, UserUncheckedUpdateWithoutWrittenReviewsInput>
+  }
+
+  export type OfferedTourUpdateOneWithoutReviewsNestedInput = {
+    create?: XOR<OfferedTourCreateWithoutReviewsInput, OfferedTourUncheckedCreateWithoutReviewsInput>
+    connectOrCreate?: OfferedTourCreateOrConnectWithoutReviewsInput
+    upsert?: OfferedTourUpsertWithoutReviewsInput
+    disconnect?: OfferedTourWhereInput | boolean
+    delete?: OfferedTourWhereInput | boolean
+    connect?: OfferedTourWhereUniqueInput
+    update?: XOR<XOR<OfferedTourUpdateToOneWithWhereWithoutReviewsInput, OfferedTourUpdateWithoutReviewsInput>, OfferedTourUncheckedUpdateWithoutReviewsInput>
   }
 
   export type PlaceUpdateOneWithoutReviewsNestedInput = {
@@ -22498,20 +24070,14 @@ export namespace Prisma {
     update?: XOR<XOR<PlaceUpdateToOneWithWhereWithoutReviewsInput, PlaceUpdateWithoutReviewsInput>, PlaceUncheckedUpdateWithoutReviewsInput>
   }
 
-  export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
-    create?: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutReviewsInput
-    upsert?: UserUpsertWithoutReviewsInput
+  export type UserUpdateOneWithoutReceivedReviewsNestedInput = {
+    create?: XOR<UserCreateWithoutReceivedReviewsInput, UserUncheckedCreateWithoutReceivedReviewsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReceivedReviewsInput
+    upsert?: UserUpsertWithoutReceivedReviewsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReviewsInput, UserUpdateWithoutReviewsInput>, UserUncheckedUpdateWithoutReviewsInput>
-  }
-
-  export type OfferedTourUpdateOneRequiredWithoutReviewsNestedInput = {
-    create?: XOR<OfferedTourCreateWithoutReviewsInput, OfferedTourUncheckedCreateWithoutReviewsInput>
-    connectOrCreate?: OfferedTourCreateOrConnectWithoutReviewsInput
-    upsert?: OfferedTourUpsertWithoutReviewsInput
-    connect?: OfferedTourWhereUniqueInput
-    update?: XOR<XOR<OfferedTourUpdateToOneWithWhereWithoutReviewsInput, OfferedTourUpdateWithoutReviewsInput>, OfferedTourUncheckedUpdateWithoutReviewsInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReceivedReviewsInput, UserUpdateWithoutReceivedReviewsInput>, UserUncheckedUpdateWithoutReceivedReviewsInput>
   }
 
   export type NullableBigIntFieldUpdateOperationsInput = {
@@ -22683,90 +24249,146 @@ export namespace Prisma {
     update?: XOR<XOR<BookingUpdateToOneWithWhereWithoutPaymentInput, BookingUpdateWithoutPaymentInput>, BookingUncheckedUpdateWithoutPaymentInput>
   }
 
-  export type ActivityCreateNestedManyWithoutItineraryInput = {
-    create?: XOR<ActivityCreateWithoutItineraryInput, ActivityUncheckedCreateWithoutItineraryInput> | ActivityCreateWithoutItineraryInput[] | ActivityUncheckedCreateWithoutItineraryInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutItineraryInput | ActivityCreateOrConnectWithoutItineraryInput[]
-    createMany?: ActivityCreateManyItineraryInputEnvelope
+  export type ActivityCreateNestedManyWithoutBlockInput = {
+    create?: XOR<ActivityCreateWithoutBlockInput, ActivityUncheckedCreateWithoutBlockInput> | ActivityCreateWithoutBlockInput[] | ActivityUncheckedCreateWithoutBlockInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutBlockInput | ActivityCreateOrConnectWithoutBlockInput[]
+    createMany?: ActivityCreateManyBlockInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type PlaceCreateNestedOneWithoutItineraryInput = {
-    create?: XOR<PlaceCreateWithoutItineraryInput, PlaceUncheckedCreateWithoutItineraryInput>
-    connectOrCreate?: PlaceCreateOrConnectWithoutItineraryInput
+  export type PlaceCreateNestedOneWithoutItineraryBlocksInput = {
+    create?: XOR<PlaceCreateWithoutItineraryBlocksInput, PlaceUncheckedCreateWithoutItineraryBlocksInput>
+    connectOrCreate?: PlaceCreateOrConnectWithoutItineraryBlocksInput
     connect?: PlaceWhereUniqueInput
   }
 
-  export type OfferedTourCreateNestedOneWithoutItinerariesInput = {
-    create?: XOR<OfferedTourCreateWithoutItinerariesInput, OfferedTourUncheckedCreateWithoutItinerariesInput>
-    connectOrCreate?: OfferedTourCreateOrConnectWithoutItinerariesInput
-    connect?: OfferedTourWhereUniqueInput
+  export type DayPlanCreateNestedOneWithoutItinerariesInput = {
+    create?: XOR<DayPlanCreateWithoutItinerariesInput, DayPlanUncheckedCreateWithoutItinerariesInput>
+    connectOrCreate?: DayPlanCreateOrConnectWithoutItinerariesInput
+    connect?: DayPlanWhereUniqueInput
   }
 
-  export type ActivityUncheckedCreateNestedManyWithoutItineraryInput = {
-    create?: XOR<ActivityCreateWithoutItineraryInput, ActivityUncheckedCreateWithoutItineraryInput> | ActivityCreateWithoutItineraryInput[] | ActivityUncheckedCreateWithoutItineraryInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutItineraryInput | ActivityCreateOrConnectWithoutItineraryInput[]
-    createMany?: ActivityCreateManyItineraryInputEnvelope
+  export type ActivityUncheckedCreateNestedManyWithoutBlockInput = {
+    create?: XOR<ActivityCreateWithoutBlockInput, ActivityUncheckedCreateWithoutBlockInput> | ActivityCreateWithoutBlockInput[] | ActivityUncheckedCreateWithoutBlockInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutBlockInput | ActivityCreateOrConnectWithoutBlockInput[]
+    createMany?: ActivityCreateManyBlockInputEnvelope
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
   }
 
-  export type ActivityUpdateManyWithoutItineraryNestedInput = {
-    create?: XOR<ActivityCreateWithoutItineraryInput, ActivityUncheckedCreateWithoutItineraryInput> | ActivityCreateWithoutItineraryInput[] | ActivityUncheckedCreateWithoutItineraryInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutItineraryInput | ActivityCreateOrConnectWithoutItineraryInput[]
-    upsert?: ActivityUpsertWithWhereUniqueWithoutItineraryInput | ActivityUpsertWithWhereUniqueWithoutItineraryInput[]
-    createMany?: ActivityCreateManyItineraryInputEnvelope
+  export type ActivityUpdateManyWithoutBlockNestedInput = {
+    create?: XOR<ActivityCreateWithoutBlockInput, ActivityUncheckedCreateWithoutBlockInput> | ActivityCreateWithoutBlockInput[] | ActivityUncheckedCreateWithoutBlockInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutBlockInput | ActivityCreateOrConnectWithoutBlockInput[]
+    upsert?: ActivityUpsertWithWhereUniqueWithoutBlockInput | ActivityUpsertWithWhereUniqueWithoutBlockInput[]
+    createMany?: ActivityCreateManyBlockInputEnvelope
     set?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     disconnect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     delete?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-    update?: ActivityUpdateWithWhereUniqueWithoutItineraryInput | ActivityUpdateWithWhereUniqueWithoutItineraryInput[]
-    updateMany?: ActivityUpdateManyWithWhereWithoutItineraryInput | ActivityUpdateManyWithWhereWithoutItineraryInput[]
+    update?: ActivityUpdateWithWhereUniqueWithoutBlockInput | ActivityUpdateWithWhereUniqueWithoutBlockInput[]
+    updateMany?: ActivityUpdateManyWithWhereWithoutBlockInput | ActivityUpdateManyWithWhereWithoutBlockInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type PlaceUpdateOneWithoutItineraryNestedInput = {
-    create?: XOR<PlaceCreateWithoutItineraryInput, PlaceUncheckedCreateWithoutItineraryInput>
-    connectOrCreate?: PlaceCreateOrConnectWithoutItineraryInput
-    upsert?: PlaceUpsertWithoutItineraryInput
+  export type PlaceUpdateOneWithoutItineraryBlocksNestedInput = {
+    create?: XOR<PlaceCreateWithoutItineraryBlocksInput, PlaceUncheckedCreateWithoutItineraryBlocksInput>
+    connectOrCreate?: PlaceCreateOrConnectWithoutItineraryBlocksInput
+    upsert?: PlaceUpsertWithoutItineraryBlocksInput
     disconnect?: PlaceWhereInput | boolean
     delete?: PlaceWhereInput | boolean
     connect?: PlaceWhereUniqueInput
-    update?: XOR<XOR<PlaceUpdateToOneWithWhereWithoutItineraryInput, PlaceUpdateWithoutItineraryInput>, PlaceUncheckedUpdateWithoutItineraryInput>
+    update?: XOR<XOR<PlaceUpdateToOneWithWhereWithoutItineraryBlocksInput, PlaceUpdateWithoutItineraryBlocksInput>, PlaceUncheckedUpdateWithoutItineraryBlocksInput>
   }
 
-  export type OfferedTourUpdateOneRequiredWithoutItinerariesNestedInput = {
-    create?: XOR<OfferedTourCreateWithoutItinerariesInput, OfferedTourUncheckedCreateWithoutItinerariesInput>
-    connectOrCreate?: OfferedTourCreateOrConnectWithoutItinerariesInput
-    upsert?: OfferedTourUpsertWithoutItinerariesInput
-    connect?: OfferedTourWhereUniqueInput
-    update?: XOR<XOR<OfferedTourUpdateToOneWithWhereWithoutItinerariesInput, OfferedTourUpdateWithoutItinerariesInput>, OfferedTourUncheckedUpdateWithoutItinerariesInput>
+  export type DayPlanUpdateOneRequiredWithoutItinerariesNestedInput = {
+    create?: XOR<DayPlanCreateWithoutItinerariesInput, DayPlanUncheckedCreateWithoutItinerariesInput>
+    connectOrCreate?: DayPlanCreateOrConnectWithoutItinerariesInput
+    upsert?: DayPlanUpsertWithoutItinerariesInput
+    connect?: DayPlanWhereUniqueInput
+    update?: XOR<XOR<DayPlanUpdateToOneWithWhereWithoutItinerariesInput, DayPlanUpdateWithoutItinerariesInput>, DayPlanUncheckedUpdateWithoutItinerariesInput>
   }
 
-  export type ActivityUncheckedUpdateManyWithoutItineraryNestedInput = {
-    create?: XOR<ActivityCreateWithoutItineraryInput, ActivityUncheckedCreateWithoutItineraryInput> | ActivityCreateWithoutItineraryInput[] | ActivityUncheckedCreateWithoutItineraryInput[]
-    connectOrCreate?: ActivityCreateOrConnectWithoutItineraryInput | ActivityCreateOrConnectWithoutItineraryInput[]
-    upsert?: ActivityUpsertWithWhereUniqueWithoutItineraryInput | ActivityUpsertWithWhereUniqueWithoutItineraryInput[]
-    createMany?: ActivityCreateManyItineraryInputEnvelope
+  export type ActivityUncheckedUpdateManyWithoutBlockNestedInput = {
+    create?: XOR<ActivityCreateWithoutBlockInput, ActivityUncheckedCreateWithoutBlockInput> | ActivityCreateWithoutBlockInput[] | ActivityUncheckedCreateWithoutBlockInput[]
+    connectOrCreate?: ActivityCreateOrConnectWithoutBlockInput | ActivityCreateOrConnectWithoutBlockInput[]
+    upsert?: ActivityUpsertWithWhereUniqueWithoutBlockInput | ActivityUpsertWithWhereUniqueWithoutBlockInput[]
+    createMany?: ActivityCreateManyBlockInputEnvelope
     set?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     disconnect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     delete?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
     connect?: ActivityWhereUniqueInput | ActivityWhereUniqueInput[]
-    update?: ActivityUpdateWithWhereUniqueWithoutItineraryInput | ActivityUpdateWithWhereUniqueWithoutItineraryInput[]
-    updateMany?: ActivityUpdateManyWithWhereWithoutItineraryInput | ActivityUpdateManyWithWhereWithoutItineraryInput[]
+    update?: ActivityUpdateWithWhereUniqueWithoutBlockInput | ActivityUpdateWithWhereUniqueWithoutBlockInput[]
+    updateMany?: ActivityUpdateManyWithWhereWithoutBlockInput | ActivityUpdateManyWithWhereWithoutBlockInput[]
     deleteMany?: ActivityScalarWhereInput | ActivityScalarWhereInput[]
   }
 
-  export type ItineraryCreateNestedOneWithoutActivitiesInput = {
-    create?: XOR<ItineraryCreateWithoutActivitiesInput, ItineraryUncheckedCreateWithoutActivitiesInput>
-    connectOrCreate?: ItineraryCreateOrConnectWithoutActivitiesInput
-    connect?: ItineraryWhereUniqueInput
+  export type OfferedTourCreateNestedOneWithoutDayPlanInput = {
+    create?: XOR<OfferedTourCreateWithoutDayPlanInput, OfferedTourUncheckedCreateWithoutDayPlanInput>
+    connectOrCreate?: OfferedTourCreateOrConnectWithoutDayPlanInput
+    connect?: OfferedTourWhereUniqueInput
   }
 
-  export type ItineraryUpdateOneRequiredWithoutActivitiesNestedInput = {
-    create?: XOR<ItineraryCreateWithoutActivitiesInput, ItineraryUncheckedCreateWithoutActivitiesInput>
-    connectOrCreate?: ItineraryCreateOrConnectWithoutActivitiesInput
-    upsert?: ItineraryUpsertWithoutActivitiesInput
-    connect?: ItineraryWhereUniqueInput
-    update?: XOR<XOR<ItineraryUpdateToOneWithWhereWithoutActivitiesInput, ItineraryUpdateWithoutActivitiesInput>, ItineraryUncheckedUpdateWithoutActivitiesInput>
+  export type ItineraryBlockCreateNestedManyWithoutDayPlanInput = {
+    create?: XOR<ItineraryBlockCreateWithoutDayPlanInput, ItineraryBlockUncheckedCreateWithoutDayPlanInput> | ItineraryBlockCreateWithoutDayPlanInput[] | ItineraryBlockUncheckedCreateWithoutDayPlanInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutDayPlanInput | ItineraryBlockCreateOrConnectWithoutDayPlanInput[]
+    createMany?: ItineraryBlockCreateManyDayPlanInputEnvelope
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+  }
+
+  export type ItineraryBlockUncheckedCreateNestedManyWithoutDayPlanInput = {
+    create?: XOR<ItineraryBlockCreateWithoutDayPlanInput, ItineraryBlockUncheckedCreateWithoutDayPlanInput> | ItineraryBlockCreateWithoutDayPlanInput[] | ItineraryBlockUncheckedCreateWithoutDayPlanInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutDayPlanInput | ItineraryBlockCreateOrConnectWithoutDayPlanInput[]
+    createMany?: ItineraryBlockCreateManyDayPlanInputEnvelope
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+  }
+
+  export type OfferedTourUpdateOneRequiredWithoutDayPlanNestedInput = {
+    create?: XOR<OfferedTourCreateWithoutDayPlanInput, OfferedTourUncheckedCreateWithoutDayPlanInput>
+    connectOrCreate?: OfferedTourCreateOrConnectWithoutDayPlanInput
+    upsert?: OfferedTourUpsertWithoutDayPlanInput
+    connect?: OfferedTourWhereUniqueInput
+    update?: XOR<XOR<OfferedTourUpdateToOneWithWhereWithoutDayPlanInput, OfferedTourUpdateWithoutDayPlanInput>, OfferedTourUncheckedUpdateWithoutDayPlanInput>
+  }
+
+  export type ItineraryBlockUpdateManyWithoutDayPlanNestedInput = {
+    create?: XOR<ItineraryBlockCreateWithoutDayPlanInput, ItineraryBlockUncheckedCreateWithoutDayPlanInput> | ItineraryBlockCreateWithoutDayPlanInput[] | ItineraryBlockUncheckedCreateWithoutDayPlanInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutDayPlanInput | ItineraryBlockCreateOrConnectWithoutDayPlanInput[]
+    upsert?: ItineraryBlockUpsertWithWhereUniqueWithoutDayPlanInput | ItineraryBlockUpsertWithWhereUniqueWithoutDayPlanInput[]
+    createMany?: ItineraryBlockCreateManyDayPlanInputEnvelope
+    set?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    disconnect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    delete?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    update?: ItineraryBlockUpdateWithWhereUniqueWithoutDayPlanInput | ItineraryBlockUpdateWithWhereUniqueWithoutDayPlanInput[]
+    updateMany?: ItineraryBlockUpdateManyWithWhereWithoutDayPlanInput | ItineraryBlockUpdateManyWithWhereWithoutDayPlanInput[]
+    deleteMany?: ItineraryBlockScalarWhereInput | ItineraryBlockScalarWhereInput[]
+  }
+
+  export type ItineraryBlockUncheckedUpdateManyWithoutDayPlanNestedInput = {
+    create?: XOR<ItineraryBlockCreateWithoutDayPlanInput, ItineraryBlockUncheckedCreateWithoutDayPlanInput> | ItineraryBlockCreateWithoutDayPlanInput[] | ItineraryBlockUncheckedCreateWithoutDayPlanInput[]
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutDayPlanInput | ItineraryBlockCreateOrConnectWithoutDayPlanInput[]
+    upsert?: ItineraryBlockUpsertWithWhereUniqueWithoutDayPlanInput | ItineraryBlockUpsertWithWhereUniqueWithoutDayPlanInput[]
+    createMany?: ItineraryBlockCreateManyDayPlanInputEnvelope
+    set?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    disconnect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    delete?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    connect?: ItineraryBlockWhereUniqueInput | ItineraryBlockWhereUniqueInput[]
+    update?: ItineraryBlockUpdateWithWhereUniqueWithoutDayPlanInput | ItineraryBlockUpdateWithWhereUniqueWithoutDayPlanInput[]
+    updateMany?: ItineraryBlockUpdateManyWithWhereWithoutDayPlanInput | ItineraryBlockUpdateManyWithWhereWithoutDayPlanInput[]
+    deleteMany?: ItineraryBlockScalarWhereInput | ItineraryBlockScalarWhereInput[]
+  }
+
+  export type ItineraryBlockCreateNestedOneWithoutActivitiesInput = {
+    create?: XOR<ItineraryBlockCreateWithoutActivitiesInput, ItineraryBlockUncheckedCreateWithoutActivitiesInput>
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutActivitiesInput
+    connect?: ItineraryBlockWhereUniqueInput
+  }
+
+  export type ItineraryBlockUpdateOneRequiredWithoutActivitiesNestedInput = {
+    create?: XOR<ItineraryBlockCreateWithoutActivitiesInput, ItineraryBlockUncheckedCreateWithoutActivitiesInput>
+    connectOrCreate?: ItineraryBlockCreateOrConnectWithoutActivitiesInput
+    upsert?: ItineraryBlockUpsertWithoutActivitiesInput
+    connect?: ItineraryBlockWhereUniqueInput
+    update?: XOR<XOR<ItineraryBlockUpdateToOneWithWhereWithoutActivitiesInput, ItineraryBlockUpdateWithoutActivitiesInput>, ItineraryBlockUncheckedUpdateWithoutActivitiesInput>
   }
 
   export type UserCreateNestedOneWithoutNotificationInput = {
@@ -23060,6 +24682,22 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type NestedBigIntNullableFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
@@ -23204,11 +24842,12 @@ export namespace Prisma {
   export type OfferedTourCreateWithoutAgentInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanCreateNestedManyWithoutTourInput
     bookings?: BookingCreateNestedManyWithoutTourInput
     WishList?: WishListCreateNestedManyWithoutToursInput
     reviews?: ReviewCreateNestedManyWithoutOfferedTourInput
@@ -23217,11 +24856,12 @@ export namespace Prisma {
   export type OfferedTourUncheckedCreateWithoutAgentInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryUncheckedCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanUncheckedCreateNestedManyWithoutTourInput
     bookings?: BookingUncheckedCreateNestedManyWithoutTourInput
     WishList?: WishListUncheckedCreateNestedManyWithoutToursInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOfferedTourInput
@@ -23234,34 +24874,6 @@ export namespace Prisma {
 
   export type OfferedTourCreateManyAgentInputEnvelope = {
     data: OfferedTourCreateManyAgentInput | OfferedTourCreateManyAgentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ReviewCreateWithoutAgentInput = {
-    id?: bigint | number
-    star: number
-    text: string
-    photos?: ReviewCreatephotosInput | string[]
-    Place?: PlaceCreateNestedOneWithoutReviewsInput
-    offeredTour: OfferedTourCreateNestedOneWithoutReviewsInput
-  }
-
-  export type ReviewUncheckedCreateWithoutAgentInput = {
-    id?: bigint | number
-    star: number
-    text: string
-    photos?: ReviewCreatephotosInput | string[]
-    placeId?: bigint | number | null
-    offeredTourId: bigint | number
-  }
-
-  export type ReviewCreateOrConnectWithoutAgentInput = {
-    where: ReviewWhereUniqueInput
-    create: XOR<ReviewCreateWithoutAgentInput, ReviewUncheckedCreateWithoutAgentInput>
-  }
-
-  export type ReviewCreateManyAgentInputEnvelope = {
-    data: ReviewCreateManyAgentInput | ReviewCreateManyAgentInput[]
     skipDuplicates?: boolean
   }
 
@@ -23282,12 +24894,9 @@ export namespace Prisma {
 
   export type BookingCreateWithoutCustomerInput = {
     id?: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     tour: OfferedTourCreateNestedOneWithoutBookingsInput
     persons?: PersonCreateNestedManyWithoutBookingsInput
     Payment?: PaymentCreateNestedOneWithoutBookingInput
@@ -23296,12 +24905,9 @@ export namespace Prisma {
   export type BookingUncheckedCreateWithoutCustomerInput = {
     id?: bigint | number
     tourId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     persons?: PersonUncheckedCreateNestedManyWithoutBookingsInput
     Payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
   }
@@ -23356,6 +24962,11 @@ export namespace Prisma {
     create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
   }
 
+  export type NotificationCreateManyUserInputEnvelope = {
+    data: NotificationCreateManyUserInput | NotificationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SessionCreateWithoutUserInput = {
     id: string
     expiresAt: Date | string
@@ -23375,6 +24986,66 @@ export namespace Prisma {
 
   export type SessionCreateManyUserInputEnvelope = {
     data: SessionCreateManyUserInput | SessionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReviewCreateWithoutReviewedAgentInput = {
+    id?: bigint | number
+    star: number
+    text: string
+    photos?: ReviewCreatephotosInput | string[]
+    reviewer: UserCreateNestedOneWithoutWrittenReviewsInput
+    offeredTour?: OfferedTourCreateNestedOneWithoutReviewsInput
+    place?: PlaceCreateNestedOneWithoutReviewsInput
+  }
+
+  export type ReviewUncheckedCreateWithoutReviewedAgentInput = {
+    id?: bigint | number
+    star: number
+    text: string
+    photos?: ReviewCreatephotosInput | string[]
+    reviewerId: bigint | number
+    offeredTourId?: bigint | number | null
+    placeId?: bigint | number | null
+  }
+
+  export type ReviewCreateOrConnectWithoutReviewedAgentInput = {
+    where: ReviewWhereUniqueInput
+    create: XOR<ReviewCreateWithoutReviewedAgentInput, ReviewUncheckedCreateWithoutReviewedAgentInput>
+  }
+
+  export type ReviewCreateManyReviewedAgentInputEnvelope = {
+    data: ReviewCreateManyReviewedAgentInput | ReviewCreateManyReviewedAgentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReviewCreateWithoutReviewerInput = {
+    id?: bigint | number
+    star: number
+    text: string
+    photos?: ReviewCreatephotosInput | string[]
+    offeredTour?: OfferedTourCreateNestedOneWithoutReviewsInput
+    place?: PlaceCreateNestedOneWithoutReviewsInput
+    reviewedAgent?: UserCreateNestedOneWithoutReceivedReviewsInput
+  }
+
+  export type ReviewUncheckedCreateWithoutReviewerInput = {
+    id?: bigint | number
+    star: number
+    text: string
+    photos?: ReviewCreatephotosInput | string[]
+    offeredTourId?: bigint | number | null
+    placeId?: bigint | number | null
+    reviewedAgentId?: bigint | number | null
+  }
+
+  export type ReviewCreateOrConnectWithoutReviewerInput = {
+    where: ReviewWhereUniqueInput
+    create: XOR<ReviewCreateWithoutReviewerInput, ReviewUncheckedCreateWithoutReviewerInput>
+  }
+
+  export type ReviewCreateManyReviewerInputEnvelope = {
+    data: ReviewCreateManyReviewerInput | ReviewCreateManyReviewerInput[]
     skipDuplicates?: boolean
   }
 
@@ -23444,40 +25115,12 @@ export namespace Prisma {
     NOT?: OfferedTourScalarWhereInput | OfferedTourScalarWhereInput[]
     id?: BigIntFilter<"OfferedTour"> | bigint | number
     minimumPeople?: IntFilter<"OfferedTour"> | number
+    maximumPeople?: IntFilter<"OfferedTour"> | number
     price?: DecimalFilter<"OfferedTour"> | Decimal | DecimalJsLike | number | string
     facilities?: StringNullableListFilter<"OfferedTour">
     agentId?: BigIntFilter<"OfferedTour"> | bigint | number
     startDate?: DateTimeFilter<"OfferedTour"> | Date | string
     endDate?: DateTimeFilter<"OfferedTour"> | Date | string
-  }
-
-  export type ReviewUpsertWithWhereUniqueWithoutAgentInput = {
-    where: ReviewWhereUniqueInput
-    update: XOR<ReviewUpdateWithoutAgentInput, ReviewUncheckedUpdateWithoutAgentInput>
-    create: XOR<ReviewCreateWithoutAgentInput, ReviewUncheckedCreateWithoutAgentInput>
-  }
-
-  export type ReviewUpdateWithWhereUniqueWithoutAgentInput = {
-    where: ReviewWhereUniqueInput
-    data: XOR<ReviewUpdateWithoutAgentInput, ReviewUncheckedUpdateWithoutAgentInput>
-  }
-
-  export type ReviewUpdateManyWithWhereWithoutAgentInput = {
-    where: ReviewScalarWhereInput
-    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutAgentInput>
-  }
-
-  export type ReviewScalarWhereInput = {
-    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    OR?: ReviewScalarWhereInput[]
-    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-    id?: BigIntFilter<"Review"> | bigint | number
-    star?: IntFilter<"Review"> | number
-    text?: StringFilter<"Review"> | string
-    photos?: StringNullableListFilter<"Review">
-    placeId?: BigIntNullableFilter<"Review"> | bigint | number | null
-    agentId?: BigIntFilter<"Review"> | bigint | number
-    offeredTourId?: BigIntFilter<"Review"> | bigint | number
   }
 
   export type SearchHistoryUpsertWithoutUserInput = {
@@ -23524,12 +25167,9 @@ export namespace Prisma {
     id?: BigIntFilter<"Booking"> | bigint | number
     customerId?: BigIntFilter<"Booking"> | bigint | number
     tourId?: BigIntFilter<"Booking"> | bigint | number
-    noOfPeople?: IntFilter<"Booking"> | number
     status?: EnumBookingStatusFilter<"Booking"> | $Enums.BookingStatus
-    totalPrice?: DecimalFilter<"Booking"> | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFilter<"Booking"> | Date | string
     updatedAt?: DateTimeFilter<"Booking"> | Date | string
-    paymentId?: BigIntFilter<"Booking"> | bigint | number
   }
 
   export type WishListUpsertWithoutUserInput = {
@@ -23557,31 +25197,32 @@ export namespace Prisma {
     tours?: OfferedTourUncheckedUpdateManyWithoutWishListNestedInput
   }
 
-  export type NotificationUpsertWithoutUserInput = {
+  export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
     update: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
     create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
-    where?: NotificationWhereInput
   }
 
-  export type NotificationUpdateToOneWithWhereWithoutUserInput = {
-    where?: NotificationWhereInput
+  export type NotificationUpdateWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
     data: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
   }
 
-  export type NotificationUpdateWithoutUserInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    text?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type NotificationUpdateManyWithWhereWithoutUserInput = {
+    where: NotificationScalarWhereInput
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type NotificationUncheckedUpdateWithoutUserInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    text?: StringFieldUpdateOperationsInput | string
-    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type NotificationScalarWhereInput = {
+    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    OR?: NotificationScalarWhereInput[]
+    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    id?: BigIntFilter<"Notification"> | bigint | number
+    text?: StringFilter<"Notification"> | string
+    type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeFilter<"Notification"> | Date | string
+    userId?: BigIntFilter<"Notification"> | bigint | number
   }
 
   export type SessionUpsertWithWhereUniqueWithoutUserInput = {
@@ -23610,6 +25251,52 @@ export namespace Prisma {
     csrfToken?: StringFilter<"Session"> | string
   }
 
+  export type ReviewUpsertWithWhereUniqueWithoutReviewedAgentInput = {
+    where: ReviewWhereUniqueInput
+    update: XOR<ReviewUpdateWithoutReviewedAgentInput, ReviewUncheckedUpdateWithoutReviewedAgentInput>
+    create: XOR<ReviewCreateWithoutReviewedAgentInput, ReviewUncheckedCreateWithoutReviewedAgentInput>
+  }
+
+  export type ReviewUpdateWithWhereUniqueWithoutReviewedAgentInput = {
+    where: ReviewWhereUniqueInput
+    data: XOR<ReviewUpdateWithoutReviewedAgentInput, ReviewUncheckedUpdateWithoutReviewedAgentInput>
+  }
+
+  export type ReviewUpdateManyWithWhereWithoutReviewedAgentInput = {
+    where: ReviewScalarWhereInput
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutReviewedAgentInput>
+  }
+
+  export type ReviewScalarWhereInput = {
+    AND?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    OR?: ReviewScalarWhereInput[]
+    NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+    id?: BigIntFilter<"Review"> | bigint | number
+    star?: IntFilter<"Review"> | number
+    text?: StringFilter<"Review"> | string
+    photos?: StringNullableListFilter<"Review">
+    reviewerId?: BigIntFilter<"Review"> | bigint | number
+    offeredTourId?: BigIntNullableFilter<"Review"> | bigint | number | null
+    placeId?: BigIntNullableFilter<"Review"> | bigint | number | null
+    reviewedAgentId?: BigIntNullableFilter<"Review"> | bigint | number | null
+  }
+
+  export type ReviewUpsertWithWhereUniqueWithoutReviewerInput = {
+    where: ReviewWhereUniqueInput
+    update: XOR<ReviewUpdateWithoutReviewerInput, ReviewUncheckedUpdateWithoutReviewerInput>
+    create: XOR<ReviewCreateWithoutReviewerInput, ReviewUncheckedCreateWithoutReviewerInput>
+  }
+
+  export type ReviewUpdateWithWhereUniqueWithoutReviewerInput = {
+    where: ReviewWhereUniqueInput
+    data: XOR<ReviewUpdateWithoutReviewerInput, ReviewUncheckedUpdateWithoutReviewerInput>
+  }
+
+  export type ReviewUpdateManyWithWhereWithoutReviewerInput = {
+    where: ReviewScalarWhereInput
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutReviewerInput>
+  }
+
   export type UserCreateWithoutSentMessagesInput = {
     id?: bigint | number
     username: string
@@ -23625,12 +25312,13 @@ export namespace Prisma {
     image?: string | null
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -23648,12 +25336,13 @@ export namespace Prisma {
     image?: string | null
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -23676,12 +25365,13 @@ export namespace Prisma {
     image?: string | null
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -23699,12 +25389,13 @@ export namespace Prisma {
     image?: string | null
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -23738,12 +25429,13 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -23761,12 +25453,13 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -23795,12 +25488,13 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -23818,43 +25512,34 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
-  export type ItineraryCreateWithoutTourInput = {
+  export type DayPlanCreateWithoutTourInput = {
     id?: bigint | number
     day: number
-    startTime: Date | string
-    endTime: Date | string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    activities?: ActivityCreateNestedManyWithoutItineraryInput
-    place?: PlaceCreateNestedOneWithoutItineraryInput
+    itineraries?: ItineraryBlockCreateNestedManyWithoutDayPlanInput
   }
 
-  export type ItineraryUncheckedCreateWithoutTourInput = {
+  export type DayPlanUncheckedCreateWithoutTourInput = {
     id?: bigint | number
     day: number
-    startTime: Date | string
-    endTime: Date | string
-    placeId?: bigint | number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    activities?: ActivityUncheckedCreateNestedManyWithoutItineraryInput
+    itineraries?: ItineraryBlockUncheckedCreateNestedManyWithoutDayPlanInput
   }
 
-  export type ItineraryCreateOrConnectWithoutTourInput = {
-    where: ItineraryWhereUniqueInput
-    create: XOR<ItineraryCreateWithoutTourInput, ItineraryUncheckedCreateWithoutTourInput>
+  export type DayPlanCreateOrConnectWithoutTourInput = {
+    where: DayPlanWhereUniqueInput
+    create: XOR<DayPlanCreateWithoutTourInput, DayPlanUncheckedCreateWithoutTourInput>
   }
 
-  export type ItineraryCreateManyTourInputEnvelope = {
-    data: ItineraryCreateManyTourInput | ItineraryCreateManyTourInput[]
+  export type DayPlanCreateManyTourInputEnvelope = {
+    data: DayPlanCreateManyTourInput | DayPlanCreateManyTourInput[]
     skipDuplicates?: boolean
   }
 
@@ -23873,12 +25558,13 @@ export namespace Prisma {
     image?: string | null
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutOfferedToursInput = {
@@ -23896,12 +25582,13 @@ export namespace Prisma {
     image?: string | null
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutOfferedToursInput = {
@@ -23911,12 +25598,9 @@ export namespace Prisma {
 
   export type BookingCreateWithoutTourInput = {
     id?: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     customer: UserCreateNestedOneWithoutBookingsFromCustomerInput
     persons?: PersonCreateNestedManyWithoutBookingsInput
     Payment?: PaymentCreateNestedOneWithoutBookingInput
@@ -23925,12 +25609,9 @@ export namespace Prisma {
   export type BookingUncheckedCreateWithoutTourInput = {
     id?: bigint | number
     customerId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     persons?: PersonUncheckedCreateNestedManyWithoutBookingsInput
     Payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
   }
@@ -23969,8 +25650,9 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
-    Place?: PlaceCreateNestedOneWithoutReviewsInput
-    agent: UserCreateNestedOneWithoutReviewsInput
+    reviewer: UserCreateNestedOneWithoutWrittenReviewsInput
+    place?: PlaceCreateNestedOneWithoutReviewsInput
+    reviewedAgent?: UserCreateNestedOneWithoutReceivedReviewsInput
   }
 
   export type ReviewUncheckedCreateWithoutOfferedTourInput = {
@@ -23978,8 +25660,9 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
+    reviewerId: bigint | number
     placeId?: bigint | number | null
-    agentId: bigint | number
+    reviewedAgentId?: bigint | number | null
   }
 
   export type ReviewCreateOrConnectWithoutOfferedTourInput = {
@@ -23992,34 +25675,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ItineraryUpsertWithWhereUniqueWithoutTourInput = {
-    where: ItineraryWhereUniqueInput
-    update: XOR<ItineraryUpdateWithoutTourInput, ItineraryUncheckedUpdateWithoutTourInput>
-    create: XOR<ItineraryCreateWithoutTourInput, ItineraryUncheckedCreateWithoutTourInput>
+  export type DayPlanUpsertWithWhereUniqueWithoutTourInput = {
+    where: DayPlanWhereUniqueInput
+    update: XOR<DayPlanUpdateWithoutTourInput, DayPlanUncheckedUpdateWithoutTourInput>
+    create: XOR<DayPlanCreateWithoutTourInput, DayPlanUncheckedCreateWithoutTourInput>
   }
 
-  export type ItineraryUpdateWithWhereUniqueWithoutTourInput = {
-    where: ItineraryWhereUniqueInput
-    data: XOR<ItineraryUpdateWithoutTourInput, ItineraryUncheckedUpdateWithoutTourInput>
+  export type DayPlanUpdateWithWhereUniqueWithoutTourInput = {
+    where: DayPlanWhereUniqueInput
+    data: XOR<DayPlanUpdateWithoutTourInput, DayPlanUncheckedUpdateWithoutTourInput>
   }
 
-  export type ItineraryUpdateManyWithWhereWithoutTourInput = {
-    where: ItineraryScalarWhereInput
-    data: XOR<ItineraryUpdateManyMutationInput, ItineraryUncheckedUpdateManyWithoutTourInput>
+  export type DayPlanUpdateManyWithWhereWithoutTourInput = {
+    where: DayPlanScalarWhereInput
+    data: XOR<DayPlanUpdateManyMutationInput, DayPlanUncheckedUpdateManyWithoutTourInput>
   }
 
-  export type ItineraryScalarWhereInput = {
-    AND?: ItineraryScalarWhereInput | ItineraryScalarWhereInput[]
-    OR?: ItineraryScalarWhereInput[]
-    NOT?: ItineraryScalarWhereInput | ItineraryScalarWhereInput[]
-    id?: BigIntFilter<"Itinerary"> | bigint | number
-    day?: IntFilter<"Itinerary"> | number
-    startTime?: DateTimeFilter<"Itinerary"> | Date | string
-    endTime?: DateTimeFilter<"Itinerary"> | Date | string
-    placeId?: BigIntNullableFilter<"Itinerary"> | bigint | number | null
-    tourId?: BigIntFilter<"Itinerary"> | bigint | number
-    createdAt?: DateTimeFilter<"Itinerary"> | Date | string
-    updatedAt?: DateTimeFilter<"Itinerary"> | Date | string
+  export type DayPlanScalarWhereInput = {
+    AND?: DayPlanScalarWhereInput | DayPlanScalarWhereInput[]
+    OR?: DayPlanScalarWhereInput[]
+    NOT?: DayPlanScalarWhereInput | DayPlanScalarWhereInput[]
+    id?: BigIntFilter<"DayPlan"> | bigint | number
+    day?: IntFilter<"DayPlan"> | number
+    tourId?: BigIntFilter<"DayPlan"> | bigint | number
   }
 
   export type UserUpsertWithoutOfferedToursInput = {
@@ -24048,12 +25726,13 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOfferedToursInput = {
@@ -24071,12 +25750,13 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type BookingUpsertWithWhereUniqueWithoutTourInput = {
@@ -24142,8 +25822,9 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
-    agent: UserCreateNestedOneWithoutReviewsInput
-    offeredTour: OfferedTourCreateNestedOneWithoutReviewsInput
+    reviewer: UserCreateNestedOneWithoutWrittenReviewsInput
+    offeredTour?: OfferedTourCreateNestedOneWithoutReviewsInput
+    reviewedAgent?: UserCreateNestedOneWithoutReceivedReviewsInput
   }
 
   export type ReviewUncheckedCreateWithoutPlaceInput = {
@@ -24151,8 +25832,9 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
-    agentId: bigint | number
-    offeredTourId: bigint | number
+    reviewerId: bigint | number
+    offeredTourId?: bigint | number | null
+    reviewedAgentId?: bigint | number | null
   }
 
   export type ReviewCreateOrConnectWithoutPlaceInput = {
@@ -24165,35 +25847,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ItineraryCreateWithoutPlaceInput = {
+  export type ItineraryBlockCreateWithoutPlaceInput = {
     id?: bigint | number
-    day: number
+    title: string
     startTime: Date | string
     endTime: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    activities?: ActivityCreateNestedManyWithoutItineraryInput
-    tour: OfferedTourCreateNestedOneWithoutItinerariesInput
+    activities?: ActivityCreateNestedManyWithoutBlockInput
+    dayPlan: DayPlanCreateNestedOneWithoutItinerariesInput
   }
 
-  export type ItineraryUncheckedCreateWithoutPlaceInput = {
+  export type ItineraryBlockUncheckedCreateWithoutPlaceInput = {
     id?: bigint | number
-    day: number
+    title: string
+    dayPlanId: bigint | number
     startTime: Date | string
     endTime: Date | string
-    tourId: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
-    activities?: ActivityUncheckedCreateNestedManyWithoutItineraryInput
+    activities?: ActivityUncheckedCreateNestedManyWithoutBlockInput
   }
 
-  export type ItineraryCreateOrConnectWithoutPlaceInput = {
-    where: ItineraryWhereUniqueInput
-    create: XOR<ItineraryCreateWithoutPlaceInput, ItineraryUncheckedCreateWithoutPlaceInput>
+  export type ItineraryBlockCreateOrConnectWithoutPlaceInput = {
+    where: ItineraryBlockWhereUniqueInput
+    create: XOR<ItineraryBlockCreateWithoutPlaceInput, ItineraryBlockUncheckedCreateWithoutPlaceInput>
   }
 
-  export type ItineraryCreateManyPlaceInputEnvelope = {
-    data: ItineraryCreateManyPlaceInput | ItineraryCreateManyPlaceInput[]
+  export type ItineraryBlockCreateManyPlaceInputEnvelope = {
+    data: ItineraryBlockCreateManyPlaceInput | ItineraryBlockCreateManyPlaceInput[]
     skipDuplicates?: boolean
   }
 
@@ -24213,46 +25895,37 @@ export namespace Prisma {
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutPlaceInput>
   }
 
-  export type ItineraryUpsertWithWhereUniqueWithoutPlaceInput = {
-    where: ItineraryWhereUniqueInput
-    update: XOR<ItineraryUpdateWithoutPlaceInput, ItineraryUncheckedUpdateWithoutPlaceInput>
-    create: XOR<ItineraryCreateWithoutPlaceInput, ItineraryUncheckedCreateWithoutPlaceInput>
+  export type ItineraryBlockUpsertWithWhereUniqueWithoutPlaceInput = {
+    where: ItineraryBlockWhereUniqueInput
+    update: XOR<ItineraryBlockUpdateWithoutPlaceInput, ItineraryBlockUncheckedUpdateWithoutPlaceInput>
+    create: XOR<ItineraryBlockCreateWithoutPlaceInput, ItineraryBlockUncheckedCreateWithoutPlaceInput>
   }
 
-  export type ItineraryUpdateWithWhereUniqueWithoutPlaceInput = {
-    where: ItineraryWhereUniqueInput
-    data: XOR<ItineraryUpdateWithoutPlaceInput, ItineraryUncheckedUpdateWithoutPlaceInput>
+  export type ItineraryBlockUpdateWithWhereUniqueWithoutPlaceInput = {
+    where: ItineraryBlockWhereUniqueInput
+    data: XOR<ItineraryBlockUpdateWithoutPlaceInput, ItineraryBlockUncheckedUpdateWithoutPlaceInput>
   }
 
-  export type ItineraryUpdateManyWithWhereWithoutPlaceInput = {
-    where: ItineraryScalarWhereInput
-    data: XOR<ItineraryUpdateManyMutationInput, ItineraryUncheckedUpdateManyWithoutPlaceInput>
+  export type ItineraryBlockUpdateManyWithWhereWithoutPlaceInput = {
+    where: ItineraryBlockScalarWhereInput
+    data: XOR<ItineraryBlockUpdateManyMutationInput, ItineraryBlockUncheckedUpdateManyWithoutPlaceInput>
   }
 
-  export type PlaceCreateWithoutReviewsInput = {
-    id?: bigint | number
-    name: string
-    location: string
-    photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
-    itinerary?: ItineraryCreateNestedManyWithoutPlaceInput
+  export type ItineraryBlockScalarWhereInput = {
+    AND?: ItineraryBlockScalarWhereInput | ItineraryBlockScalarWhereInput[]
+    OR?: ItineraryBlockScalarWhereInput[]
+    NOT?: ItineraryBlockScalarWhereInput | ItineraryBlockScalarWhereInput[]
+    id?: BigIntFilter<"ItineraryBlock"> | bigint | number
+    title?: StringFilter<"ItineraryBlock"> | string
+    dayPlanId?: BigIntFilter<"ItineraryBlock"> | bigint | number
+    startTime?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    endTime?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    placeId?: BigIntNullableFilter<"ItineraryBlock"> | bigint | number | null
+    createdAt?: DateTimeFilter<"ItineraryBlock"> | Date | string
+    updatedAt?: DateTimeFilter<"ItineraryBlock"> | Date | string
   }
 
-  export type PlaceUncheckedCreateWithoutReviewsInput = {
-    id?: bigint | number
-    name: string
-    location: string
-    photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
-    itinerary?: ItineraryUncheckedCreateNestedManyWithoutPlaceInput
-  }
-
-  export type PlaceCreateOrConnectWithoutReviewsInput = {
-    where: PlaceWhereUniqueInput
-    create: XOR<PlaceCreateWithoutReviewsInput, PlaceUncheckedCreateWithoutReviewsInput>
-  }
-
-  export type UserCreateWithoutReviewsInput = {
+  export type UserCreateWithoutWrittenReviewsInput = {
     id?: bigint | number
     username: string
     password: string
@@ -24271,11 +25944,12 @@ export namespace Prisma {
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
   }
 
-  export type UserUncheckedCreateWithoutReviewsInput = {
+  export type UserUncheckedCreateWithoutWrittenReviewsInput = {
     id?: bigint | number
     username: string
     password: string
@@ -24294,23 +25968,25 @@ export namespace Prisma {
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
   }
 
-  export type UserCreateOrConnectWithoutReviewsInput = {
+  export type UserCreateOrConnectWithoutWrittenReviewsInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
+    create: XOR<UserCreateWithoutWrittenReviewsInput, UserUncheckedCreateWithoutWrittenReviewsInput>
   }
 
   export type OfferedTourCreateWithoutReviewsInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanCreateNestedManyWithoutTourInput
     agent: UserCreateNestedOneWithoutOfferedToursInput
     bookings?: BookingCreateNestedManyWithoutTourInput
     WishList?: WishListCreateNestedManyWithoutToursInput
@@ -24319,12 +25995,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedCreateWithoutReviewsInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     agentId: bigint | number
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryUncheckedCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanUncheckedCreateNestedManyWithoutTourInput
     bookings?: BookingUncheckedCreateNestedManyWithoutTourInput
     WishList?: WishListUncheckedCreateNestedManyWithoutToursInput
   }
@@ -24334,47 +26011,94 @@ export namespace Prisma {
     create: XOR<OfferedTourCreateWithoutReviewsInput, OfferedTourUncheckedCreateWithoutReviewsInput>
   }
 
-  export type PlaceUpsertWithoutReviewsInput = {
-    update: XOR<PlaceUpdateWithoutReviewsInput, PlaceUncheckedUpdateWithoutReviewsInput>
+  export type PlaceCreateWithoutReviewsInput = {
+    id?: bigint | number
+    name: string
+    latitude: number
+    longitude: number
+    photos?: PlaceCreatephotosInput | string[]
+    itineraryBlocks?: ItineraryBlockCreateNestedManyWithoutPlaceInput
+  }
+
+  export type PlaceUncheckedCreateWithoutReviewsInput = {
+    id?: bigint | number
+    name: string
+    latitude: number
+    longitude: number
+    photos?: PlaceCreatephotosInput | string[]
+    itineraryBlocks?: ItineraryBlockUncheckedCreateNestedManyWithoutPlaceInput
+  }
+
+  export type PlaceCreateOrConnectWithoutReviewsInput = {
+    where: PlaceWhereUniqueInput
     create: XOR<PlaceCreateWithoutReviewsInput, PlaceUncheckedCreateWithoutReviewsInput>
-    where?: PlaceWhereInput
   }
 
-  export type PlaceUpdateToOneWithWhereWithoutReviewsInput = {
-    where?: PlaceWhereInput
-    data: XOR<PlaceUpdateWithoutReviewsInput, PlaceUncheckedUpdateWithoutReviewsInput>
+  export type UserCreateWithoutReceivedReviewsInput = {
+    id?: bigint | number
+    username: string
+    password: string
+    email?: string | null
+    mobileNumber: string
+    state: string
+    country: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: $Enums.UserRole
+    name: string
+    image?: string | null
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
+    searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
+    bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
+    wishList?: WishListCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
-  export type PlaceUpdateWithoutReviewsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    itinerary?: ItineraryUpdateManyWithoutPlaceNestedInput
+  export type UserUncheckedCreateWithoutReceivedReviewsInput = {
+    id?: bigint | number
+    username: string
+    password: string
+    email?: string | null
+    mobileNumber: string
+    state: string
+    country: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    role: $Enums.UserRole
+    name: string
+    image?: string | null
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
+    searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
+    bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
+    wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
-  export type PlaceUncheckedUpdateWithoutReviewsInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
-    photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    itinerary?: ItineraryUncheckedUpdateManyWithoutPlaceNestedInput
+  export type UserCreateOrConnectWithoutReceivedReviewsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReceivedReviewsInput, UserUncheckedCreateWithoutReceivedReviewsInput>
   }
 
-  export type UserUpsertWithoutReviewsInput = {
-    update: XOR<UserUpdateWithoutReviewsInput, UserUncheckedUpdateWithoutReviewsInput>
-    create: XOR<UserCreateWithoutReviewsInput, UserUncheckedCreateWithoutReviewsInput>
+  export type UserUpsertWithoutWrittenReviewsInput = {
+    update: XOR<UserUpdateWithoutWrittenReviewsInput, UserUncheckedUpdateWithoutWrittenReviewsInput>
+    create: XOR<UserCreateWithoutWrittenReviewsInput, UserUncheckedCreateWithoutWrittenReviewsInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutReviewsInput = {
+  export type UserUpdateToOneWithWhereWithoutWrittenReviewsInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutReviewsInput, UserUncheckedUpdateWithoutReviewsInput>
+    data: XOR<UserUpdateWithoutWrittenReviewsInput, UserUncheckedUpdateWithoutWrittenReviewsInput>
   }
 
-  export type UserUpdateWithoutReviewsInput = {
+  export type UserUpdateWithoutWrittenReviewsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -24393,11 +26117,12 @@ export namespace Prisma {
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutReviewsInput = {
+  export type UserUncheckedUpdateWithoutWrittenReviewsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -24416,8 +26141,9 @@ export namespace Prisma {
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
   }
 
   export type OfferedTourUpsertWithoutReviewsInput = {
@@ -24434,11 +26160,12 @@ export namespace Prisma {
   export type OfferedTourUpdateWithoutReviewsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUpdateManyWithoutTourNestedInput
     agent?: UserUpdateOneRequiredWithoutOfferedToursNestedInput
     bookings?: BookingUpdateManyWithoutTourNestedInput
     WishList?: WishListUpdateManyWithoutToursNestedInput
@@ -24447,14 +26174,103 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateWithoutReviewsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUncheckedUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUncheckedUpdateManyWithoutTourNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutTourNestedInput
     WishList?: WishListUncheckedUpdateManyWithoutToursNestedInput
+  }
+
+  export type PlaceUpsertWithoutReviewsInput = {
+    update: XOR<PlaceUpdateWithoutReviewsInput, PlaceUncheckedUpdateWithoutReviewsInput>
+    create: XOR<PlaceCreateWithoutReviewsInput, PlaceUncheckedCreateWithoutReviewsInput>
+    where?: PlaceWhereInput
+  }
+
+  export type PlaceUpdateToOneWithWhereWithoutReviewsInput = {
+    where?: PlaceWhereInput
+    data: XOR<PlaceUpdateWithoutReviewsInput, PlaceUncheckedUpdateWithoutReviewsInput>
+  }
+
+  export type PlaceUpdateWithoutReviewsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    photos?: PlaceUpdatephotosInput | string[]
+    itineraryBlocks?: ItineraryBlockUpdateManyWithoutPlaceNestedInput
+  }
+
+  export type PlaceUncheckedUpdateWithoutReviewsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    name?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+    photos?: PlaceUpdatephotosInput | string[]
+    itineraryBlocks?: ItineraryBlockUncheckedUpdateManyWithoutPlaceNestedInput
+  }
+
+  export type UserUpsertWithoutReceivedReviewsInput = {
+    update: XOR<UserUpdateWithoutReceivedReviewsInput, UserUncheckedUpdateWithoutReceivedReviewsInput>
+    create: XOR<UserCreateWithoutReceivedReviewsInput, UserUncheckedCreateWithoutReceivedReviewsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReceivedReviewsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReceivedReviewsInput, UserUncheckedUpdateWithoutReceivedReviewsInput>
+  }
+
+  export type UserUpdateWithoutReceivedReviewsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    mobileNumber?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
+    searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
+    bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
+    wishList?: WishListUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReceivedReviewsInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    mobileNumber?: StringFieldUpdateOperationsInput | string
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    name?: StringFieldUpdateOperationsInput | string
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
+    searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
+    bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
+    wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserCreateWithoutSearchHistoryInput = {
@@ -24473,11 +26289,12 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutSearchHistoryInput = {
@@ -24496,11 +26313,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutSearchHistoryInput = {
@@ -24535,11 +26353,12 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSearchHistoryInput = {
@@ -24558,11 +26377,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserCreateWithoutBookingsFromCustomerInput = {
@@ -24581,11 +26401,12 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutBookingsFromCustomerInput = {
@@ -24604,11 +26425,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutBookingsFromCustomerInput = {
@@ -24619,11 +26441,12 @@ export namespace Prisma {
   export type OfferedTourCreateWithoutBookingsInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanCreateNestedManyWithoutTourInput
     agent: UserCreateNestedOneWithoutOfferedToursInput
     WishList?: WishListCreateNestedManyWithoutToursInput
     reviews?: ReviewCreateNestedManyWithoutOfferedTourInput
@@ -24632,12 +26455,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedCreateWithoutBookingsInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     agentId: bigint | number
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryUncheckedCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanUncheckedCreateNestedManyWithoutTourInput
     WishList?: WishListUncheckedCreateNestedManyWithoutToursInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOfferedTourInput
   }
@@ -24651,14 +26475,14 @@ export namespace Prisma {
     id?: bigint | number
     name: string
     age: number
-    proof: string
+    proofUrl?: string | null
   }
 
   export type PersonUncheckedCreateWithoutBookingsInput = {
     id?: bigint | number
     name: string
     age: number
-    proof: string
+    proofUrl?: string | null
   }
 
   export type PersonCreateOrConnectWithoutBookingsInput = {
@@ -24723,11 +26547,12 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookingsFromCustomerInput = {
@@ -24746,11 +26571,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type OfferedTourUpsertWithoutBookingsInput = {
@@ -24767,11 +26593,12 @@ export namespace Prisma {
   export type OfferedTourUpdateWithoutBookingsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUpdateManyWithoutTourNestedInput
     agent?: UserUpdateOneRequiredWithoutOfferedToursNestedInput
     WishList?: WishListUpdateManyWithoutToursNestedInput
     reviews?: ReviewUpdateManyWithoutOfferedTourNestedInput
@@ -24780,12 +26607,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateWithoutBookingsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUncheckedUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUncheckedUpdateManyWithoutTourNestedInput
     WishList?: WishListUncheckedUpdateManyWithoutToursNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOfferedTourNestedInput
   }
@@ -24813,7 +26641,7 @@ export namespace Prisma {
     id?: BigIntFilter<"Person"> | bigint | number
     name?: StringFilter<"Person"> | string
     age?: IntFilter<"Person"> | number
-    proof?: StringFilter<"Person"> | string
+    proofUrl?: StringNullableFilter<"Person"> | string | null
     bookingId?: BigIntFilter<"Person"> | bigint | number
   }
 
@@ -24850,12 +26678,9 @@ export namespace Prisma {
 
   export type BookingCreateWithoutPersonsInput = {
     id?: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     customer: UserCreateNestedOneWithoutBookingsFromCustomerInput
     tour: OfferedTourCreateNestedOneWithoutBookingsInput
     Payment?: PaymentCreateNestedOneWithoutBookingInput
@@ -24865,12 +26690,9 @@ export namespace Prisma {
     id?: bigint | number
     customerId: bigint | number
     tourId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     Payment?: PaymentUncheckedCreateNestedOneWithoutBookingInput
   }
 
@@ -24892,12 +26714,9 @@ export namespace Prisma {
 
   export type BookingUpdateWithoutPersonsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     customer?: UserUpdateOneRequiredWithoutBookingsFromCustomerNestedInput
     tour?: OfferedTourUpdateOneRequiredWithoutBookingsNestedInput
     Payment?: PaymentUpdateOneWithoutBookingNestedInput
@@ -24907,23 +26726,17 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customerId?: BigIntFieldUpdateOperationsInput | bigint | number
     tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     Payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
   }
 
   export type BookingCreateWithoutPaymentInput = {
     id?: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     customer: UserCreateNestedOneWithoutBookingsFromCustomerInput
     tour: OfferedTourCreateNestedOneWithoutBookingsInput
     persons?: PersonCreateNestedManyWithoutBookingsInput
@@ -24933,12 +26746,9 @@ export namespace Prisma {
     id?: bigint | number
     customerId: bigint | number
     tourId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
     persons?: PersonUncheckedCreateNestedManyWithoutBookingsInput
   }
 
@@ -24960,12 +26770,9 @@ export namespace Prisma {
 
   export type BookingUpdateWithoutPaymentInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     customer?: UserUpdateOneRequiredWithoutBookingsFromCustomerNestedInput
     tour?: OfferedTourUpdateOneRequiredWithoutBookingsNestedInput
     persons?: PersonUpdateManyWithoutBookingsNestedInput
@@ -24975,103 +26782,86 @@ export namespace Prisma {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customerId?: BigIntFieldUpdateOperationsInput | bigint | number
     tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     persons?: PersonUncheckedUpdateManyWithoutBookingsNestedInput
   }
 
-  export type ActivityCreateWithoutItineraryInput = {
+  export type ActivityCreateWithoutBlockInput = {
     id?: bigint | number
     title: string
   }
 
-  export type ActivityUncheckedCreateWithoutItineraryInput = {
+  export type ActivityUncheckedCreateWithoutBlockInput = {
     id?: bigint | number
     title: string
   }
 
-  export type ActivityCreateOrConnectWithoutItineraryInput = {
+  export type ActivityCreateOrConnectWithoutBlockInput = {
     where: ActivityWhereUniqueInput
-    create: XOR<ActivityCreateWithoutItineraryInput, ActivityUncheckedCreateWithoutItineraryInput>
+    create: XOR<ActivityCreateWithoutBlockInput, ActivityUncheckedCreateWithoutBlockInput>
   }
 
-  export type ActivityCreateManyItineraryInputEnvelope = {
-    data: ActivityCreateManyItineraryInput | ActivityCreateManyItineraryInput[]
+  export type ActivityCreateManyBlockInputEnvelope = {
+    data: ActivityCreateManyBlockInput | ActivityCreateManyBlockInput[]
     skipDuplicates?: boolean
   }
 
-  export type PlaceCreateWithoutItineraryInput = {
+  export type PlaceCreateWithoutItineraryBlocksInput = {
     id?: bigint | number
     name: string
-    location: string
+    latitude: number
+    longitude: number
     photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
     reviews?: ReviewCreateNestedManyWithoutPlaceInput
   }
 
-  export type PlaceUncheckedCreateWithoutItineraryInput = {
+  export type PlaceUncheckedCreateWithoutItineraryBlocksInput = {
     id?: bigint | number
     name: string
-    location: string
+    latitude: number
+    longitude: number
     photos?: PlaceCreatephotosInput | string[]
-    rating: Decimal | DecimalJsLike | number | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPlaceInput
   }
 
-  export type PlaceCreateOrConnectWithoutItineraryInput = {
+  export type PlaceCreateOrConnectWithoutItineraryBlocksInput = {
     where: PlaceWhereUniqueInput
-    create: XOR<PlaceCreateWithoutItineraryInput, PlaceUncheckedCreateWithoutItineraryInput>
+    create: XOR<PlaceCreateWithoutItineraryBlocksInput, PlaceUncheckedCreateWithoutItineraryBlocksInput>
   }
 
-  export type OfferedTourCreateWithoutItinerariesInput = {
+  export type DayPlanCreateWithoutItinerariesInput = {
     id?: bigint | number
-    minimumPeople: number
-    price: Decimal | DecimalJsLike | number | string
-    facilities?: OfferedTourCreatefacilitiesInput | string[]
-    startDate: Date | string
-    endDate: Date | string
-    agent: UserCreateNestedOneWithoutOfferedToursInput
-    bookings?: BookingCreateNestedManyWithoutTourInput
-    WishList?: WishListCreateNestedManyWithoutToursInput
-    reviews?: ReviewCreateNestedManyWithoutOfferedTourInput
+    day: number
+    tour: OfferedTourCreateNestedOneWithoutDayPlanInput
   }
 
-  export type OfferedTourUncheckedCreateWithoutItinerariesInput = {
+  export type DayPlanUncheckedCreateWithoutItinerariesInput = {
     id?: bigint | number
-    minimumPeople: number
-    price: Decimal | DecimalJsLike | number | string
-    facilities?: OfferedTourCreatefacilitiesInput | string[]
-    agentId: bigint | number
-    startDate: Date | string
-    endDate: Date | string
-    bookings?: BookingUncheckedCreateNestedManyWithoutTourInput
-    WishList?: WishListUncheckedCreateNestedManyWithoutToursInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutOfferedTourInput
+    day: number
+    tourId: bigint | number
   }
 
-  export type OfferedTourCreateOrConnectWithoutItinerariesInput = {
-    where: OfferedTourWhereUniqueInput
-    create: XOR<OfferedTourCreateWithoutItinerariesInput, OfferedTourUncheckedCreateWithoutItinerariesInput>
+  export type DayPlanCreateOrConnectWithoutItinerariesInput = {
+    where: DayPlanWhereUniqueInput
+    create: XOR<DayPlanCreateWithoutItinerariesInput, DayPlanUncheckedCreateWithoutItinerariesInput>
   }
 
-  export type ActivityUpsertWithWhereUniqueWithoutItineraryInput = {
+  export type ActivityUpsertWithWhereUniqueWithoutBlockInput = {
     where: ActivityWhereUniqueInput
-    update: XOR<ActivityUpdateWithoutItineraryInput, ActivityUncheckedUpdateWithoutItineraryInput>
-    create: XOR<ActivityCreateWithoutItineraryInput, ActivityUncheckedCreateWithoutItineraryInput>
+    update: XOR<ActivityUpdateWithoutBlockInput, ActivityUncheckedUpdateWithoutBlockInput>
+    create: XOR<ActivityCreateWithoutBlockInput, ActivityUncheckedCreateWithoutBlockInput>
   }
 
-  export type ActivityUpdateWithWhereUniqueWithoutItineraryInput = {
+  export type ActivityUpdateWithWhereUniqueWithoutBlockInput = {
     where: ActivityWhereUniqueInput
-    data: XOR<ActivityUpdateWithoutItineraryInput, ActivityUncheckedUpdateWithoutItineraryInput>
+    data: XOR<ActivityUpdateWithoutBlockInput, ActivityUncheckedUpdateWithoutBlockInput>
   }
 
-  export type ActivityUpdateManyWithWhereWithoutItineraryInput = {
+  export type ActivityUpdateManyWithWhereWithoutBlockInput = {
     where: ActivityScalarWhereInput
-    data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutItineraryInput>
+    data: XOR<ActivityUpdateManyMutationInput, ActivityUncheckedUpdateManyWithoutBlockInput>
   }
 
   export type ActivityScalarWhereInput = {
@@ -25083,49 +26873,138 @@ export namespace Prisma {
     itineraryId?: BigIntFilter<"Activity"> | bigint | number
   }
 
-  export type PlaceUpsertWithoutItineraryInput = {
-    update: XOR<PlaceUpdateWithoutItineraryInput, PlaceUncheckedUpdateWithoutItineraryInput>
-    create: XOR<PlaceCreateWithoutItineraryInput, PlaceUncheckedCreateWithoutItineraryInput>
+  export type PlaceUpsertWithoutItineraryBlocksInput = {
+    update: XOR<PlaceUpdateWithoutItineraryBlocksInput, PlaceUncheckedUpdateWithoutItineraryBlocksInput>
+    create: XOR<PlaceCreateWithoutItineraryBlocksInput, PlaceUncheckedCreateWithoutItineraryBlocksInput>
     where?: PlaceWhereInput
   }
 
-  export type PlaceUpdateToOneWithWhereWithoutItineraryInput = {
+  export type PlaceUpdateToOneWithWhereWithoutItineraryBlocksInput = {
     where?: PlaceWhereInput
-    data: XOR<PlaceUpdateWithoutItineraryInput, PlaceUncheckedUpdateWithoutItineraryInput>
+    data: XOR<PlaceUpdateWithoutItineraryBlocksInput, PlaceUncheckedUpdateWithoutItineraryBlocksInput>
   }
 
-  export type PlaceUpdateWithoutItineraryInput = {
+  export type PlaceUpdateWithoutItineraryBlocksInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
     photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reviews?: ReviewUpdateManyWithoutPlaceNestedInput
   }
 
-  export type PlaceUncheckedUpdateWithoutItineraryInput = {
+  export type PlaceUncheckedUpdateWithoutItineraryBlocksInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
     photos?: PlaceUpdatephotosInput | string[]
-    rating?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reviews?: ReviewUncheckedUpdateManyWithoutPlaceNestedInput
   }
 
-  export type OfferedTourUpsertWithoutItinerariesInput = {
-    update: XOR<OfferedTourUpdateWithoutItinerariesInput, OfferedTourUncheckedUpdateWithoutItinerariesInput>
-    create: XOR<OfferedTourCreateWithoutItinerariesInput, OfferedTourUncheckedCreateWithoutItinerariesInput>
+  export type DayPlanUpsertWithoutItinerariesInput = {
+    update: XOR<DayPlanUpdateWithoutItinerariesInput, DayPlanUncheckedUpdateWithoutItinerariesInput>
+    create: XOR<DayPlanCreateWithoutItinerariesInput, DayPlanUncheckedCreateWithoutItinerariesInput>
+    where?: DayPlanWhereInput
+  }
+
+  export type DayPlanUpdateToOneWithWhereWithoutItinerariesInput = {
+    where?: DayPlanWhereInput
+    data: XOR<DayPlanUpdateWithoutItinerariesInput, DayPlanUncheckedUpdateWithoutItinerariesInput>
+  }
+
+  export type DayPlanUpdateWithoutItinerariesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    day?: IntFieldUpdateOperationsInput | number
+    tour?: OfferedTourUpdateOneRequiredWithoutDayPlanNestedInput
+  }
+
+  export type DayPlanUncheckedUpdateWithoutItinerariesInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    day?: IntFieldUpdateOperationsInput | number
+    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type OfferedTourCreateWithoutDayPlanInput = {
+    id?: bigint | number
+    minimumPeople: number
+    maximumPeople: number
+    price: Decimal | DecimalJsLike | number | string
+    facilities?: OfferedTourCreatefacilitiesInput | string[]
+    startDate: Date | string
+    endDate: Date | string
+    agent: UserCreateNestedOneWithoutOfferedToursInput
+    bookings?: BookingCreateNestedManyWithoutTourInput
+    WishList?: WishListCreateNestedManyWithoutToursInput
+    reviews?: ReviewCreateNestedManyWithoutOfferedTourInput
+  }
+
+  export type OfferedTourUncheckedCreateWithoutDayPlanInput = {
+    id?: bigint | number
+    minimumPeople: number
+    maximumPeople: number
+    price: Decimal | DecimalJsLike | number | string
+    facilities?: OfferedTourCreatefacilitiesInput | string[]
+    agentId: bigint | number
+    startDate: Date | string
+    endDate: Date | string
+    bookings?: BookingUncheckedCreateNestedManyWithoutTourInput
+    WishList?: WishListUncheckedCreateNestedManyWithoutToursInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutOfferedTourInput
+  }
+
+  export type OfferedTourCreateOrConnectWithoutDayPlanInput = {
+    where: OfferedTourWhereUniqueInput
+    create: XOR<OfferedTourCreateWithoutDayPlanInput, OfferedTourUncheckedCreateWithoutDayPlanInput>
+  }
+
+  export type ItineraryBlockCreateWithoutDayPlanInput = {
+    id?: bigint | number
+    title: string
+    startTime: Date | string
+    endTime: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    activities?: ActivityCreateNestedManyWithoutBlockInput
+    place?: PlaceCreateNestedOneWithoutItineraryBlocksInput
+  }
+
+  export type ItineraryBlockUncheckedCreateWithoutDayPlanInput = {
+    id?: bigint | number
+    title: string
+    startTime: Date | string
+    endTime: Date | string
+    placeId?: bigint | number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    activities?: ActivityUncheckedCreateNestedManyWithoutBlockInput
+  }
+
+  export type ItineraryBlockCreateOrConnectWithoutDayPlanInput = {
+    where: ItineraryBlockWhereUniqueInput
+    create: XOR<ItineraryBlockCreateWithoutDayPlanInput, ItineraryBlockUncheckedCreateWithoutDayPlanInput>
+  }
+
+  export type ItineraryBlockCreateManyDayPlanInputEnvelope = {
+    data: ItineraryBlockCreateManyDayPlanInput | ItineraryBlockCreateManyDayPlanInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OfferedTourUpsertWithoutDayPlanInput = {
+    update: XOR<OfferedTourUpdateWithoutDayPlanInput, OfferedTourUncheckedUpdateWithoutDayPlanInput>
+    create: XOR<OfferedTourCreateWithoutDayPlanInput, OfferedTourUncheckedCreateWithoutDayPlanInput>
     where?: OfferedTourWhereInput
   }
 
-  export type OfferedTourUpdateToOneWithWhereWithoutItinerariesInput = {
+  export type OfferedTourUpdateToOneWithWhereWithoutDayPlanInput = {
     where?: OfferedTourWhereInput
-    data: XOR<OfferedTourUpdateWithoutItinerariesInput, OfferedTourUncheckedUpdateWithoutItinerariesInput>
+    data: XOR<OfferedTourUpdateWithoutDayPlanInput, OfferedTourUncheckedUpdateWithoutDayPlanInput>
   }
 
-  export type OfferedTourUpdateWithoutItinerariesInput = {
+  export type OfferedTourUpdateWithoutDayPlanInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -25136,9 +27015,10 @@ export namespace Prisma {
     reviews?: ReviewUpdateManyWithoutOfferedTourNestedInput
   }
 
-  export type OfferedTourUncheckedUpdateWithoutItinerariesInput = {
+  export type OfferedTourUncheckedUpdateWithoutDayPlanInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number
@@ -25149,62 +27029,78 @@ export namespace Prisma {
     reviews?: ReviewUncheckedUpdateManyWithoutOfferedTourNestedInput
   }
 
-  export type ItineraryCreateWithoutActivitiesInput = {
+  export type ItineraryBlockUpsertWithWhereUniqueWithoutDayPlanInput = {
+    where: ItineraryBlockWhereUniqueInput
+    update: XOR<ItineraryBlockUpdateWithoutDayPlanInput, ItineraryBlockUncheckedUpdateWithoutDayPlanInput>
+    create: XOR<ItineraryBlockCreateWithoutDayPlanInput, ItineraryBlockUncheckedCreateWithoutDayPlanInput>
+  }
+
+  export type ItineraryBlockUpdateWithWhereUniqueWithoutDayPlanInput = {
+    where: ItineraryBlockWhereUniqueInput
+    data: XOR<ItineraryBlockUpdateWithoutDayPlanInput, ItineraryBlockUncheckedUpdateWithoutDayPlanInput>
+  }
+
+  export type ItineraryBlockUpdateManyWithWhereWithoutDayPlanInput = {
+    where: ItineraryBlockScalarWhereInput
+    data: XOR<ItineraryBlockUpdateManyMutationInput, ItineraryBlockUncheckedUpdateManyWithoutDayPlanInput>
+  }
+
+  export type ItineraryBlockCreateWithoutActivitiesInput = {
     id?: bigint | number
-    day: number
+    title: string
     startTime: Date | string
     endTime: Date | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    place?: PlaceCreateNestedOneWithoutItineraryInput
-    tour: OfferedTourCreateNestedOneWithoutItinerariesInput
+    place?: PlaceCreateNestedOneWithoutItineraryBlocksInput
+    dayPlan: DayPlanCreateNestedOneWithoutItinerariesInput
   }
 
-  export type ItineraryUncheckedCreateWithoutActivitiesInput = {
+  export type ItineraryBlockUncheckedCreateWithoutActivitiesInput = {
     id?: bigint | number
-    day: number
+    title: string
+    dayPlanId: bigint | number
     startTime: Date | string
     endTime: Date | string
     placeId?: bigint | number | null
-    tourId: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
-  export type ItineraryCreateOrConnectWithoutActivitiesInput = {
-    where: ItineraryWhereUniqueInput
-    create: XOR<ItineraryCreateWithoutActivitiesInput, ItineraryUncheckedCreateWithoutActivitiesInput>
+  export type ItineraryBlockCreateOrConnectWithoutActivitiesInput = {
+    where: ItineraryBlockWhereUniqueInput
+    create: XOR<ItineraryBlockCreateWithoutActivitiesInput, ItineraryBlockUncheckedCreateWithoutActivitiesInput>
   }
 
-  export type ItineraryUpsertWithoutActivitiesInput = {
-    update: XOR<ItineraryUpdateWithoutActivitiesInput, ItineraryUncheckedUpdateWithoutActivitiesInput>
-    create: XOR<ItineraryCreateWithoutActivitiesInput, ItineraryUncheckedCreateWithoutActivitiesInput>
-    where?: ItineraryWhereInput
+  export type ItineraryBlockUpsertWithoutActivitiesInput = {
+    update: XOR<ItineraryBlockUpdateWithoutActivitiesInput, ItineraryBlockUncheckedUpdateWithoutActivitiesInput>
+    create: XOR<ItineraryBlockCreateWithoutActivitiesInput, ItineraryBlockUncheckedCreateWithoutActivitiesInput>
+    where?: ItineraryBlockWhereInput
   }
 
-  export type ItineraryUpdateToOneWithWhereWithoutActivitiesInput = {
-    where?: ItineraryWhereInput
-    data: XOR<ItineraryUpdateWithoutActivitiesInput, ItineraryUncheckedUpdateWithoutActivitiesInput>
+  export type ItineraryBlockUpdateToOneWithWhereWithoutActivitiesInput = {
+    where?: ItineraryBlockWhereInput
+    data: XOR<ItineraryBlockUpdateWithoutActivitiesInput, ItineraryBlockUncheckedUpdateWithoutActivitiesInput>
   }
 
-  export type ItineraryUpdateWithoutActivitiesInput = {
+  export type ItineraryBlockUpdateWithoutActivitiesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    place?: PlaceUpdateOneWithoutItineraryNestedInput
-    tour?: OfferedTourUpdateOneRequiredWithoutItinerariesNestedInput
+    place?: PlaceUpdateOneWithoutItineraryBlocksNestedInput
+    dayPlan?: DayPlanUpdateOneRequiredWithoutItinerariesNestedInput
   }
 
-  export type ItineraryUncheckedUpdateWithoutActivitiesInput = {
+  export type ItineraryBlockUncheckedUpdateWithoutActivitiesInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    dayPlanId?: BigIntFieldUpdateOperationsInput | bigint | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25225,11 +27121,12 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutNotificationInput = {
@@ -25248,11 +27145,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutNotificationInput = {
@@ -25287,11 +27185,12 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationInput = {
@@ -25310,21 +27209,23 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type OfferedTourCreateWithoutWishListInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanCreateNestedManyWithoutTourInput
     agent: UserCreateNestedOneWithoutOfferedToursInput
     bookings?: BookingCreateNestedManyWithoutTourInput
     reviews?: ReviewCreateNestedManyWithoutOfferedTourInput
@@ -25333,12 +27234,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedCreateWithoutWishListInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     agentId: bigint | number
     startDate: Date | string
     endDate: Date | string
-    itineraries?: ItineraryUncheckedCreateNestedManyWithoutTourInput
+    dayPlan?: DayPlanUncheckedCreateNestedManyWithoutTourInput
     bookings?: BookingUncheckedCreateNestedManyWithoutTourInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutOfferedTourInput
   }
@@ -25364,11 +27266,12 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
     sessions?: SessionCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutWishListInput = {
@@ -25387,11 +27290,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutWishListInput = {
@@ -25442,11 +27346,12 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
     sessions?: SessionUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutWishListInput = {
@@ -25465,11 +27370,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -25488,11 +27394,12 @@ export namespace Prisma {
     sentMessages?: MessageCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourCreateNestedManyWithoutAgentInput
-    reviews?: ReviewCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingCreateNestedManyWithoutCustomerInput
     wishList?: WishListCreateNestedOneWithoutUserInput
-    notification?: NotificationCreateNestedOneWithoutUserInput
+    notification?: NotificationCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewCreateNestedManyWithoutReviewerInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -25511,11 +27418,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     offeredTours?: OfferedTourUncheckedCreateNestedManyWithoutAgentInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutAgentInput
     searchHistory?: SearchHistoryUncheckedCreateNestedOneWithoutUserInput
     bookingsFromCustomer?: BookingUncheckedCreateNestedManyWithoutCustomerInput
     wishList?: WishListUncheckedCreateNestedOneWithoutUserInput
-    notification?: NotificationUncheckedCreateNestedOneWithoutUserInput
+    notification?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    receivedReviews?: ReviewUncheckedCreateNestedManyWithoutReviewedAgentInput
+    writtenReviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -25550,11 +27458,12 @@ export namespace Prisma {
     sentMessages?: MessageUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUpdateOneWithoutUserNestedInput
-    notification?: NotificationUpdateOneWithoutUserNestedInput
+    notification?: NotificationUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUpdateManyWithoutReviewerNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -25573,11 +27482,12 @@ export namespace Prisma {
     sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     offeredTours?: OfferedTourUncheckedUpdateManyWithoutAgentNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutAgentNestedInput
     searchHistory?: SearchHistoryUncheckedUpdateOneWithoutUserNestedInput
     bookingsFromCustomer?: BookingUncheckedUpdateManyWithoutCustomerNestedInput
     wishList?: WishListUncheckedUpdateOneWithoutUserNestedInput
-    notification?: NotificationUncheckedUpdateOneWithoutUserNestedInput
+    notification?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    receivedReviews?: ReviewUncheckedUpdateManyWithoutReviewedAgentNestedInput
+    writtenReviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
   }
 
   export type MessageCreateManySenderInput = {
@@ -25599,36 +27509,53 @@ export namespace Prisma {
   export type OfferedTourCreateManyAgentInput = {
     id?: bigint | number
     minimumPeople: number
+    maximumPeople: number
     price: Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourCreatefacilitiesInput | string[]
     startDate: Date | string
     endDate: Date | string
   }
 
-  export type ReviewCreateManyAgentInput = {
-    id?: bigint | number
-    star: number
-    text: string
-    photos?: ReviewCreatephotosInput | string[]
-    placeId?: bigint | number | null
-    offeredTourId: bigint | number
-  }
-
   export type BookingCreateManyCustomerInput = {
     id?: bigint | number
     tourId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
+  }
+
+  export type NotificationCreateManyUserInput = {
+    id?: bigint | number
+    text: string
+    type: $Enums.NotificationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SessionCreateManyUserInput = {
     id: string
     expiresAt: Date | string
     csrfToken: string
+  }
+
+  export type ReviewCreateManyReviewedAgentInput = {
+    id?: bigint | number
+    star: number
+    text: string
+    photos?: ReviewCreatephotosInput | string[]
+    reviewerId: bigint | number
+    offeredTourId?: bigint | number | null
+    placeId?: bigint | number | null
+  }
+
+  export type ReviewCreateManyReviewerInput = {
+    id?: bigint | number
+    star: number
+    text: string
+    photos?: ReviewCreatephotosInput | string[]
+    offeredTourId?: bigint | number | null
+    placeId?: bigint | number | null
+    reviewedAgentId?: bigint | number | null
   }
 
   export type MessageUpdateWithoutSenderInput = {
@@ -25682,11 +27609,12 @@ export namespace Prisma {
   export type OfferedTourUpdateWithoutAgentInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUpdateManyWithoutTourNestedInput
     bookings?: BookingUpdateManyWithoutTourNestedInput
     WishList?: WishListUpdateManyWithoutToursNestedInput
     reviews?: ReviewUpdateManyWithoutOfferedTourNestedInput
@@ -25695,11 +27623,12 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateWithoutAgentInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUncheckedUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUncheckedUpdateManyWithoutTourNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutTourNestedInput
     WishList?: WishListUncheckedUpdateManyWithoutToursNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOfferedTourNestedInput
@@ -25708,47 +27637,18 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateManyWithoutAgentInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ReviewUpdateWithoutAgentInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    star?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
-    photos?: ReviewUpdatephotosInput | string[]
-    Place?: PlaceUpdateOneWithoutReviewsNestedInput
-    offeredTour?: OfferedTourUpdateOneRequiredWithoutReviewsNestedInput
-  }
-
-  export type ReviewUncheckedUpdateWithoutAgentInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    star?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
-    photos?: ReviewUpdatephotosInput | string[]
-    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    offeredTourId?: BigIntFieldUpdateOperationsInput | bigint | number
-  }
-
-  export type ReviewUncheckedUpdateManyWithoutAgentInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    star?: IntFieldUpdateOperationsInput | number
-    text?: StringFieldUpdateOperationsInput | string
-    photos?: ReviewUpdatephotosInput | string[]
-    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    offeredTourId?: BigIntFieldUpdateOperationsInput | bigint | number
-  }
-
   export type BookingUpdateWithoutCustomerInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     tour?: OfferedTourUpdateOneRequiredWithoutBookingsNestedInput
     persons?: PersonUpdateManyWithoutBookingsNestedInput
     Payment?: PaymentUpdateOneWithoutBookingNestedInput
@@ -25757,12 +27657,9 @@ export namespace Prisma {
   export type BookingUncheckedUpdateWithoutCustomerInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     persons?: PersonUncheckedUpdateManyWithoutBookingsNestedInput
     Payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
   }
@@ -25770,12 +27667,33 @@ export namespace Prisma {
   export type BookingUncheckedUpdateManyWithoutCustomerInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     tourId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
+  }
+
+  export type NotificationUpdateWithoutUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    text?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateWithoutUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    text?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    text?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -25796,25 +27714,77 @@ export namespace Prisma {
     csrfToken?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ItineraryCreateManyTourInput = {
+  export type ReviewUpdateWithoutReviewedAgentInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    star?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewUpdatephotosInput | string[]
+    reviewer?: UserUpdateOneRequiredWithoutWrittenReviewsNestedInput
+    offeredTour?: OfferedTourUpdateOneWithoutReviewsNestedInput
+    place?: PlaceUpdateOneWithoutReviewsNestedInput
+  }
+
+  export type ReviewUncheckedUpdateWithoutReviewedAgentInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    star?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewUpdatephotosInput | string[]
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutReviewedAgentInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    star?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewUpdatephotosInput | string[]
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReviewUpdateWithoutReviewerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    star?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewUpdatephotosInput | string[]
+    offeredTour?: OfferedTourUpdateOneWithoutReviewsNestedInput
+    place?: PlaceUpdateOneWithoutReviewsNestedInput
+    reviewedAgent?: UserUpdateOneWithoutReceivedReviewsNestedInput
+  }
+
+  export type ReviewUncheckedUpdateWithoutReviewerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    star?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewUpdatephotosInput | string[]
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutReviewerInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    star?: IntFieldUpdateOperationsInput | number
+    text?: StringFieldUpdateOperationsInput | string
+    photos?: ReviewUpdatephotosInput | string[]
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  }
+
+  export type DayPlanCreateManyTourInput = {
     id?: bigint | number
     day: number
-    startTime: Date | string
-    endTime: Date | string
-    placeId?: bigint | number | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
   export type BookingCreateManyTourInput = {
     id?: bigint | number
     customerId: bigint | number
-    noOfPeople: number
     status?: $Enums.BookingStatus
-    totalPrice: Decimal | DecimalJsLike | number | string
     createdAt?: Date | string
     updatedAt?: Date | string
-    paymentId: bigint | number
   }
 
   export type ReviewCreateManyOfferedTourInput = {
@@ -25822,50 +27792,33 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
+    reviewerId: bigint | number
     placeId?: bigint | number | null
-    agentId: bigint | number
+    reviewedAgentId?: bigint | number | null
   }
 
-  export type ItineraryUpdateWithoutTourInput = {
+  export type DayPlanUpdateWithoutTourInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     day?: IntFieldUpdateOperationsInput | number
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activities?: ActivityUpdateManyWithoutItineraryNestedInput
-    place?: PlaceUpdateOneWithoutItineraryNestedInput
+    itineraries?: ItineraryBlockUpdateManyWithoutDayPlanNestedInput
   }
 
-  export type ItineraryUncheckedUpdateWithoutTourInput = {
+  export type DayPlanUncheckedUpdateWithoutTourInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     day?: IntFieldUpdateOperationsInput | number
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activities?: ActivityUncheckedUpdateManyWithoutItineraryNestedInput
+    itineraries?: ItineraryBlockUncheckedUpdateManyWithoutDayPlanNestedInput
   }
 
-  export type ItineraryUncheckedUpdateManyWithoutTourInput = {
+  export type DayPlanUncheckedUpdateManyWithoutTourInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     day?: IntFieldUpdateOperationsInput | number
-    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BookingUpdateWithoutTourInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     customer?: UserUpdateOneRequiredWithoutBookingsFromCustomerNestedInput
     persons?: PersonUpdateManyWithoutBookingsNestedInput
     Payment?: PaymentUpdateOneWithoutBookingNestedInput
@@ -25874,12 +27827,9 @@ export namespace Prisma {
   export type BookingUncheckedUpdateWithoutTourInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
     persons?: PersonUncheckedUpdateManyWithoutBookingsNestedInput
     Payment?: PaymentUncheckedUpdateOneWithoutBookingNestedInput
   }
@@ -25887,12 +27837,9 @@ export namespace Prisma {
   export type BookingUncheckedUpdateManyWithoutTourInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     customerId?: BigIntFieldUpdateOperationsInput | bigint | number
-    noOfPeople?: IntFieldUpdateOperationsInput | number
     status?: EnumBookingStatusFieldUpdateOperationsInput | $Enums.BookingStatus
-    totalPrice?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentId?: BigIntFieldUpdateOperationsInput | bigint | number
   }
 
   export type WishListUpdateWithoutToursInput = {
@@ -25921,8 +27868,9 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
-    Place?: PlaceUpdateOneWithoutReviewsNestedInput
-    agent?: UserUpdateOneRequiredWithoutReviewsNestedInput
+    reviewer?: UserUpdateOneRequiredWithoutWrittenReviewsNestedInput
+    place?: PlaceUpdateOneWithoutReviewsNestedInput
+    reviewedAgent?: UserUpdateOneWithoutReceivedReviewsNestedInput
   }
 
   export type ReviewUncheckedUpdateWithoutOfferedTourInput = {
@@ -25930,8 +27878,9 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
     placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    agentId?: BigIntFieldUpdateOperationsInput | bigint | number
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type ReviewUncheckedUpdateManyWithoutOfferedTourInput = {
@@ -25939,8 +27888,9 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
     placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-    agentId?: BigIntFieldUpdateOperationsInput | bigint | number
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type ReviewCreateManyPlaceInput = {
@@ -25948,16 +27898,17 @@ export namespace Prisma {
     star: number
     text: string
     photos?: ReviewCreatephotosInput | string[]
-    agentId: bigint | number
-    offeredTourId: bigint | number
+    reviewerId: bigint | number
+    offeredTourId?: bigint | number | null
+    reviewedAgentId?: bigint | number | null
   }
 
-  export type ItineraryCreateManyPlaceInput = {
+  export type ItineraryBlockCreateManyPlaceInput = {
     id?: bigint | number
-    day: number
+    title: string
+    dayPlanId: bigint | number
     startTime: Date | string
     endTime: Date | string
-    tourId: bigint | number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25967,8 +27918,9 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
-    agent?: UserUpdateOneRequiredWithoutReviewsNestedInput
-    offeredTour?: OfferedTourUpdateOneRequiredWithoutReviewsNestedInput
+    reviewer?: UserUpdateOneRequiredWithoutWrittenReviewsNestedInput
+    offeredTour?: OfferedTourUpdateOneWithoutReviewsNestedInput
+    reviewedAgent?: UserUpdateOneWithoutReceivedReviewsNestedInput
   }
 
   export type ReviewUncheckedUpdateWithoutPlaceInput = {
@@ -25976,8 +27928,9 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
-    agentId?: BigIntFieldUpdateOperationsInput | bigint | number
-    offeredTourId?: BigIntFieldUpdateOperationsInput | bigint | number
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type ReviewUncheckedUpdateManyWithoutPlaceInput = {
@@ -25985,38 +27938,39 @@ export namespace Prisma {
     star?: IntFieldUpdateOperationsInput | number
     text?: StringFieldUpdateOperationsInput | string
     photos?: ReviewUpdatephotosInput | string[]
-    agentId?: BigIntFieldUpdateOperationsInput | bigint | number
-    offeredTourId?: BigIntFieldUpdateOperationsInput | bigint | number
+    reviewerId?: BigIntFieldUpdateOperationsInput | bigint | number
+    offeredTourId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    reviewedAgentId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
-  export type ItineraryUpdateWithoutPlaceInput = {
+  export type ItineraryBlockUpdateWithoutPlaceInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activities?: ActivityUpdateManyWithoutItineraryNestedInput
-    tour?: OfferedTourUpdateOneRequiredWithoutItinerariesNestedInput
+    activities?: ActivityUpdateManyWithoutBlockNestedInput
+    dayPlan?: DayPlanUpdateOneRequiredWithoutItinerariesNestedInput
   }
 
-  export type ItineraryUncheckedUpdateWithoutPlaceInput = {
+  export type ItineraryBlockUncheckedUpdateWithoutPlaceInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    dayPlanId?: BigIntFieldUpdateOperationsInput | bigint | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    activities?: ActivityUncheckedUpdateManyWithoutItineraryNestedInput
+    activities?: ActivityUncheckedUpdateManyWithoutBlockNestedInput
   }
 
-  export type ItineraryUncheckedUpdateManyWithoutPlaceInput = {
+  export type ItineraryBlockUncheckedUpdateManyWithoutPlaceInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
-    day?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    dayPlanId?: BigIntFieldUpdateOperationsInput | bigint | number
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
-    tourId?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -26025,58 +27979,101 @@ export namespace Prisma {
     id?: bigint | number
     name: string
     age: number
-    proof: string
+    proofUrl?: string | null
   }
 
   export type PersonUpdateWithoutBookingsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PersonUncheckedUpdateWithoutBookingsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PersonUncheckedUpdateManyWithoutBookingsInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     name?: StringFieldUpdateOperationsInput | string
     age?: IntFieldUpdateOperationsInput | number
-    proof?: StringFieldUpdateOperationsInput | string
+    proofUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ActivityCreateManyItineraryInput = {
+  export type ActivityCreateManyBlockInput = {
     id?: bigint | number
     title: string
   }
 
-  export type ActivityUpdateWithoutItineraryInput = {
+  export type ActivityUpdateWithoutBlockInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ActivityUncheckedUpdateWithoutItineraryInput = {
+  export type ActivityUncheckedUpdateWithoutBlockInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ActivityUncheckedUpdateManyWithoutItineraryInput = {
+  export type ActivityUncheckedUpdateManyWithoutBlockInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ItineraryBlockCreateManyDayPlanInput = {
+    id?: bigint | number
+    title: string
+    startTime: Date | string
+    endTime: Date | string
+    placeId?: bigint | number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ItineraryBlockUpdateWithoutDayPlanInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    title?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    activities?: ActivityUpdateManyWithoutBlockNestedInput
+    place?: PlaceUpdateOneWithoutItineraryBlocksNestedInput
+  }
+
+  export type ItineraryBlockUncheckedUpdateWithoutDayPlanInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    title?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    activities?: ActivityUncheckedUpdateManyWithoutBlockNestedInput
+  }
+
+  export type ItineraryBlockUncheckedUpdateManyWithoutDayPlanInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    title?: StringFieldUpdateOperationsInput | string
+    startTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    endTime?: DateTimeFieldUpdateOperationsInput | Date | string
+    placeId?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OfferedTourUpdateWithoutWishListInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUpdateManyWithoutTourNestedInput
     agent?: UserUpdateOneRequiredWithoutOfferedToursNestedInput
     bookings?: BookingUpdateManyWithoutTourNestedInput
     reviews?: ReviewUpdateManyWithoutOfferedTourNestedInput
@@ -26085,12 +28082,13 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateWithoutWishListInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number
     startDate?: DateTimeFieldUpdateOperationsInput | Date | string
     endDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    itineraries?: ItineraryUncheckedUpdateManyWithoutTourNestedInput
+    dayPlan?: DayPlanUncheckedUpdateManyWithoutTourNestedInput
     bookings?: BookingUncheckedUpdateManyWithoutTourNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutOfferedTourNestedInput
   }
@@ -26098,6 +28096,7 @@ export namespace Prisma {
   export type OfferedTourUncheckedUpdateManyWithoutWishListInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     minimumPeople?: IntFieldUpdateOperationsInput | number
+    maximumPeople?: IntFieldUpdateOperationsInput | number
     price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     facilities?: OfferedTourUpdatefacilitiesInput | string[]
     agentId?: BigIntFieldUpdateOperationsInput | bigint | number

@@ -1,11 +1,19 @@
 import { serve } from "@hono/node-server";
+import userRouter from "./routes/userRoutes.js";
+import placeImageRouter from "./routes/placeImageRoutes.js";
+import type { Context } from "hono";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import "./utils/types/honoContextType";
 import authRouter from "./routes/authRoutes.js";
 import profileRouter from "./routes/profileRoutes.js";
+import { logger } from "hono/logger";
 import tourRouter from "./routes/tourRoutes.js";
+import bookingRouter from "./routes/bookingRoutes.js";
+
 const app = new Hono();
+
+app.use(logger());
 
 app.use(
   "*",
@@ -27,15 +35,19 @@ app.use(
     maxAge: 86400, // Optional: How long preflight requests can be cached (seconds)
   }),
 );
-app.get("/", (c) => {
+app.get("/", (c: Context) => {
   return c.json({
     hi: "mom",
   });
 });
-
 app.route("/auth", authRouter);
 app.route("/profile", profileRouter);
-app.route("/tour", tourRouter);
+app.route("/bookings", bookingRouter);
+
+app.route("/tours", tourRouter);
+
+app.route("/placeImage", placeImageRouter);
+app.route("/users", userRouter);
 
 serve({
   fetch: app.fetch,

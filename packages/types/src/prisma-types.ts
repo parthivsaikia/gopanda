@@ -3,6 +3,8 @@ import type {
   User as UserTypeFromDb, // The User model type
   Session as SessionTypeFromDb,
   UserRole as UserRoleTypeFromDb,
+  OfferedTour as OfferedTourTypeFromDb,
+  DayPlan as DayPlanTypeFromDb,
   // ... import other re-exported model types from @repo/db
 } from "@repo/db";
 
@@ -11,3 +13,5 @@ import type {
 export type User = UserTypeFromDb;
 export type Session = SessionTypeFromDb;
 export type UserRole = UserRoleTypeFromDb;
+export type OfferedTour = OfferedTourTypeFromDb;
+export type DayPlan = DayPlanTypeFromDb;

@@ -7,3 +7,7 @@ export function redirectToDashboard(role: string) {
     return redirect("/agent-dashboard");
   }
 }
+
+export function redirectToTourDetails(tourId: string) {
+  return redirect(`/tour-details/${tourId}`);
+}

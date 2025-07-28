@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.8.1
- * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
+ * Prisma Client JS version: 6.10.1
+ * Query Engine version: 9b628578b3b7cae625e8c927178f15a170e74a9c
  */
 Prisma.prismaVersion = {
-  client: "6.8.1",
-  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
+  client: "6.10.1",
+  engine: "9b628578b3b7cae625e8c927178f15a170e74a9c"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -147,6 +147,7 @@ exports.Prisma.MessageScalarFieldEnum = {
 exports.Prisma.OfferedTourScalarFieldEnum = {
   id: 'id',
   minimumPeople: 'minimumPeople',
+  maximumPeople: 'maximumPeople',
   price: 'price',
   facilities: 'facilities',
   agentId: 'agentId',
@@ -157,9 +158,9 @@ exports.Prisma.OfferedTourScalarFieldEnum = {
 exports.Prisma.PlaceScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  location: 'location',
-  photos: 'photos',
-  rating: 'rating'
+  latitude: 'latitude',
+  longitude: 'longitude',
+  photos: 'photos'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {
@@ -167,9 +168,10 @@ exports.Prisma.ReviewScalarFieldEnum = {
   star: 'star',
   text: 'text',
   photos: 'photos',
+  reviewerId: 'reviewerId',
+  offeredTourId: 'offeredTourId',
   placeId: 'placeId',
-  agentId: 'agentId',
-  offeredTourId: 'offeredTourId'
+  reviewedAgentId: 'reviewedAgentId'
 };
 
 exports.Prisma.SearchHistoryScalarFieldEnum = {
@@ -182,19 +184,16 @@ exports.Prisma.BookingScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
   tourId: 'tourId',
-  noOfPeople: 'noOfPeople',
   status: 'status',
-  totalPrice: 'totalPrice',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  paymentId: 'paymentId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PersonScalarFieldEnum = {
   id: 'id',
   name: 'name',
   age: 'age',
-  proof: 'proof',
+  proofUrl: 'proofUrl',
   bookingId: 'bookingId'
 };
 
@@ -209,15 +208,21 @@ exports.Prisma.PaymentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ItineraryScalarFieldEnum = {
+exports.Prisma.ItineraryBlockScalarFieldEnum = {
   id: 'id',
-  day: 'day',
+  title: 'title',
+  dayPlanId: 'dayPlanId',
   startTime: 'startTime',
   endTime: 'endTime',
   placeId: 'placeId',
-  tourId: 'tourId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DayPlanScalarFieldEnum = {
+  id: 'id',
+  day: 'day',
+  tourId: 'tourId'
 };
 
 exports.Prisma.ActivityScalarFieldEnum = {
@@ -298,7 +303,8 @@ exports.Prisma.ModelName = {
   Booking: 'Booking',
   Person: 'Person',
   Payment: 'Payment',
-  Itinerary: 'Itinerary',
+  ItineraryBlock: 'ItineraryBlock',
+  DayPlan: 'DayPlan',
   Activity: 'Activity',
   Notification: 'Notification',
   WishList: 'WishList',

@@ -1,24 +1,45 @@
 import { type } from "arktype";
 
-//UserDTOs
-
 //password validation:
-const Password = type("string").narrow((password, ctx) => {
+export const Password = type("string").narrow((password, ctx) => {
   if (password.length < 8) {
-    return ctx.reject("Length of password must be greater than 8");
+    return ctx.reject({
+      expected: "longer than 8 characters",
+      actual: "",
+      path: ["password"],
+    });
   }
   if (!/[A-Z]/.test(password)) {
-    return ctx.reject("Password must contain an uppercase letter.");
+    return ctx.reject({
+      expected: "contain an uppercase letter.",
+      actual: "",
+      path: ["password"],
+    });
   }
   if (!/[a-z]/.test(password)) {
-    return ctx.reject("Password must contain a lowercase letter.");
+    return ctx.reject({
+      expected: "contain a lowercase letter",
+      actual: "",
+      path: ["password"],
+    });
+  }
+  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+    // Corrected regex for special characters
+    return ctx.reject({
+      expected: "contain a special character",
+      actual: "",
+      path: ["password"],
+    });
   }
   if (!/\d/.test(password)) {
-    return ctx.reject("Password must contain a digit.");
+    return ctx.reject({
+      expected: "contain a digit",
+      actual: "",
+      path: ["password"],
+    });
   }
   return true;
 });
-
 export const UserInputUserDTOSchema = type({
   name: "string > 3",
   username: "string > 5",
@@ -26,7 +47,7 @@ export const UserInputUserDTOSchema = type({
   email: "string.email",
   state: "string",
   country: "string",
-  mobileNumber: "string.numeric",
+  mobileNumber: "string",
   role: type.enumerated("Customer", "TravelAgent"),
 });
 

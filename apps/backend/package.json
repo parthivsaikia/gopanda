@@ -1,21 +1,37 @@
 {
-  "name": "backend",
+  "name": "@repo/backend",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@hono/arktype-validator": "^2.0.1",
     "@hono/node-server": "^1.14.1",
     "@oslojs/crypto": "^1.0.1",
     "@oslojs/encoding": "^1.1.0",
     "@repo/db": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@scalar/hono-api-reference": "^0.9.7",
     "@types/bcrypt": "^5.0.2",
     "arktype": "^2.1.20",
     "bcrypt": "^6.0.0",
+    "dotenv": "^17.0.1",
     "hono": "^4.7.9",
-    "@repo/types": "workspace:*"
+    "hono-openapi": "^0.4.8",
+    "razorpay": "^2.9.6",
+    "uploadthing": "^7.7.3",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

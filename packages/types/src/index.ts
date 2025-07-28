@@ -3,3 +3,5 @@ export * from "./userTypes/schema.js";
 export * from "./userTypes/types.js";
 export * from "./tourTypes/schema.js";
 export * from "./tourTypes/types.js";
+export * from "./bookingTypes/schema.js";
+export * from "./bookingTypes/types.js";

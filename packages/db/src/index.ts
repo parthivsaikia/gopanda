@@ -5,6 +5,8 @@ import {
   type User as PrismaUserGenerated, // Individually exporting the User model type
   type Session as PrismaSessionGenerated,
   type UserRole as PrismaUserRoleGenerated,
+  type OfferedTour as PrismaOfferedTourGenerated,
+  type DayPlan as PrismaDayPlanGenerated,
   // ... import other model types you want to explicitly re-export by name
 } from "../generated/prisma/index.js"; // Your custom output path
 
@@ -17,5 +19,7 @@ export {
   // ... re-export other model types
   type PrismaSessionGenerated as Session,
   type PrismaUserRoleGenerated as UserRole,
+  type PrismaOfferedTourGenerated as OfferedTour,
+  type PrismaDayPlanGenerated as DayPlan,
 };
 export default prismaInstance; // Export the runtime client instance

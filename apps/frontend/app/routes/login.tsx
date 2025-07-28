@@ -4,6 +4,7 @@ import { LoginInputUserDTOSchema } from "@repo/types";
 import type { Route } from "./+types/login";
 import { login } from "services/login";
 import { redirectToDashboard } from "services/redirect";
+import { notify } from "services/notification";
 
 export async function clientAction({ request }: Route.ClientActionArgs) {
   try {
@@ -14,6 +15,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
       return validatedData.summary;
     } else {
       const data = await login(validatedData);
+      notify("Login successful", "success");
       return redirectToDashboard(data.role);
     }
   } catch (error) {
@@ -21,7 +23,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
       error instanceof Error
         ? `error at login: ${error.message}`
         : `unknown error at login`;
-    return errorMsg;
+    notify("Invalid credentials", "error");
   }
 }
 

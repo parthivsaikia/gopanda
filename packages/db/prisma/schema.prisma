@@ -1,11 +1,11 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+        provider = "prisma-client-js"
+        output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+        provider = "postgresql"
+        url      = env("DATABASE_URL")
 }
 
 //NOTE :1. id's are to be kept BigInt in all the models to avoid mismatch when joining tables.
@@ -15,227 +15,260 @@ datasource db {
 //this role will be used in express.js to give some permissions
 
 enum UserRole {
-  Customer
-  TravelAgent
+        Customer
+        TravelAgent
 }
 
 model User {
-  id                   BigInt         @id @default(autoincrement())
-  username             String         @unique
-  password             String //has to be stored as hash using bcrypt
-  email                String?        @unique //email is not necessary for sign up
-  mobileNumber         String         @unique
-  state                String
-  country              String
-  sentMessages         Message[]      @relation("sender")
-  receivedMessages     Message[]      @relation("receiver")
-  createdAt            DateTime       @default(now())
-  updatedAt            DateTime       @updatedAt
-  role                 UserRole
-  offeredTours         OfferedTour[] //users with role TravelAgent will be able to offer tours.
-  reviews              Review[]
-  searchHistory        SearchHistory?
-  bookingsFromCustomer Booking[]      @relation("customer")
-  wishList             WishList?
-  notification         Notification?
-  name                 String
-  image                String?
-  sessions             Session[]
+        id                   BigInt         @id @default(autoincrement())
+        username             String         @unique
+        password             String //has to be stored as hash using bcrypt
+        email                String?        @unique //email is not necessary for sign up
+        mobileNumber         String         @unique
+        state                String
+        country              String
+        sentMessages         Message[]      @relation("sender")
+        receivedMessages     Message[]      @relation("receiver")
+        createdAt            DateTime       @default(now())
+        updatedAt            DateTime       @updatedAt
+        role                 UserRole
+        offeredTours         OfferedTour[] //users with role TravelAgent will be able to offer tours.
+        searchHistory        SearchHistory?
+        bookingsFromCustomer Booking[]      @relation("customer")
+        wishList             WishList?
+        notification         Notification[]
+        name                 String
+        image                String?
+        sessions             Session[]
+        receivedReviews      Review[]       @relation("receivedReviews")
+        writtenReviews       Review[]       @relation("writtenReviews")
 
-  //indexing is done for faster lookups in the table when the size of the table grows.
-  @@index([id, username, email])
-  @@map("user")
+        //indexing is done for faster lookups in the table when the size of the table grows.
+        @@map("user")
 }
 
 //for now only text messages are available. Multimedia messages will be covered in the future.
 
 model Message {
-  id         BigInt   @id @default(autoincrement())
-  text       String
-  sender     User     @relation("sender", fields: [senderId], references: [id])
-  senderId   BigInt
-  receiver   User     @relation("receiver", fields: [receiverId], references: [id])
-  receiverId BigInt
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+        id         BigInt   @id @default(autoincrement())
+        text       String
+        sender     User     @relation("sender", fields: [senderId], references: [id])
+        senderId   BigInt
+        receiver   User     @relation("receiver", fields: [receiverId], references: [id])
+        receiverId BigInt
+        createdAt  DateTime @default(now())
+        updatedAt  DateTime @updatedAt
 
-  @@index([id, senderId, receiverId])
+        @@index([senderId, receiverId])
+        @@map("messages")
 }
 
 model OfferedTour {
-  id            BigInt      @id @default(autoincrement())
-  minimumPeople Int
-  price         Decimal
-  itineraries   Itinerary[]
-  facilities    String[] //different facilities to be stored as different strings
-  agent         User        @relation(fields: [agentId], references: [id])
-  agentId       BigInt
-  bookings      Booking[]
-  WishList      WishList[]
-  startDate     DateTime
-  endDate       DateTime
-  reviews       Review[]
+        id            BigInt     @id @default(autoincrement())
+        minimumPeople Int
+        maximumPeople Int
+        price         Decimal
+        dayPlan       DayPlan[]
+        facilities    String[] //different facilities to be stored as different strings
+        agent         User       @relation(fields: [agentId], references: [id], onDelete: Cascade)
+        agentId       BigInt
+        bookings      Booking[]
+        WishList      WishList[]
+        startDate     DateTime
+        endDate       DateTime
+        reviews       Review[]
 
-  @@index([id, agentId])
+        @@index([agentId])
+        @@map("offered_tours")
 }
 
 model Place {
-  id        BigInt      @id @default(autoincrement())
-  name      String
-  location  String //url of location
-  photos    String[] //array of urls to be rendered
-  reviews   Review[]
-  rating    Decimal
-  itinerary Itinerary[]
+        id              BigInt           @id @default(autoincrement())
+        name            String
+        latitude        Float
+        longitude       Float
+        photos          String[] //array of urls to be rendered
+        reviews         Review[]
+        itineraryBlocks ItineraryBlock[]
 
-  @@index([id])
+        @@map("places")
 }
 
 model Review {
-  id            BigInt      @id @default(autoincrement())
-  star          Int
-  text          String
-  photos        String[]
-  Place         Place?      @relation(fields: [placeId], references: [id]) //review can be of place
-  placeId       BigInt?
-  agent         User        @relation(fields: [agentId], references: [id]) //review can be of agent
-  agentId       BigInt
-  offeredTour   OfferedTour @relation(fields: [offeredTourId], references: [id])
-  offeredTourId BigInt
+        id     BigInt   @id @default(autoincrement())
+        star   Int
+        text   String
+        photos String[]
 
-  @@index([id, placeId, agentId])
+        // The user who WROTE the review
+        reviewerId BigInt
+        reviewer   User   @relation("writtenReviews", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+        // --- Review Targets (only ONE of these should be set per review) ---
+        offeredTourId BigInt?
+        offeredTour   OfferedTour? @relation(fields: [offeredTourId], references: [id], onDelete: Cascade)
+
+        placeId BigInt?
+        place   Place?  @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+        // The agent BEING REVIEWED
+        reviewedAgentId BigInt?
+        reviewedAgent   User?   @relation("receivedReviews", fields: [reviewedAgentId], references: [id], onDelete: SetNull)
+
+        @@index([reviewerId])
+        @@index([offeredTourId])
+        @@index([placeId])
+        @@index([reviewedAgentId])
+        @@map("reviews")
 }
 
 model SearchHistory {
-  id     BigInt   @id @default(autoincrement())
-  search String[]
-  user   User     @relation(fields: [userId], references: [id])
-  userId BigInt   @unique
+        id     BigInt   @id @default(autoincrement())
+        search String[]
+        user   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+        userId BigInt   @unique
 
-  @@index([id])
+        @@index([id])
+        @@map("search_histories")
 }
 
 //booking status enum
 
 enum BookingStatus {
-  Pending
-  Confirmed
-  Cancelled
-  Completed
+        Pending
+        Confirmed
+        Cancelled
+        Completed
 }
 
 model Booking {
-  id         BigInt        @id @default(autoincrement())
-  customer   User          @relation("customer", fields: [customerId], references: [id])
-  customerId BigInt
-  tour       OfferedTour   @relation(fields: [tourId], references: [id])
-  tourId     BigInt
-  persons    Person[]
-  noOfPeople Int
-  status     BookingStatus @default(Pending)
-  totalPrice Decimal //offeredTour.price * noOfPeople
-  createdAt  DateTime      @default(now())
-  updatedAt  DateTime      @updatedAt
-  Payment    Payment?
-  paymentId  BigInt
+        id         BigInt        @id @default(autoincrement())
+        customer   User          @relation("customer", fields: [customerId], references: [id])
+        customerId BigInt
+        tour       OfferedTour   @relation(fields: [tourId], references: [id])
+        tourId     BigInt
+        persons    Person[]
+        status     BookingStatus @default(Pending)
+        createdAt  DateTime      @default(now())
+        updatedAt  DateTime      @updatedAt
+        Payment    Payment?
 
-  @@index([id, customerId, tourId])
+        @@index([customerId, tourId])
+        @@map("bookings")
 }
 
 //model for people who are not users e.g. a person can book for the whole family without creating accounts for all
 
 model Person {
-  id        BigInt  @id @default(autoincrement())
-  name      String
-  age       Int
-  proof     String //proof like aadhar card or pan card
-  bookings  Booking @relation(fields: [bookingId], references: [id])
-  bookingId BigInt
+        id        BigInt  @id @default(autoincrement())
+        name      String
+        age       Int
+        proofUrl  String? //proof like aadhar card or pan card
+        bookings  Booking @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+        bookingId BigInt
 
-  @@index([id, bookingId])
+        @@index([bookingId])
+        @@map("persons")
 }
 
 enum PaymentStatus {
-  Success
-  Pending
-  Failure
-  Refunded
+        Success
+        Pending
+        Failure
+        Refunded
 }
 
 //incomplete for now
 
 model Payment {
-  id            BigInt        @id @default(autoincrement())
-  method        String
-  status        PaymentStatus
-  booking       Booking       @relation(fields: [bookingId], references: [id])
-  bookingId     BigInt        @unique
-  amount        Decimal
-  transactionId String        @unique
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+        id            BigInt        @id @default(autoincrement())
+        method        String
+        status        PaymentStatus
+        booking       Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+        bookingId     BigInt        @unique
+        amount        Decimal
+        transactionId String        @unique
+        createdAt     DateTime      @default(now())
+        updatedAt     DateTime      @updatedAt
+
+        @@map("payments")
 }
 
-model Itinerary {
-  id         BigInt      @id @default(autoincrement())
-  activities Activity[]
-  day        Int //e.g. day1, day2
-  place      Place?      @relation(fields: [placeId], references: [id])
-  startTime  DateTime
-  endTime    DateTime
-  placeId    BigInt?
-  tour       OfferedTour @relation(fields: [tourId], references: [id])
-  tourId     BigInt
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+model ItineraryBlock {
+        id         BigInt     @id @default(autoincrement())
+        title      String
+        activities Activity[]
+        place      Place?     @relation(fields: [placeId], references: [id], onDelete: Cascade)
+        dayPlan    DayPlan    @relation(fields: [dayPlanId], references: [id], onDelete: Cascade)
+        dayPlanId  BigInt
+        startTime  DateTime
+        endTime    DateTime
+        placeId    BigInt?
+        createdAt  DateTime   @default(now())
+        updatedAt  DateTime   @updatedAt
 
-  @@index([id, placeId, tourId])
+        @@index([dayPlanId])
+        @@map("itinerariy_blocks")
+}
+
+model DayPlan {
+        id          BigInt           @id @default(autoincrement())
+        day         Int
+        tour        OfferedTour      @relation(fields: [tourId], references: [id])
+        tourId      BigInt
+        itineraries ItineraryBlock[]
+
+        @@index([tourId])
+        @@map("day_plans")
 }
 
 model Activity {
-  id          BigInt    @id @default(autoincrement())
-  title       String
-  itinerary   Itinerary @relation(fields: [itineraryId], references: [id])
-  itineraryId BigInt
+        id          BigInt         @id @default(autoincrement())
+        title       String
+        block       ItineraryBlock @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+        itineraryId BigInt
 
-  @@index([id, itineraryId])
+        @@index([itineraryId])
+        @@map("activities")
 }
 
 //Notification type
 
 enum NotificationType {
-  Warning
-  Greeting
-  Information
+        Warning
+        Greeting
+        Information
 }
 
 model Notification {
-  id        BigInt           @id @default(autoincrement())
-  text      String
-  type      NotificationType
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
-  user      User             @relation(fields: [userId], references: [id])
-  userId    BigInt           @unique
+        id        BigInt           @id @default(autoincrement())
+        text      String
+        type      NotificationType
+        createdAt DateTime         @default(now())
+        updatedAt DateTime         @updatedAt
+        user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+        userId    BigInt
 
-  @@index([id, userId])
+        @@index([userId])
+        @@map("notifications")
 }
 
 model WishList {
-  id        BigInt        @id @default(autoincrement())
-  tours     OfferedTour[]
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
-  user      User          @relation(fields: [userId], references: [id])
-  userId    BigInt        @unique
+        id        BigInt        @id @default(autoincrement())
+        tours     OfferedTour[]
+        createdAt DateTime      @default(now())
+        updatedAt DateTime      @updatedAt
+        user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+        userId    BigInt        @unique
 
-  @@index([id, userId])
+        @@index([userId])
+        @@map("wishlists")
 }
 
 model Session {
-  id        String   @id
-  userId    BigInt
-  user      User     @relation(fields: [userId], references: [id])
-  expiresAt DateTime
-  csrfToken String
+        id        String   @id
+        userId    BigInt
+        user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+        expiresAt DateTime
+        csrfToken String
 }
