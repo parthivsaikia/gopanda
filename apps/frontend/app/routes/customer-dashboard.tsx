@@ -28,6 +28,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 export async function clientLoader() {
   const profileData = await getProfile();
   const tours = await getAllTours();
+  console.log("tours ->", tours);
   return { profileData, tours };
 }
 
@@ -38,14 +39,9 @@ export default function CustomerDashboard({
   const userData = loaderData.profileData;
   const tours = actionData || loaderData.tours;
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div>
-        <p>{userData.name}</p>
-        <p>{userData.role}</p>
-        <Link to={`/logout`}>Log out</Link>
-      </div>
+    <section className="flex flex-col gap-16 p-16 w-full items-center justify-center">
       <TourSearchBar />
-      <TourGrid tours={tours} />
-    </div>
+      <TourGrid tours={tours} show={true} role="customer" />
+    </section>
   );
 }

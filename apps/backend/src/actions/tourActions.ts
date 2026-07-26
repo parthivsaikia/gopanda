@@ -29,6 +29,8 @@ export async function getTourByPlacesAction(
     select: {
       // Fields needed for filtering by available spots
       maximumPeople: true,
+      minimumPeople: true,
+
       bookings: {
         where: {
           status: { in: ["Pending", "Confirmed"] },
@@ -99,6 +101,9 @@ export async function getAllToursAction() {
       endDate: true,
       price: true,
       reviews: true,
+      maximumPeople: true,
+      minimumPeople: true,
+      bookings: true,
       dayPlan: {
         select: {
           itineraries: {
@@ -129,7 +134,7 @@ export async function getAllToursAction() {
   }));
 }
 
-export async function getTourByIdAction(id: string) {
+export async function getTourByIdAction(id: string | bigint) {
   const tourId = BigInt(id);
   const tour = await prismaInstance.offeredTour.findUnique({
     where: {
@@ -137,8 +142,11 @@ export async function getTourByIdAction(id: string) {
     },
     select: {
       id: true,
+      minimumPeople: true,
+      maximumPeople: true,
       price: true,
       startDate: true,
+      agentId: true,
       endDate: true,
       dayPlan: {
         select: {
@@ -164,3 +172,56 @@ export async function getTourByIdAction(id: string) {
     price: tour?.price.toNumber(),
   };
 }
+
+export const getToursByAgentAction = async (agentId: string | bigint) => {
+  try {
+    agentId = BigInt(agentId);
+    const tours = await prismaInstance.offeredTour.findMany({
+      where: {
+        agentId,
+      },
+      select: {
+        id: true,
+        startDate: true,
+        endDate: true,
+        price: true,
+        reviews: true,
+        bookings: true,
+        maximumPeople: true,
+        minimumPeople: true,
+        dayPlan: {
+          select: {
+            itineraries: {
+              select: {
+                place: {
+                  select: {
+                    name: true,
+                    photos: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    return tours.map((tour) => ({
+      ...tour,
+      startDate: tour.startDate.toISOString(),
+      endDate: tour.endDate.toISOString(),
+      price: tour.price.toNumber(),
+      averageRating:
+        tour.reviews.length > 0
+          ? tour.reviews.reduce((sum, review) => sum + review.star, 0) /
+            tour.reviews.length
+          : 0,
+      reviewCount: tour.reviews.length,
+    }));
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error
+        ? `error in fetching tours by agent action: ${error.message}`
+        : `unknown error in fetching tours by agent action`;
+    throw new Error(errorMsg);
+  }
+};

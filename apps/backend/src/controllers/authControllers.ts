@@ -164,8 +164,12 @@ export const loggedInUser = async (c: Context) => {
       return c.json({
         userId: String(user.id),
         csrfToken: session.csrfToken,
+        role: user.role,
       });
     }
+    return c.json({
+      error: "User not logged in",
+    });
   } catch (error) {
     const errorMsg =
       error instanceof Error

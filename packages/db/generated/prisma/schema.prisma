@@ -42,6 +42,7 @@ model User {
   sessions             Session[]
   receivedReviews      Review[]       @relation("receivedReviews")
   writtenReviews       Review[]       @relation("writtenReviews")
+  verified             Boolean        @default(false)
 
   //indexing is done for faster lookups in the table when the size of the table grows.
   @@map("user")
@@ -65,6 +66,7 @@ model Message {
 
 model OfferedTour {
   id            BigInt     @id @default(autoincrement())
+  title         String     @default("")
   minimumPeople Int
   maximumPeople Int
   price         Decimal
@@ -151,7 +153,8 @@ model Booking {
   status     BookingStatus @default(Pending)
   createdAt  DateTime      @default(now())
   updatedAt  DateTime      @updatedAt
-  Payment    Payment?
+  payment    Payment?      @relation(fields: [paymentId], references: [id])
+  paymentId  BigInt?       @unique
 
   @@index([customerId, tourId])
   @@map("bookings")
@@ -178,20 +181,62 @@ enum PaymentStatus {
   Refunded
 }
 
-//incomplete for now
-
 model Payment {
-  id            BigInt        @id @default(autoincrement())
-  method        String
-  status        PaymentStatus
-  booking       Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
-  bookingId     BigInt        @unique
-  amount        Decimal
-  transactionId String        @unique
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id                 BigInt               @id @default(autoincrement())
+  method             String
+  status             PaymentStatus        @default(Pending)
+  currency           String               @default("INR")
+  failureReason      String?
+  retryCount         Int                  @default(0)
+  amount             Decimal              @db.Money
+  transactionId      String               @unique
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  PaymentTransaction PaymentTransaction[]
+  Booking            Booking[]
 
   @@map("payments")
+}
+
+enum PaymentProvider {
+  Razorpay
+  Stripe
+}
+
+model PaymentTransaction {
+  id                BigInt          @id @default(autoincrement())
+  provider          PaymentProvider @default(Razorpay)
+  providerPaymentId String          @unique
+  providerOrderId   String
+  metaData          Json?
+  payment           Payment         @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  paymentId         BigInt
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  refund            Refund[]
+
+  @@map("payment_transaction")
+}
+
+model Refund {
+  id                   BigInt             @id @default(autoincrement())
+  amount               Decimal
+  reason               String?
+  refundStatus         RefundStatus       @default(Pending)
+  providerRefundId     String             @unique // e.g., 'rfnd_...' from Stripe
+  paymentTransaction   PaymentTransaction @relation(fields: [paymentTransactionId], references: [id], onDelete: Cascade)
+  paymentTransactionId BigInt
+  createdAt            DateTime           @default(now())
+  metaData             Json?
+
+  @@map("refunds")
+}
+
+enum RefundStatus {
+  Not_Required
+  Pending
+  Completed
+  Failed
 }
 
 model ItineraryBlock {

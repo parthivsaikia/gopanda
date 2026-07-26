@@ -9,11 +9,15 @@ import {
 } from "react-router";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { WebSocketContextProvider } from "./contexts/WebSocketProvider";
 
 const queryClient = new QueryClient();
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { SidebarProvider } from "./components/ui/sidebar";
+import { loggedInUser } from "services/loggedInUser";
+import { useEffect } from "react";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -50,7 +54,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <WebSocketContextProvider>
+        <Outlet />
+      </WebSocketContextProvider>
     </QueryClientProvider>
   );
 }

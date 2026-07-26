@@ -43,3 +43,18 @@ export async function getToursById(id: string) {
     throw new Error(errorMsg);
   }
 }
+
+export const getToursByAgent = async () => {
+  try {
+    const tours = await axios.get(`${apiBaseUrl}/tours/byAgent`, {
+      withCredentials: true,
+    });
+    return tours.data;
+  } catch (error) {
+    const errorMsg =
+      error instanceof Error
+        ? `error in fetching tours by agent: ${error.message}`
+        : `unknown error in fetching tours by agent`;
+    throw new Error(errorMsg);
+  }
+};

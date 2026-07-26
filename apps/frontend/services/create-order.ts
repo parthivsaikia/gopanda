@@ -10,7 +10,7 @@ export const createOrder = async ({
 }) => {
   try {
     const order = await axios.post(
-      `${apiBaseUrl}/bookings/order`,
+      `${apiBaseUrl}/payment/order`,
       {
         amount,
         currency,

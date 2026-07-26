@@ -4,6 +4,7 @@ import {
   createTourController,
   getAllTours,
   getTourById,
+  getToursByAgentId,
   getToursByPlace,
 } from "../controllers/tourControllers.js";
 import {
@@ -24,6 +25,7 @@ tourRouter.post(
   createTourController,
 );
 
+tourRouter.get("/byAgent", authMiddleware, getToursByAgentId);
 tourRouter.post("/byPlace", getToursByPlace);
 tourRouter.get("/", getAllTours);
 tourRouter.get("/:id", getTourById);

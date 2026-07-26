@@ -1,4 +1,4 @@
-import { Form, useSubmit } from "react-router";
+import { Form, useFetcher, useSubmit } from "react-router";
 import FieldError from "./fieldError";
 import { Button } from "./ui/button";
 import { useForm, useStore, type ValidationError } from "@tanstack/react-form";
@@ -7,11 +7,9 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { PlusCircleIcon } from "lucide-react";
 import TourCreateThirdStep from "./tour-create-thirdstep";
-import { toast } from "sonner";
-import { notify } from "services/notification";
 
 export default function TourCreateForm() {
-  const submit = useSubmit();
+  const fetcher = useFetcher();
 
   const form = useForm<
     TourFormData,
@@ -35,9 +33,9 @@ export default function TourCreateForm() {
       dayPlan: [],
     },
     onSubmit: async ({ value }) => {
-      submit(value, {
+      fetcher.submit(value, {
         method: "post",
-        action: "/new-tour",
+        action: "/agent/tours/new",
         encType: "application/json",
       });
     },
@@ -297,7 +295,12 @@ export default function TourCreateForm() {
         />{" "}
         <form.Subscribe
           selector={(state) => state.errors}
-          children={(errorMap) => <div>{errors.onChange}</div>}
+          children={(errorMap) => (
+            <div>
+              onChange{errors.onChange}onBlur{errors.onBlur}onSubmit
+              {errors.onSubmit}
+            </div>
+          )}
         />
       </form>
     </div>

@@ -18,6 +18,7 @@
   "dependencies": {
     "@hono/arktype-validator": "^2.0.1",
     "@hono/node-server": "^1.14.1",
+    "@hono/node-ws": "^1.2.0",
     "@oslojs/crypto": "^1.0.1",
     "@oslojs/encoding": "^1.1.0",
     "@repo/db": "workspace:*",
@@ -26,6 +27,7 @@
     "@types/bcrypt": "^5.0.2",
     "arktype": "^2.1.20",
     "bcrypt": "^6.0.0",
+    "dayjs": "^1.11.13",
     "dotenv": "^17.0.1",
     "hono": "^4.7.9",
     "hono-openapi": "^0.4.8",
@@ -37,6 +39,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^20.11.17",
+    "@types/ws": "^8.18.1",
     "tsx": "^4.7.1",
     "typescript": "^5.8.3"
   }

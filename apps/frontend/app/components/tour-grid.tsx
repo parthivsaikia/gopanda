@@ -1,3 +1,4 @@
+import type { Booking } from "@repo/types";
 import TourCard from "./tourDisplayCard";
 import dayjs from "dayjs";
 
@@ -5,7 +6,10 @@ interface Tour {
   id: bigint;
   startDate: Date;
   endDate: Date;
+  maximumPeople: number;
+  minimumPeople: number;
   price: number;
+  bookings: Booking[];
   dayPlan: {
     itineraries: {
       place: {
@@ -31,7 +35,18 @@ const shortenPlaceName = (placeName: string | undefined) => {
   return parts.slice(0, 2).join(", ");
 };
 
-export const generateTourTitle = (tour: Tour) => {
+export const generateTourTitle = (
+  tour: Omit<
+    Tour,
+    | "id"
+    | "maximumPeople"
+    | "minimumPeople"
+    | "price"
+    | "averageRating"
+    | "reviewCount"
+    | "bookings"
+  >,
+) => {
   // Use shortenPlaceName to process each place name first
   const places = tour.dayPlan
     .flatMap((day) => day.itineraries)
@@ -52,9 +67,18 @@ export const generateTourTitle = (tour: Tour) => {
     return `${duration}-Day Tour of ${uniquePlaces[0]} & More`;
   }
 };
-export default function TourGrid({ tours }: { tours: Tour[] }) {
+export default function TourGrid({
+  tours,
+  role,
+
+  show,
+}: {
+  tours: Tour[];
+  role: string;
+  show: boolean;
+}) {
   return (
-    <div className="grid grid-cols-5 gap-4 my-8 p-4 mx-auto border-2 border-red-500">
+    <div className="grid grid-cols-5 gap-4 my-8 p-4 mx-auto ">
       {tours.map((tour) => {
         // Extract all photos from the tour
         const allPhotos = tour.dayPlan
@@ -66,6 +90,8 @@ export default function TourGrid({ tours }: { tours: Tour[] }) {
 
         return (
           <TourCard
+            role={role}
+            show={show}
             key={tour.id.toString()}
             title={generateTourTitle(tour)}
             price={tour.price}
@@ -74,6 +100,7 @@ export default function TourGrid({ tours }: { tours: Tour[] }) {
             id={tour.id.toString()}
             imageUrl={mainImageUrl}
             rating={tour.averageRating}
+            spotsLeft={tour.maximumPeople - tour.bookings.length}
           />
         );
       })}

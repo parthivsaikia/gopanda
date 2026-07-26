@@ -5,6 +5,7 @@ import axios from "axios";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import type { TourCreateStepProps } from "@repo/types";
+import { apiBaseUrl } from "services/config";
 
 // --- Types ---
 
@@ -51,7 +52,7 @@ const uploadPhotos = async (files: File[]): Promise<string[]> => {
 
   try {
     const response = await axios.post<{ photoUrls: string[] }>(
-      "http://localhost:3000/placeImage",
+      `${apiBaseUrl}/placeImage`,
       formData,
       {
         headers: {

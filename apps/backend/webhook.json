@@ -1,0 +1,6 @@
+{"entity":"event","account_id":"acc_QsoDOIEW23V8WK","event":"payment.authorized","contains":["payment"],"payload":{"payment
+                  ":{"entity":{"id":"pay_R2uFQdNjmWrVMz","entity":"payment","amount":100000,"currency":"INR","status":"authorized","order_id":"order_R2u8UxNfCOuCsx","invoice_id":null,"international":false,"method":"netbanking","amount_refunded":0,"refund_status":null,"captured"
+                  :false,"description":"Test booking payment","card_id":null,"bank":"BARB_R","wallet":null,"vpa":null,"email":"customer@example.com"
+                  ,"contact":"+918011475906","notes":[],"fee":null,"tax":null,"error_code":null,"error_description":null,"error_source":null,"error_step":null,"error_reason":null,"acquirer_data":{"bank_transaction_id":"7550937"},"created_at":1754670504}}},"created_at":1754670507}
+
+webhook.payload.payment.entity.id

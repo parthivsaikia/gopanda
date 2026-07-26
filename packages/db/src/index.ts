@@ -7,6 +7,10 @@ import {
   type UserRole as PrismaUserRoleGenerated,
   type OfferedTour as PrismaOfferedTourGenerated,
   type DayPlan as PrismaDayPlanGenerated,
+  type Booking as PrismaBookingGenerated,
+  type BookingStatus as PrismaBookingStatusGenerated,
+  type PaymentStatus as PrismaPaymentStatus,
+  type Payment as PrismaPayment,
   // ... import other model types you want to explicitly re-export by name
 } from "../generated/prisma/index.js"; // Your custom output path
 
@@ -21,5 +25,9 @@ export {
   type PrismaUserRoleGenerated as UserRole,
   type PrismaOfferedTourGenerated as OfferedTour,
   type PrismaDayPlanGenerated as DayPlan,
+  type PrismaBookingGenerated as Booking,
+  type PrismaBookingStatusGenerated as BookingStatus,
+  type PrismaPaymentStatus as PaymentStatus,
+  type PrismaPayment as Payment,
 };
 export default prismaInstance; // Export the runtime client instance

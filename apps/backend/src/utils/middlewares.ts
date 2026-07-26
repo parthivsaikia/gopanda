@@ -97,3 +97,19 @@ export const isAgentMiddleware = createMiddleware(
     }
   },
 );
+
+export const authenticateWebSocketConnection = async (c: Context) => {
+  const token = getCookie(c, COOKIE_NAME);
+
+  if (!token) {
+    throw new Error("No authentication token");
+  }
+
+  const { user, session } = await validateSession(token);
+
+  if (!user || !session) {
+    throw new Error("Invalid session");
+  }
+
+  return { user, session };
+};

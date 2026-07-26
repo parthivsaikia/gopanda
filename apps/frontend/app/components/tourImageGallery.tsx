@@ -1,4 +1,4 @@
-const ImageGalleryWithOneImage = ({ image }: { image: string }) => {
+export const ImageGalleryWithOneImage = ({ image }: { image: string }) => {
   return (
     <div className="w-full">
       <img

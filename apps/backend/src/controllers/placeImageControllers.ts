@@ -1,5 +1,6 @@
 // INFO: Place image uploader for tours
 // TODO: Move it to tourControllers.ts
+
 import { createRouteHandler, UTApi } from "uploadthing/server";
 import type { OurFileRouter } from "../actions/uploadThingActions.js";
 import { ourFileRouter } from "../actions/uploadThingActions.js";

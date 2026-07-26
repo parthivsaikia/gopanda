@@ -11,7 +11,9 @@ import {
 const ImageHolder = ({
   src,
   placeName,
+  show,
 }: {
+  show: boolean;
   src: string;
   placeName: string;
 }) => {
@@ -23,11 +25,13 @@ const ImageHolder = ({
         className="h-full w-full rounded-2xl"
       />
 
-      <Heart
-        className="absolute right-2 top-2 fill-accent"
-        size={30}
-        strokeWidth={1}
-      />
+      {show && (
+        <Heart
+          className="absolute right-2 top-2 fill-accent"
+          size={30}
+          strokeWidth={1}
+        />
+      )}
     </div>
   );
 };
@@ -40,6 +44,9 @@ export default function TourCard({
   imageUrl,
   price,
   rating,
+  show,
+  role,
+  spotsLeft,
 }: {
   id: string;
   title: string;
@@ -48,13 +55,17 @@ export default function TourCard({
   imageUrl: string;
   price: number;
   rating: number;
+  show: boolean;
+  role: string;
+  spotsLeft: number;
 }) {
+  let link = role === "customer" ? `/tour-details/${id}` : `/agent-tour/${id}`;
   return (
-    <Link to={`/tour-details/${id}`}>
+    <Link to={link}>
       {" "}
       <Card className="w-64 h-80 py-8 mx-auto bg-transparent shadow-none border-none flex flex-col  justify-center">
         <CardContent className="relative">
-          <ImageHolder src={imageUrl} placeName={title} />
+          <ImageHolder show={show} src={imageUrl} placeName={title} />
         </CardContent>
         <CardHeader className="text-center -my-2 text-xs flex flex-col items-center justify-center gap-1 ">
           <CardTitle>{title}</CardTitle>
@@ -66,6 +77,7 @@ export default function TourCard({
                 <Star className="font-semibold" size={10} fill="gold" />
                 <p className="font-semibold">4.8</p>
               </div>
+              <p>{spotsLeft} spots left</p>
             </div>
           </CardDescription>
         </CardHeader>

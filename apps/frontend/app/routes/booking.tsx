@@ -1,7 +1,7 @@
 import BookingForm from "~/components/bookingform";
 import type { Route } from "./+types/booking";
 import { getToursById } from "services/get-tours";
-import { createOrder } from "services/create-order";
+import { createBooking } from "services/create-booking";
 
 export const clientAction = async ({
   request,
@@ -9,15 +9,19 @@ export const clientAction = async ({
 }: Route.ClientActionArgs) => {
   try {
     const id = params.tourId;
+    console.log(id);
     const tour = await getToursById(id);
     const formData = await request.formData();
     const jsonData = formData.get("data") as string;
     const data = JSON.parse(jsonData);
-    const order = await createOrder({
-      amount: String(data.peoples.length * tour.price),
-      currency: "INR",
-    });
+    console.log(Array.isArray(data.peoples));
+    console.log(data);
+    const booking = await createBooking({ tourId: id, peoples: data });
+    const order = booking.payment;
     console.log(order);
+
+    console.log(booking);
+    return order;
   } catch (error) {
     const errorMsg =
       error instanceof Error
@@ -41,11 +45,15 @@ export const clientLoader = async ({ params }: Route.ClientLoaderArgs) => {
   }
 };
 
-export default function BookingPage({ loaderData }: Route.ComponentProps) {
+export default function BookingPage({
+  loaderData,
+  actionData,
+}: Route.ComponentProps) {
+  let order = actionData;
   let tour = loaderData;
   return (
     <div>
-      <BookingForm tourPrice={tour.price} tourId={tour.id} />
+      <BookingForm order={order} tourPrice={tour.price} tourId={tour.id} />
     </div>
   );
 }

@@ -10,20 +10,39 @@ export default function TourSearchBar() {
   const day = String(today.getDate()).padStart(2, "0");
   const minDateString = `${year}-${month}-${day}`;
   return (
-    <div>
+    <div className="border-2 border-red-300 w-2/3">
       <Form method="post" action="/customer-dashboard">
-        <Input placeholder={`Search your next destination`} name="place" />
-        <div>
-          <div>
-            <Label>Number of Person</Label>
-            <Input type="number" minLength={1} name="persons" id="persons" />
+        <div className="flex p-8 flex-col items-center justify-center gap-8">
+          <Input
+            placeholder={`Search your next destination`}
+            name="place"
+            className="p-6 w-2/3"
+          />
+          <div className="flex gap-4 items-center border-2 border-red-500 justify-between w-2/3">
+            <div>
+              <Label>Number of Person</Label>
+              <Input
+                type="number"
+                className="p-6 w-full"
+                minLength={1}
+                name="persons"
+                id="persons"
+              />
+            </div>
+            <div>
+              <Label>When are you planning to travel</Label>
+              <Input
+                type="date"
+                name="date"
+                id="persons"
+                className="p-6 "
+                min={minDateString}
+              />
+            </div>
           </div>
-          <div>
-            <Label>When are you planning to travel</Label>
-            <Input type="date" name="date" id="persons" min={minDateString} />
-          </div>
+
+          <Button type="submit">See Available Tours</Button>
         </div>
-        <Button type="submit">See Available Tours</Button>
       </Form>
     </div>
   );
